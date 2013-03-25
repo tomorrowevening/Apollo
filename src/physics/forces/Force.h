@@ -39,14 +39,14 @@ public:
 		p->acc += distance * effect;
 	}
 	
-	virtual void update(std::vector<Particle> *nodes) {
-		int total = nodes->size();
+	virtual void update(std::vector<Particle*> nodes) {
+		int total = nodes.size();
 		if(total > 0) {
 			vec3f distance, effect;
 			float length;
 			Particle* p;
 			for(int i = 0; i < total; ++i) {
-				p = &nodes->at(i);
+				p = nodes.at(i);
 				distance = MathUtil::difference(pos, p->pos);
 				length = distance.length();
 				if(length > 0 && length < size) {

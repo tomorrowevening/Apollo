@@ -21,12 +21,14 @@ public:
 	LinearForce() {
 		Force::Force();
 		type = FT_Linear;
-		direction = 0.0f;
+		direction = 0;
 		directionStrength = 1.0f;
 	}
 	
 	void applyForce(Particle* p, vec3f distance, float length, vec3f effect) {
-		float phi = MathUtil::toRadians(direction);
+		
+		float phi   = MathUtil::toRadians(direction);
+		
 		p->vel.x += cos(phi) * effect.x;
 		p->vel.y += sin(phi) * effect.y;
 	}

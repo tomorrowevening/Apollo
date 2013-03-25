@@ -11,6 +11,11 @@
 
 class StringUtil {
 public:
+	
+	static string fileType(string path) {
+		return path.substr(path.find_last_of(".")+1);
+	}
+	
 	static string formatDigits(int num, int totalDigits, string prefix, string suffix) {
 		int i, n;
 		int hundreds = 1;

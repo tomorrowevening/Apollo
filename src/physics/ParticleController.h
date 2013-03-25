@@ -20,7 +20,7 @@ class ParticleController {
 public:
 	
 	vec3f pos, size, time;
-	vector<Particle> particles;
+	vector<Particle*> particles;
 	vector<Force*> forces;
 	
 	bool constrain, wrap, bounceConstrain;
@@ -32,11 +32,11 @@ public:
 	
 	void update();
 	
-	Particle& operator[](unsigned i);
+	Particle* operator[](unsigned i);
 	int totalParticles();
 	int totalForces();
 	
-	void addParticle(Particle p);
+	void addParticle(Particle* p);
 	void addParticle(float x, float y, float z);
 	
 	void addForce(Force* f);

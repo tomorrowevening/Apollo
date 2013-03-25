@@ -6,7 +6,6 @@
 //
 
 #include "StopWatch.h"
-#include "Apollo.h"
 #include "ofMain.h"
 
 StopWatch::StopWatch() {

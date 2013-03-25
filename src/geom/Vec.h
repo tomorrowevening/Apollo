@@ -41,12 +41,15 @@ public:
 	
 	static vec2f zero();
     static vec2f one();
+	static vec2f range(float minX, float maxX, float minY, float maxY, float per);
 	static vec2f random(float x, float y);
 	static vec2f randomRange(float minX, float maxX, float minY, float maxY);
 
 	float length();
 	void normalize();
 	void rotate(float angle);
+	void set(float px, float py);
+	void set(vec2f pos);
 	
 };
 
@@ -95,9 +98,12 @@ public:
 	void rotateX(float angle);
 	void rotateY(float angle);
 	void rotateZ(float angle);
+	void set(float px, float py, float pz);
+	void set(vec3f pos);
 	
 	static vec3f zero();
     static vec3f one();
+	static vec3f range(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float per);
 	static vec3f random(float x, float y, float z);
 	static vec3f randomRange(float minX, float maxX, float minY, float maxY, float minZ, float maxZ);
 	
@@ -107,5 +113,32 @@ vec3f operator+(float f, const vec3f& vec);
 vec3f operator-(float f, const vec3f& vec);
 vec3f operator*(float f, const vec3f& vec);
 vec3f operator/(float f, const vec3f& vec);
+
+class Rectangle {
+public:
+	
+	vec3f pos, size;
+	
+	float x();
+	float y();
+	float z();
+	
+	float width();
+	float height();
+	float depth();
+	
+	float left();
+	float top();
+	float right();
+	float bottom();
+	float front();
+	float back();
+	
+	bool inside(vec2f point);
+	bool inside(vec3f point);
+	
+	bool overlapping(Rectangle rect);
+	
+};
 
 

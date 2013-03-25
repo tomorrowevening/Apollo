@@ -1,5 +1,8 @@
 //
 //  Animation.h
+//  SpriteSheets
+//
+//  Created by Colin Duffy on 8/16/12.
 //  Copyright (c) 2012 Tomorrow Evening. All rights reserved.
 //
 
@@ -17,13 +20,13 @@ public:
 	
 	Animation();
 	void add(string frameName, string imagePath, int totalFrames, int columns);
-	void dispose();
 	void gotoAndPlay(string frame);
-	void render();
 	void setSpeed(float value);
 	
-private:
+	virtual void dispose();
+	virtual void render();
 	
+private:
 	SpriteSheet* currentAnimation;
 	vector<SpriteSheet> animations;
 	vector<string> frameLabels;

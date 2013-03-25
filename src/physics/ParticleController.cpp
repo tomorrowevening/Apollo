@@ -23,14 +23,14 @@ ParticleController::ParticleController() {
 void ParticleController::constrainParticles() {
 	int total = totalParticles();
 	for(int i = 0; i < total; ++i) {
-		particles[i].constrain(size);
+		particles[i]->constrain(size);
 	}
 }
 
 void ParticleController::wrapParticles() {
 	int total = totalParticles();
 	for(int i = 0; i < total; ++i) {
-		particles[i].wrap(size);
+		particles[i]->wrap(size);
 	}
 }
 
@@ -38,7 +38,7 @@ void ParticleController::bounceConstrainParticles(float amount) {
 	vec3f dampen = vec3f(amount, amount, amount);
 	int total = totalParticles();
 	for(int i = 0; i < total; ++i) {
-		particles[i].bounceOffWalls(size, dampen);
+		particles[i]->bounceOffWalls(size, dampen);
 	}
 }
 
@@ -50,21 +50,25 @@ void ParticleController::update() {
 	
 	total = totalForces();
 	for(i = 0; i < total; ++i) {
-		forces[i]->update(&particles);
+		forces[i]->update(particles);
 	}
 	
-	total = totalParticles();
-	for(i = 0; i < total; ++i) {
-		particles[i].update(time);
+	for(i = 0; i < totalParticles();) {
+		particles[i]->update(time);
+		particles[i]->dampen();
+		if(bounceConstrain) particles[i]->bounceOffWalls(pos, maxBounds, dampen);
+		if(wrap) particles[i]->wrap(size);
+		if(constrain) particles[i]->constrain(size);
 		
-		particles[i].dampen();
-		if(bounceConstrain) particles[i].bounceOffWalls(pos, maxBounds, dampen);
-		if(wrap) particles[i].wrap(size);
-		if(constrain) particles[i].constrain(size);
+		if(particles[i]->dead()) {
+			removeParticle(i);
+		} else {
+			++i;
+		}
 	}
 }
 
-Particle& ParticleController::operator[](unsigned i) {
+Particle* ParticleController::operator[](unsigned i) {
 	return particles[i];
 }
 
@@ -76,12 +80,12 @@ int ParticleController::totalForces() {
 	return forces.size();
 }
 
-void ParticleController::addParticle(Particle p) {
+void ParticleController::addParticle(Particle* p) {
 	particles.push_back(p);
 }
 
 void ParticleController::addParticle(float x, float y, float z) {
-	particles.push_back(Particle(vec3f(x, y, z)));
+	particles.push_back(new Particle(vec3f(x, y, z)));
 }
 
 void ParticleController::addForce(Force* f) {
@@ -95,11 +99,15 @@ void ParticleController::addForce(float x, float y, float z) {
 }
 
 void ParticleController::removeParticle(int index) {
+	Particle* p = particles[index];
 	particles.erase(particles.begin() + index);
+	delete p;
+	p = NULL;
 }
 
 void ParticleController::removeForce(int index) {
 	Force* f = forces.at(index);
-	delete f;
 	forces.erase(forces.begin() + index);
+	delete f;
+	f = NULL;
 }

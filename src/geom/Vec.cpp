@@ -34,6 +34,9 @@ void vec2f::rotate(float angle) {
 	x = rotX;
 }
 
+vec2f vec2f::range(float minX, float maxX, float minY, float maxY, float per) {
+	return vec2f(RANGE(minX, maxX, per), RANGE(minY, maxY, per));
+}
 vec2f vec2f::random(float x, float y) {
 	return vec2f(MathUtil::randomRange(0, x), MathUtil::randomRange(0, y));
 }
@@ -144,6 +147,16 @@ vec2f& vec2f::operator/=( const float f ) {
 	return *this;
 }
 
+void vec2f::set(float px, float py) {
+	x = px;
+	y = py;
+}
+
+void vec2f::set(vec2f pos) {
+	x = pos.x;
+	y = pos.y;
+}
+
 vec2f operator+( float f, const vec2f& vec ) {
     return vec2f( f+vec.x, f+vec.y);
 }
@@ -160,6 +173,7 @@ vec2f operator/( float f, const vec2f& vec ) {
     return vec2f( f/vec.x, f/vec.y);
 }
 
+#pragma mark - Vec3
 
 float vec3f::length() {
 	return sqrt(x*x + y*y + z*z);
@@ -211,6 +225,10 @@ vec3f vec3f::zero() {
 }
 vec3f vec3f::one() {
 	return vec3f(1, 1, 1);
+}
+
+vec3f vec3f::range(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float per) {
+	return vec3f(RANGE(minX, maxX, per), RANGE(minY, maxY, per), RANGE(minZ, maxY, per));
 }
 vec3f vec3f::random(float x, float y, float z) {
 	return vec3f(MathUtil::randomRange(0, x), MathUtil::randomRange(0, y), MathUtil::randomRange(0, z));
@@ -331,6 +349,18 @@ vec3f& vec3f::operator/=( const float f ) {
 	return *this;
 }
 
+void vec3f::set(float px, float py, float pz) {
+	x = px;
+	y = py;
+	z = pz;
+}
+
+void vec3f::set(vec3f pos) {
+	x = pos.x;
+	y = pos.y;
+	z = pos.z;
+}
+
 vec3f operator+( float f, const vec3f& vec ) {
 	return vec3f( f+vec.x, f+vec.y, f+vec.z);
 }
@@ -348,3 +378,71 @@ vec3f operator/( float f, const vec3f& vec ) {
 }
 
 
+
+#pragma mark - Rectangle
+
+float Rectangle::x()  {
+	return pos.x;
+}
+
+float Rectangle::y() {
+	return pos.y;
+}
+
+float Rectangle::z() {
+	return pos.z;
+}
+
+float Rectangle::width() {
+	return size.x;
+}
+float Rectangle::height() {
+	return size.y;
+}
+float Rectangle::depth() {
+	return size.z;
+}
+
+float Rectangle::left() {
+	return pos.x;
+}
+
+float Rectangle::top() {
+	return pos.y;
+}
+
+float Rectangle::right() {
+	return pos.x + size.x;
+}
+
+float Rectangle::bottom() {
+	return pos.y + size.y;
+}
+
+float Rectangle::front() {
+	return pos.z;
+}
+
+float Rectangle::back() {
+	return pos.z + size.z;
+}
+
+bool Rectangle::inside(vec2f point) {
+	bool insideX = point.x >= left()  && point.x <= right();
+	bool insideY = point.y >= top()   && point.y <= bottom();
+	return insideX && insideY;
+}
+
+bool Rectangle::inside(vec3f point) {
+	bool insideX = MathUtil::inRange(point.x, left(),  right());
+	bool insideY = MathUtil::inRange(point.y, top(),   bottom());
+	bool insideZ = MathUtil::inRange(point.z, front(), back());
+	return insideX && insideY && insideZ;
+}
+
+bool Rectangle::overlapping(Rectangle rect) {
+	bool xOverlap = MathUtil::inRange(rect.pos.x, left(),  right())  || MathUtil::inRange(left(),  rect.left(),  rect.right());
+	bool yOverlap = MathUtil::inRange(rect.pos.y, top(),   bottom()) || MathUtil::inRange(top(),   rect.top(),   rect.bottom());
+	bool zOverlap = MathUtil::inRange(rect.pos.z, front(), back())   || MathUtil::inRange(front(), rect.front(), rect.back());
+	return xOverlap && yOverlap && zOverlap;
+}

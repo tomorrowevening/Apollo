@@ -13,11 +13,11 @@
 #include <stdlib.h>
 #include "Vec.h"
 
-#ifndef PI
+#ifndef RADIANS
 #define RADIANS									0.017453292519943295
 #endif
 
-#ifndef PI
+#ifndef DEGREES
 #define DEGREES									57.29577951308232
 #endif
 
@@ -29,16 +29,95 @@
 #define HALF_PI									( PI * (float)0.5 )
 #endif
 
+#ifndef toRad
+#define toRad(ang)								( RADIANS * ang )
+#endif
+
+#ifndef toDeg
+#define toDeg(ang)								( DEGREES * ang )
+#endif
+
 #define GET_ANGLE_RAD(x1,y1,x2,y2)				( atan2( y2-y1, x2-x1 ) )
 #define GET_ANGLE_DEG(x1,y1,x2,y2)				( TO_DEGREES( GET_ANGLE_RAD(x1,y1,x2,y2) ) )
 #define RANGE(min,max,per)						( (float)( min + ((max - min) * per) ) )
 
 #define ROUND(value, ordinal)					( roundf( value * (float)ordinal ) * ( 1. / (float)ordinal ) )
 
-#define COS_RANGE(degrees, range, min)			( (((1 + cos(TO_RADIANS(degrees))) * 0.5) * range) + min )
+#define COS_RANGE(degrees, range, min)			( (((1 + cos(degrees * RADIANS)) * 0.5) * range) + min )
+
+enum MatrixAlign {
+	ALIGN_TOP_LEFT = 0,
+	ALIGN_TOP_CENTER = 1,
+	ALIGN_TOP_RIGHT = 2,
+	
+	ALIGN_MID_LEFT = 3,
+	ALIGN_MID_CENTER = 4,
+	ALIGN_MID_RIGHT = 5,
+	
+	ALIGN_BOT_LEFT = 6,
+	ALIGN_BOT_CENTER = 7,
+	ALIGN_BOT_RIGHT = 8
+};
 
 class MathUtil {
 public:
+	
+	static float align(MatrixAlign alignment, float min, float max) {
+		if(alignment == ALIGN_TOP_LEFT ||
+		   alignment == ALIGN_MID_LEFT ||
+		   alignment == ALIGN_BOT_LEFT)		return min;
+		
+		if(alignment == ALIGN_TOP_CENTER ||
+		   alignment == ALIGN_MID_CENTER ||
+		   alignment == ALIGN_BOT_CENTER)	return RANGE(min, max, 0.5f);
+		
+		return max;
+	}
+	
+	static vec2f align(MatrixAlign alignment, vec2f pos, vec2f size) {
+		vec2f adjusted = pos;
+		switch(alignment) {
+			// Left
+			case ALIGN_TOP_LEFT:
+			default:
+				break;
+			case ALIGN_TOP_CENTER:
+				adjusted.x -= size.x * 0.5f;
+				break;
+				
+			case ALIGN_TOP_RIGHT:
+				adjusted.x -= size.x;
+				break;
+				
+			// Mid
+			case ALIGN_MID_LEFT:
+				adjusted.y -= size.y * 0.5f;
+				break;
+			case ALIGN_MID_CENTER:
+				adjusted.x -= size.x * 0.5f;
+				adjusted.y -= size.y * 0.5f;
+				break;
+			case ALIGN_MID_RIGHT:
+				adjusted.x -= size.x;
+				adjusted.y -= size.y * 0.5f;
+				break;
+				
+			// Bottom
+			case ALIGN_BOT_LEFT:
+				adjusted.y -= size.y;
+				break;
+			case ALIGN_BOT_CENTER:
+				adjusted.x -= size.x * 0.5f;
+				adjusted.y -= size.y;
+				break;
+			case ALIGN_BOT_RIGHT:
+				adjusted.x -= size.x;
+				adjusted.y -= size.y;
+				break;
+		}
+		
+		return adjusted;
+	}
 	
 	static float resolveAngle(float degrees) {
 		return fmodf(degrees, 360.0f);
@@ -62,6 +141,10 @@ public:
 	
 	static float random() {
 		return (float)rand()/(float)RAND_MAX;
+	}
+	
+	static bool inRange(float value, float min, float max) {
+		return value >= min && value <= max;
 	}
 	
 	static float randomRange(float min, float max) {
@@ -94,6 +177,14 @@ public:
 	
 	static vec3f difference(vec3f p1, vec3f p2) {
 		return vec3f(p1.x - p2.x, p1.y - p2.y, p1.z - p2.z);
+	}
+	
+	static vec2f difference(vec2f p1, vec2f p2) {
+		return vec2f(p1.x - p2.x, p1.y - p2.y);
+	}
+	
+	static float difference(float p1, float p2) {
+		return p1 - p2;
 	}
 	
 	static vec2f constrain(vec2f pos, vec2f bounds = vec2f::zero()) {

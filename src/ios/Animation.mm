@@ -1,5 +1,8 @@
 //
 //  Animation.mm
+//  SpriteSheets
+//
+//  Created by Colin Duffy on 8/16/12.
 //  Copyright (c) 2012 Tomorrow Evening. All rights reserved.
 //
 

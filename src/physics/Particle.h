@@ -28,15 +28,19 @@ public:
 		reset();
 	}
 	
-	void reset() {
+	virtual void reset() {
 		acc = vec3f();
 	}
 	
-	void dampen(vec3f amt = vec3f(.01, .01, .01)) {
+	virtual void dampen(vec3f amt = vec3f(.01, .01, .01)) {
 		acc = acc - vel * amt;
 	}
 	
-	void spring(vec3f targetPos, vec3f strength = vec3f(0.05, 0.05, 0.05), vec3f damping = vec3f(0.05, 0.05, 0.05)) {
+	virtual float movement() {
+		return acc.length() + vel.length();
+	}
+	
+	virtual void spring(vec3f targetPos, vec3f strength = vec3f(0.05, 0.05, 0.05), vec3f damping = vec3f(0.05, 0.05, 0.05)) {
 		vec3f dir = pos - targetPos;
 		float dist = dir.length();
 		dir.normalize();
@@ -48,7 +52,7 @@ public:
 		acc += dir;
 	}
 	
-	void update(const vec3f& time) {
+	virtual void update(const vec3f& time) {
 		prev = pos;
 		vel += acc * time;
 		acc = vec3f::zero();
@@ -56,7 +60,7 @@ public:
 		pos += vel * time;
 	}
 	
-	void bounceOffWalls(vec3f min = vec3f::zero(), vec3f max = vec3f::zero(), vec3f damping = vec3f(0.01, 0.01, 0.01)) {
+	virtual void bounceOffWalls(vec3f min = vec3f::zero(), vec3f max = vec3f::zero(), vec3f damping = vec3f(0.01, 0.01, 0.01)) {
 		// X
 		if(pos.x < min.x) {
 			pos.x = min.x;
@@ -85,12 +89,16 @@ public:
 		}
 	}
 	
-	void constrain(vec3f bounds = vec3f::zero()) {
+	virtual void constrain(vec3f bounds = vec3f::zero()) {
 		pos = MathUtil::constrain(pos, bounds);
 	}
 	
-	void wrap(vec3f bounds = vec3f::one()) {
+	virtual void wrap(vec3f bounds = vec3f::one()) {
 		pos = MathUtil::wrap(pos, bounds);
+	}
+	
+	virtual bool dead() {
+		return false;
 	}
 	
 };
