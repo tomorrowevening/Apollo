@@ -212,6 +212,8 @@ public:
 				c3.set(x, y);
 				break;
 		}
+		
+		invalidate = true;
 	}
 	
 	float getValue(float percent) {

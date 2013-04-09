@@ -147,6 +147,10 @@ public:
 		return value >= min && value <= max;
 	}
 	
+	static bool overlapping(float x, float y, float width, float height, float boundsX, float boundsY, float boundsWidth, float boundsHeight) {
+		return inRange(x, boundsX, boundsX+boundsWidth) || inRange(y, boundsY, boundsY+boundsHeight);
+	}
+	
 	static float randomRange(float min, float max) {
 		return RANGE(min, max, random());
 	}
