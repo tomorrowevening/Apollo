@@ -40,9 +40,7 @@ void Animation::gotoAndPlay(string frame) {
 
 void Animation::render() {
 	if(currentAnimation != NULL) {
-		currentAnimation->x = x;
-		currentAnimation->y = y;
-		currentAnimation->render();
+		currentAnimation->render(x, y);
 	}
 }
 

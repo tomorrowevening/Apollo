@@ -17,12 +17,11 @@ class SpriteSheet {
 public:
 	
 	bool loop, useTexture;
-	float x, y, width, height, speed;
+	float width, height, speed;
 	int totalFrames;
 	ofImage* img;
 	
 	SpriteSheet() {
-		x = y = 0;
 		_currentFrame = 0;
 		totalFrames = 0;
 		speed = 1.0f;
@@ -46,7 +45,7 @@ public:
 				
 				// draw to fbo once
 				fbo->begin();
-//				img->drawSubsection(0, 0, width, height, xPos, yPos);
+				img->drawSubsection(0, 0, width, height, xPos, yPos);
 				fbo->end();
 				
 				fbos.push_back(fbo);
@@ -135,15 +134,18 @@ public:
 		fbos.clear();
 	}
 	
-	void render() {
+	void render(float x, float y, float z = 0.f) {
 		if(totalFrames == 0) return;
 		if(useTexture) {
 			float xPos = width  * (currentFrame() % columns);
 			float yPos = height * floor(_currentFrame / (float)columns);
 			if(width == 0) setSize();
-//			img->drawSubsection(round(x), round(y), width, height, xPos, yPos);
+			img->drawSubsection(x, y, z, width, height, xPos, yPos);
 		} else {
-			fbos[currentFrame()]->draw(round(x), round(y));
+			ofPushMatrix();
+			ofTranslate(x, y, z);
+			fbos[currentFrame()]->draw(0, 0);
+			ofPopMatrix();
 		}
 	}
 	

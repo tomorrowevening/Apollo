@@ -164,9 +164,7 @@ void SSMovieClip::render() {
 			offY = animations[animationIndex]->height - height;
 		}
 		
-		animations[animationIndex]->x = x - offX;
-		animations[animationIndex]->y = y - offY;
-		animations[animationIndex]->render();
+		animations[animationIndex]->render(x - offX, y - offY);
 		currentFrame = fmod(currentFrame + speed, animations[animationIndex]->totalFrames);
 	}
 }

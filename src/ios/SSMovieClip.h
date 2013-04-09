@@ -32,7 +32,7 @@ public:
 	
 	SpriteAlignment align;
 	int animationIndex;
-	float x, y, speed, width, height;
+	float x, y, z, speed, width, height;
 	
 	SSMovieClip();
 	
