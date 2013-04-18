@@ -53,8 +53,17 @@ public:
 		linear();
 		update();
 		
+		enableEvents();
+	}
+	
+	void enableEvents() {
 		ofAddListener(ofEvents().update, this, &DragBezier::_update);
 		ofAddListener(ofEvents().draw, this, &DragBezier::_draw);
+	}
+	
+	void disableEvents() {
+		ofRemoveListener(ofEvents().update, this, &DragBezier::_update);
+		ofRemoveListener(ofEvents().draw, this, &DragBezier::_draw);
 	}
 	
 	void linear() {
@@ -93,9 +102,31 @@ public:
 		y = py;
 	}
 	
+	void resize(float wid, float hei) {
+		const float right  = x + width;
+		const float bottom = y + height;
+		
+		const float d1x = MathUtil::getRange(drag1.x, x, getRight());
+		const float d2x = MathUtil::getRange(drag2.x, x, getRight());
+		const float d1y = 1.f - MathUtil::getRange(drag1.y, y, getBottom());
+		const float d2y = 1.f - MathUtil::getRange(drag2.y, y, getBottom());
+		
+		drag0.x = ofLerp(x, right,  0);
+		drag0.y = ofLerp(bottom, y, 0);
+		
+		drag1.x = ofLerp(x, right,  d1x);
+		drag1.y = ofLerp(bottom, y, d1y);
+		
+		drag2.x = ofLerp(x, right,  d2x);
+		drag2.y = ofLerp(bottom, y, d2y);
+		
+		drag3.x = ofLerp(x, right,  1.f);
+		drag3.y = ofLerp(bottom, y, 1.f);
+		updateDrags();
+	}
+	
 	void destroy() {
-		ofRemoveListener(ofEvents().update, this, &DragBezier::_update);
-		ofRemoveListener(ofEvents().draw, this, &DragBezier::_draw);
+		disableEvents();
 		drag0.killMe();
 		drag1.killMe();
 		drag2.killMe();
@@ -137,22 +168,33 @@ public:
 	}
 	
 	void draw() {
-		ofPushMatrix();
-		ofTranslate(DRAG_POINT_SIZE_H, DRAG_POINT_SIZE_H);
+		const ofPoint d0 = drag0.getPosition();
+		const ofPoint d1 = drag1.getPosition();
+		const ofPoint d2 = drag2.getPosition();
+		const ofPoint d3 = drag3.getPosition();
+		
+		ofSetColor(160, 224, 255, 102);
+		ofBeginShape();
+		ofVertex(d0.x, d0.y);
+		ofBezierVertex(d1, d2, d3);
+		ofVertex(d3.x, d0.y);
+		ofVertex(d0.x, d0.y);
+		ofEndShape();
+		
 		ofNoFill();
 		ofSetColor(255, 204);
 		ofRect(x, y, width, height);
 		
 		ofSetColor(255, 172);
-		ofBezier(drag0.x, drag0.y,
-				 drag1.x, drag1.y,
-				 drag2.x, drag2.y,
-				 drag3.x, drag3.y);
+		
+		ofBezier(d0.x, d0.y,
+				 d1.x, d1.y,
+				 d2.x, d2.y,
+				 d3.x, d3.y);
 		
 		ofSetColor(255, 102);
-		ofLine(drag0.x, drag0.y, drag1.x, drag1.y);
-		ofLine(drag2.x, drag2.y, drag3.x, drag3.y);
-		ofPopMatrix();
+		ofLine(d0, d1);
+		ofLine(d2, d3);
 		
 		// Reset
 		ofSetColor(255);

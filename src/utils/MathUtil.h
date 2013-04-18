@@ -151,6 +151,10 @@ public:
 		return inRange(x, boundsX, boundsX+boundsWidth) || inRange(y, boundsY, boundsY+boundsHeight);
 	}
 	
+	static float getRange(float value, float min, float max) {
+		return (value - min) / (max - min);
+	}
+	
 	static float randomRange(float min, float max) {
 		return RANGE(min, max, random());
 	}
