@@ -6,20 +6,21 @@
 //
 
 #include "BasicTweener.h"
-#include "Ease.h"
-#include "ofMain.h"
+#include "MathUtil.h"
 
 BasicTweener::BasicTweener() {
 	ease = Ease::Linear;
 	value = 0;
 	running = false;
 	complete = false;
+	custom = false;
 }
 
 void BasicTweener::start() {
+	running = true;
 	stopWatch.start();
 	checkComplete();
-	running = true;
+	printf("Start tween: %i, %f %f %f\n", running, startValue, endValue, duration);
 }
 
 void BasicTweener::start(float startValue, float endValue, float duration) {
@@ -31,6 +32,7 @@ void BasicTweener::start(float startValue, float endValue, float duration) {
 }
 
 void BasicTweener::stop() {
+	printf("Stop tween\n");
 	running = false;
 }
 
@@ -47,7 +49,9 @@ void BasicTweener::update() {
 	if(custom) {
 		value = customEase.getValue(stopWatch.read() / duration) * (endValue - startValue) + startValue;
 	} else {
-		value = abs( ease(stopWatch.read(), startValue, endValue - startValue, duration) * 1000.0f ) * 0.001f;
+//		value = abs( ease(stopWatch.read(), startValue, endValue - startValue, duration) * 1000.0f ) * 0.001f;
+//		value = ROUND(ease(stopWatch.read(), startValue, endValue - startValue, duration), 1000);
+		value = ease(time(), startValue, endValue - startValue, duration);
 		if( value >= endValue ) value = endValue;
 	}
 	checkComplete();
@@ -63,6 +67,7 @@ void BasicTweener::checkComplete() {
 }
 
 void BasicTweener::destroyHandler() {
+	printf("Tween complete\n");
 	value = endValue;
 	complete = true;
 	stop();
