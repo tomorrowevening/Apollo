@@ -14,7 +14,9 @@ public:
 	
 	ofTexture mask;
 	ofTexture content;
+#ifndef TARGET_OPENGLES
 	ofShader shader;
+#endif
 	
 	bool useMask;
 	

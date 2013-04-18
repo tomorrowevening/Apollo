@@ -10,6 +10,7 @@
 void AlphaMask::setup(int wid, int hei) {
 	useMask = true;
 	
+#ifndef TARGET_OPENGLES
 	string fragSrc = "";
 	fragSrc += "uniform sampler2DRect Tex0, Tex1;";
 	fragSrc += "void main (void) {";
@@ -32,15 +33,19 @@ void AlphaMask::setup(int wid, int hei) {
 	shader.setUniformTexture("Tex0", content, 0);
 	shader.setUniformTexture("Tex1", mask, 1);
 	shader.end();
+#endif
 }
 
 void AlphaMask::dispose() {
+#ifndef TARGET_OPENGLES
 	shader.unload();
+#endif
 }
 
 void AlphaMask::render(float x, float y) {
 	if(!useMask) return;
 	
+#ifndef TARGET_OPENGLES
 	int maskWid = mask.getWidth();
 	int maskHei = mask.getHeight();
 	
@@ -82,4 +87,5 @@ void AlphaMask::render(float x, float y) {
 	content.unbind();
 	
 	shader.end();
+#endif
 }
