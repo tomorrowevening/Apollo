@@ -8,6 +8,7 @@
 
 #pragma once
 #include "ofMain.h"
+#include "MathUtil.h"
 
 class Button : public ofRectangle {
 public:
@@ -15,17 +16,15 @@ public:
 	// Events
 	ofEvent<string> CLICK;
 	
-	bool enabled, drawBounds;
+	bool enabled, drawBounds, selectable, selected;
 	string buttonID;
+	MatrixAlign alignment;
 	
 	Button();
 	~Button();
 	
 	virtual void enable();
 	virtual void disable();
-	
-	virtual void setup() {}
-	virtual void exit() {}
 	virtual void render();
 	
 	// Events
@@ -40,7 +39,58 @@ public:
 	bool isOver() { return over; }
 	
 	virtual bool hitTest(float tx, float ty) {
-		return inside(tx, ty);
+		const float midW = width  * 0.5f;
+		const float midH = height * 0.5f;
+		switch (alignment) {
+			case ALIGN_TOP_LEFT:
+			default:
+				return inside(tx, ty);
+				break;
+			case ALIGN_TOP_CENTER:
+				return inside(tx - midW, ty);
+				break;
+			case ALIGN_TOP_RIGHT:
+				return inside(tx - width, ty);
+				break;
+				
+			case ALIGN_MID_LEFT:
+				return inside(tx, ty - midH);
+				break;
+			case ALIGN_MID_CENTER:
+				return inside(tx - midW, ty - midH);
+				break;
+			case ALIGN_MID_RIGHT:
+				return inside(tx - width, ty - midH);
+				break;
+				
+			case ALIGN_BOT_LEFT:
+				return inside(tx, ty - height);
+				break;
+			case ALIGN_BOT_CENTER:
+				return inside(tx - midW, ty - height);
+				break;
+			case ALIGN_BOT_RIGHT:
+				return inside(tx - width, ty - height);
+				break;
+		}
+	}
+	
+	float boundsX() {
+		if(alignment == ALIGN_TOP_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_BOT_LEFT) {
+			return x;
+		} else if(alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT) {
+			return x - (width * 0.5f);
+		}
+		return x-width;
+	}
+	
+	float boundsY() {
+		if(alignment == ALIGN_TOP_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_BOT_LEFT) {
+			return y;
+		} else if(alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT) {
+			return y - (height * 0.5f);
+		}
+		return y-height;
 	}
 	
 	// Setters

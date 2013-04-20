@@ -18,6 +18,9 @@ Button::Button() {
 	drawBounds = false;
 	pressed = over = false;
 	enabled = true;
+	alignment = ALIGN_TOP_LEFT;
+	selectable = false;
+	selected = false;
 	++btnCount;
 }
 
@@ -27,20 +30,25 @@ Button::~Button() {
 
 void Button::render() {
 	if(drawBounds) {
-		if(pressed) {
+		ofPushMatrix();
+		ofTranslate(boundsX(), boundsY());
+		
+		if(pressed || selected) {
 			ofSetColor(204, 0, 0);
 		} else if(over) {
 			ofSetColor(102, 0, 0);
 		} else {
 			ofSetColor(0);
 		}
-		ofRect(x, y, width, height);
+		ofRect(0, 0, width, height);
 		
 		ofSetColor(255, 0, 0);
 		ofNoFill();
-		ofRect(x, y, width, height);
+		ofRect(0, 0, width, height);
 		ofSetColor(255);
 		ofFill();
+		
+		ofPopMatrix();
 	}
 }
 
@@ -96,6 +104,7 @@ void Button::disableTouch() {
 void Button::_mouseDown(ofMouseEventArgs &e) {
 	if(!enabled || !hitTest(e.x, e.y)) return;
 	pressed = true;
+	if(selectable) selected = !selected;
 	
 	ofNotifyEvent(CLICK, buttonID, this);
 	onDown();
@@ -103,6 +112,7 @@ void Button::_mouseDown(ofMouseEventArgs &e) {
 
 void Button::_mouseUp(ofMouseEventArgs &e) {
 	if(!enabled) return;
+	selected = false;
 	if(pressed) onUp();
 	pressed = false;
 }
@@ -126,6 +136,7 @@ void Button::_mouseMove(ofMouseEventArgs &e) {
 void Button::_touchDown(ofTouchEventArgs &e) {
 	if(!enabled || !hitTest(e.x, e.y)) return;
 	pressed = true;
+	if(selectable) selected = true;
 	
 	ofNotifyEvent(CLICK, buttonID, this);
 	onDown();
@@ -133,6 +144,7 @@ void Button::_touchDown(ofTouchEventArgs &e) {
 
 void Button::_touchUp(ofTouchEventArgs &e) {
 	if(!enabled) return;
+	selected = false;
 	if(pressed) onUp();
 	pressed = false;
 }
