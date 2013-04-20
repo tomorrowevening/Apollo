@@ -9,6 +9,7 @@
 
 #pragma once
 #include "Vec.h"
+#include "MathUtil.h"
 
 class Cubic {
 public:
@@ -222,5 +223,11 @@ public:
 		// Find one root - any root - then factor out (t-r) to get a quadratic poly. for the remaining roots
 		return getY( findRoot(0, 1, percent) );
 	}
+	
+	float getC1X() { return c1.x; }
+	float getC2X() { return c2.x; }
+	
+	float getC1Y() { return c1.y; }
+	float getC2Y() { return c2.y; }
 	
 };

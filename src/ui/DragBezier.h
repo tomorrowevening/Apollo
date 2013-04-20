@@ -103,13 +103,13 @@ public:
 	}
 	
 	void resize(float wid, float hei) {
-		const float right  = x + width;
-		const float bottom = y + height;
+		const float right  = x + wid;
+		const float bottom = y + hei;
 		
-		const float d1x = MathUtil::getRange(drag1.x, x, getRight());
-		const float d2x = MathUtil::getRange(drag2.x, x, getRight());
-		const float d1y = 1.f - MathUtil::getRange(drag1.y, y, getBottom());
-		const float d2y = 1.f - MathUtil::getRange(drag2.y, y, getBottom());
+		const float d1x = bezier.getC1X();
+		const float d2x = bezier.getC2X();
+		const float d1y = bezier.getC1Y();
+		const float d2y = bezier.getC2Y();
 		
 		drag0.x = ofLerp(x, right,  0);
 		drag0.y = ofLerp(bottom, y, 0);
@@ -122,6 +122,10 @@ public:
 		
 		drag3.x = ofLerp(x, right,  1.f);
 		drag3.y = ofLerp(bottom, y, 1.f);
+		
+		this->width  = wid;
+		this->height = hei;
+		
 		updateDrags();
 	}
 	
