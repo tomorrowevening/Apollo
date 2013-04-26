@@ -14,15 +14,19 @@
 #include "Vec.h"
 
 #ifndef RADIANS
-#define RADIANS									0.017453292519943295
+#define RADIANS									0.017453292519943295f
 #endif
 
 #ifndef DEGREES
-#define DEGREES									57.29577951308232
+#define DEGREES									57.29577951308232f
 #endif
 
 #ifndef PI
-#define PI										3.14159265359
+#define PI										3.14159265359f
+#endif
+
+#ifndef TWO_PI
+#define TWO_PI									PI * 2.f
 #endif
 
 #ifndef HALF_PI
@@ -37,6 +41,10 @@
 #define toDeg(ang)								( DEGREES * ang )
 #endif
 
+#ifndef FLT_EPSILON
+#define FLT_EPSILON								1.19209290E-07F
+#endif
+
 #define GET_ANGLE_RAD(x1,y1,x2,y2)				( atan2( y2-y1, x2-x1 ) )
 #define GET_ANGLE_DEG(x1,y1,x2,y2)				( TO_DEGREES( GET_ANGLE_RAD(x1,y1,x2,y2) ) )
 #define RANGE(min,max,per)						( (float)( min + ((max - min) * per) ) )
@@ -44,6 +52,12 @@
 #define ROUND(value, ordinal)					( roundf( value * (float)ordinal ) * ( 1. / (float)ordinal ) )
 
 #define COS_RANGE(degrees, range, min)			( (((1 + cos(degrees * RADIANS)) * 0.5) * range) + min )
+
+#ifndef CLAMP
+#define CLAMP(value, minV, maxV)					( MAX(minV, MIN(value, maxV)) )
+#endif
+
+using namespace Apollo;
 
 enum MatrixAlign {
 	ALIGN_TOP_LEFT = 0,
@@ -117,6 +131,24 @@ public:
 		}
 		
 		return adjusted;
+	}
+	
+	static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp = false) {
+		if (fabs(inputMin - inputMax) < FLT_EPSILON){
+			return outputMin;
+		} else {
+			float outVal = ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
+			if( clamp ){
+				if(outputMax < outputMin){
+					if( outVal < outputMax )outVal = outputMax;
+					else if( outVal > outputMin )outVal = outputMin;
+				}else{
+					if( outVal > outputMax )outVal = outputMax;
+					else if( outVal < outputMin )outVal = outputMin;
+				}
+			}
+			return outVal;
+		}
 	}
 	
 	static float resolveAngle(float degrees) {
