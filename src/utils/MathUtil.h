@@ -11,6 +11,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "Apollo.h"
 #include "Vec.h"
 
 #ifndef RADIANS
@@ -57,7 +58,7 @@
 #define CLAMP(value, minV, maxV)					( MAX(minV, MIN(value, maxV)) )
 #endif
 
-using namespace Apollo;
+
 
 enum MatrixAlign {
 	ALIGN_TOP_LEFT = 0,
@@ -75,6 +76,8 @@ enum MatrixAlign {
 
 class MathUtil {
 public:
+	
+	static bool flip() { return random() < 0.5f; }
 	
 	static float align(MatrixAlign alignment, float min, float max) {
 		if(alignment == ALIGN_TOP_LEFT ||
