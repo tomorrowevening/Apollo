@@ -1,6 +1,5 @@
 //
 //  Event.cpp
-//  OFBoxShapes
 //
 //  Created by Colin Duffy on 4/25/13.
 //
@@ -8,7 +7,7 @@
 
 #include "Events.h"
 
-//EventDispatcher Dispatcher;
+EventDispatcher Dispatcher;
 
 //////////////////////////////////////////////////
 // Event Dispatcher
@@ -21,31 +20,25 @@ bool EventDispatcher::hasListener(const std::string type) {
 void EventDispatcher::dispatchEvent(const Event& event) {
 	if(!hasListener(event.type)) return;
 	
-	std::map<int, std::list<Callback> > &allCallbacks = eventHandlers[event.type];
-	for(std::map<int, std::list<Callback > >::reverse_iterator i = allCallbacks.rbegin(); i != allCallbacks.rend(); ++i) {
-		std::list<Callback > &funcList = i->second;
-		for(std::list<Callback >::iterator f=funcList.begin(); f!=funcList.end(); ++f) (*f)(event);
+	std::map<int, std::vector<Callback> > &allCallbacks = eventHandlers[event.type];
+	for(std::map<int, std::vector<Callback > >::reverse_iterator i = allCallbacks.rbegin(); i != allCallbacks.rend(); ++i) {
+		std::vector<Callback > &funcList = i->second;
+		for(std::vector<Callback >::iterator f=funcList.begin(); f!=funcList.end(); ++f) (*f)(event);
 	}
 }
 
-template <class T>
-void EventDispatcher::addListener(const std::string &type, T* listener, void (T::*handler)(const Event&), bool useCapture, int priority, bool useWeakReference) {
-	Callback cb = std::tr1::bind(handler, listener);
-	eventHandlers[type][priority].push_back(cb);
-}
-
-template <class T>
-void EventDispatcher::removeListener(const std::string &type, T* listener, void (T::*handler)(const Event&)) {
-	if(!hasListener(type)) return;
-	
-	std::map<int, std::list<Callback > > &allFunctions = eventHandlers[type];
-	for(std::map<int, std::list<Callback > >::iterator i = allFunctions.begin(); i != allFunctions.end(); ++i) {
-		i->second.remove(listener);
-		if(i->second.empty()) allFunctions.erase(i);
-	}
-	
-	if(allFunctions.empty()) eventHandlers.erase(type);
-}
+//template <class T>
+//void EventDispatcher::removeListener(const std::string &type, T* listener, void (T::*handler)()) {
+//	if(!hasListener(type)) return;
+//	
+//	std::map<int, std::list<Callback > > &allFunctions = eventHandlers[type];
+//	for(std::map<int, std::list<Callback > >::iterator i = allFunctions.begin(); i != allFunctions.end(); ++i) {
+//		i->second.remove(listener);
+//		if(i->second.empty()) allFunctions.erase(i);
+//	}
+//	
+//	if(allFunctions.empty()) eventHandlers.erase(type);
+//}
 
 //////////////////////////////////////////////////
 // Common event types

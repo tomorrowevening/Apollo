@@ -1,6 +1,5 @@
 //
 //  Event.h
-//  OFBoxShapes
 //
 //  Created by Colin Duffy on 4/25/13.
 //
@@ -9,8 +8,10 @@
 #pragma once
 #include "Apollo.h"
 #include <tr1/functional>
+#include <stdio.h>
+#include <stdlib.h>
 
-//namespace Apollo {
+namespace Apollo {
 
 	using namespace std;
 	
@@ -35,45 +36,63 @@
 	
 	typedef std::tr1::function<void(const Event&)> Callback;
 	
-	class EventCallback {
-	public:
-		Callback callback;
-		void call(const Event& evt) { callback(evt); }
-		
-		template <class T>
-		void setCallback(T* listener, void (T::*handler)(const Event&)) {
-			callback = std::tr1::bind(handler, listener);
-		}
-	};
-	
 	//////////////////////////////////////////////////
 	// Event dispatcher
 	//////////////////////////////////////////////////
 	
 	class EventDispatcher {
 	private:
-		std::map<const std::string, std::map<int, std::list<Callback > > > eventHandlers;
+		std::map<const std::string, std::map<int, std::vector<Callback > > > eventHandlers;
 	public:
 		
-		// "void EventDispatcher::addListener<HelloWorld>(std::string const&, HelloWorld*, void (HelloWorld::*)(Event const&), bool, int, bool)"
 		
 		bool hasListener(const std::string type);
 		void dispatchEvent(const Event& evt);
-		
-		template <class T>
-		void test(T* listener, void (T::*handler)(const int& d)) {
-			printf("Test!\n");
+		/*
+		template <class ListenerClass, typename ArgumentsType>
+		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(const void*, ArgumentsType&), int priority = 0) {
+			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
 		}
 		
-		template <class T>
-		void addListener(const std::string &type, T* listener, void (T::*handler)(const Event&), bool useCapture = false, int priority = 0, bool useWeakReference = false);
+		template <class ListenerClass, typename ArgumentsType>
+		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(ArgumentsType&), int priority = 0) {
+			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
+		}
 		
-		template <class T>
-		void removeListener(const std::string &type, T* listener, void (T::*handler)(const Event&));
+		template <class ListenerClass>
+		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(const void*), int priority = 0) {
+			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
+		}
+		*/
+		
+		template <class ListenerClass>
+		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(), int priority = 0) {
+			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
+		}
+		
+		template <class ListenerClass>
+		void removeListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)()) {
+			if(!hasListener(type)) return;
+			
+			// Reference to keep the code clean
+			std::map<int, std::vector<Callback > > &allFunctions = eventHandlers[type];
+			
+			// Since we don't know the function's priority, we'll search for it
+			for(std::map<int, std::vector<Callback > >::iterator i=allFunctions.begin(); i!=allFunctions.end(); ++i) {
+				// Saving a branch here: instead of checking if the callback exists let remove() do it for us
+//				i->second.remove(listener);
+				
+				// Remove object from the map if list gone empty to eliminate false positives
+//				if(i->second.empty()) allFunctions.erase(i);
+			}
+			
+			// Remove map to eliminate false positives
+			if(allFunctions.empty()) eventHandlers.erase(type);
+		}
 		
 	};
 	
-//	extern EventDispatcher Dispatcher;
+	extern EventDispatcher Dispatcher;
 
 	//////////////////////////////////////////////////
 	// Common event types
@@ -111,4 +130,4 @@
 		const static std::string DOUBLE_TAP;
 		const static std::string CANCEL;
 	};
-//}
+}
