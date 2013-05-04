@@ -111,3 +111,19 @@ void ParticleController::removeForce(int index) {
 	delete f;
 	f = NULL;
 }
+
+void ParticleController::removeAllParticles() {
+	int total = totalParticles();
+	for(int i = 0; i < total; ++i) delete particles[i];
+	particles.clear();
+}
+
+void ParticleController::removeAllForces() {
+	int total = totalForces();
+	for(int i = 0; i < total; ++i) delete forces[i];
+	forces.clear();
+}
+
+
+
+

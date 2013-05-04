@@ -15,7 +15,7 @@ int Button::btnCount = 0;
 
 Button::Button() {
 	buttonID = "btn_" + ofToString(btnCount);
-	drawBounds = false;
+	showBounds = false;
 	pressed = over = false;
 	enabled = true;
 	alignment = ALIGN_TOP_LEFT;
@@ -29,27 +29,36 @@ Button::~Button() {
 }
 
 void Button::render() {
-	if(drawBounds) {
-		ofPushMatrix();
-		ofTranslate(boundsX(), boundsY());
-		
-		if(pressed || selected) {
-			ofSetColor(204, 0, 0);
-		} else if(over) {
-			ofSetColor(102, 0, 0);
-		} else {
-			ofSetColor(0);
-		}
-		ofRect(0, 0, width, height);
-		
-		ofSetColor(255, 0, 0);
-		ofNoFill();
-		ofRect(0, 0, width, height);
-		ofSetColor(255);
-		ofFill();
-		
-		ofPopMatrix();
+	ofPushMatrix();
+	ofTranslate(boundsX(), boundsY());
+	
+	if(pressed || selected) {
+		ofSetColor(204, 0, 0);
+	} else if(over) {
+		ofSetColor(102, 0, 0);
+	} else {
+		ofSetColor(0);
 	}
+	ofRect(0, 0, width, height);
+	
+	ofPopMatrix();
+	ofSetColor(255);
+	ofDrawBitmapString(buttonID, x+5, y+15);
+	
+	if(showBounds) drawBounds();
+}
+
+void Button::drawBounds() {
+	ofPushMatrix();
+	ofTranslate(boundsX(), boundsY());
+	
+	ofSetColor(255, 0, 0);
+	ofNoFill();
+	ofRect(0, 0, width, height);
+	ofSetColor(255);
+	ofFill();
+	
+	ofPopMatrix();
 }
 
 void Button::enable() {

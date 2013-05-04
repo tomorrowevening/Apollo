@@ -263,7 +263,8 @@ public:
 	}
 	
 	static vec3f wrap(vec3f pos, vec3f bounds) {
-		vec3f wrapped = vec3f(pos.x, pos.y, pos.z);
+		vec3f wrapped;
+		wrapped.set(pos);
 		
 		if(wrapped.x < 0) wrapped.x += bounds.x;
 		if(wrapped.x > bounds.x) wrapped.x -= bounds.x;

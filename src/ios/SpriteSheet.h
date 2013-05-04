@@ -90,7 +90,7 @@ public:
 			for(i = 0; i < total; ++i) {
 				fbo = fbos[i];
 				ofImage img; // ".png"
-				img.loadImage( StringUtil::formatDigits(i, 5, imagePath, ".png") );
+				img.loadImage( Apollo::formatDigits(i, 5, imagePath, ".png") );
 
 				width  = img.getWidth();
 				height = img.getHeight();

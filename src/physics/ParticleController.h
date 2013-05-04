@@ -45,4 +45,7 @@ public:
 	void removeParticle(int index);
 	void removeForce(int index);
 	
+	void removeAllParticles();
+	void removeAllForces();
+	
 };

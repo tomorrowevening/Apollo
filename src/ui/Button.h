@@ -10,13 +10,15 @@
 #include "ofMain.h"
 #include "MathUtil.h"
 
+using namespace Apollo;
+
 class Button : public ofRectangle {
 public:
 	
 	// Events
 	ofEvent<string> CLICK;
 	
-	bool enabled, drawBounds, selectable, selected;
+	bool enabled, showBounds, selectable, selected;
 	string buttonID;
 	MatrixAlign alignment;
 	
@@ -26,6 +28,7 @@ public:
 	virtual void enable();
 	virtual void disable();
 	virtual void render();
+	virtual void drawBounds();
 	
 	// Events
 	virtual void onDown() {}
