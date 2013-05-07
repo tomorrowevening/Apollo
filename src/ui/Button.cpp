@@ -19,6 +19,7 @@ namespace Apollo {
 		showBounds = false;
 		pressed = over = false;
 		enabled = true;
+		draggable = false;
 		alignment = ALIGN_TOP_LEFT;
 		selectable = false;
 		selected = false;
@@ -27,6 +28,15 @@ namespace Apollo {
 
 	Button::~Button() {
 		disable();
+	}
+	
+	void Button::update() {
+		if(!draggable) return;
+		
+		if(isPressed()) {
+			x = ofGetMouseX();
+			y = ofGetMouseY();
+		}
 	}
 
 	void Button::render() {
@@ -44,7 +54,6 @@ namespace Apollo {
 		
 		ofPopMatrix();
 		ofSetColor(255);
-		ofDrawBitmapString(buttonID, x+5, y+15);
 		
 		if(showBounds) drawBounds();
 	}
@@ -58,6 +67,7 @@ namespace Apollo {
 		ofRect(0, 0, width, height);
 		ofSetColor(255);
 		ofFill();
+		ofDrawBitmapString(buttonID, 5, 15);
 		
 		ofPopMatrix();
 	}
@@ -77,6 +87,22 @@ namespace Apollo {
 		disableMouse();
 	#endif
 	}
+	
+	//////////////////////////////////////////////////
+	// App
+	
+	void Button::enableAutoUpdate() {
+		ofAddListener(ofEvents().update, this, &Button::_updateHandler);
+		ofAddListener(ofEvents().draw, this, &Button::_drawHandler);
+	}
+	
+	void Button::disableAutoUpdate() {
+		ofRemoveListener(ofEvents().update, this, &Button::_updateHandler);
+		ofRemoveListener(ofEvents().draw, this, &Button::_drawHandler);
+	}
+	
+	void Button::_updateHandler(ofEventArgs& e) { update(); }
+	void Button::_drawHandler(ofEventArgs& e) { render(); }
 
 	//////////////////////////////////////////////////
 	// Mouse

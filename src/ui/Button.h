@@ -17,7 +17,7 @@ namespace Apollo {
 		// Events
 		ofEvent<string> CLICK;
 		
-		bool enabled, showBounds, selectable, selected;
+		bool draggable, enabled, showBounds, selectable, selected;
 		string buttonID;
 		MatrixAlign alignment;
 		
@@ -26,8 +26,11 @@ namespace Apollo {
 		
 		virtual void enable();
 		virtual void disable();
+		virtual void update();
 		virtual void render();
 		virtual void drawBounds();
+		virtual void enableAutoUpdate();
+		virtual void disableAutoUpdate();
 		
 		// Events
 		virtual void onDown() {}
@@ -49,30 +52,30 @@ namespace Apollo {
 					return inside(tx, ty);
 					break;
 				case ALIGN_TOP_CENTER:
-					return inside(tx - midW, ty);
+					return inside(tx + midW, ty);
 					break;
 				case ALIGN_TOP_RIGHT:
-					return inside(tx - width, ty);
+					return inside(tx + width, ty);
 					break;
 					
 				case ALIGN_MID_LEFT:
-					return inside(tx, ty - midH);
+					return inside(tx, ty + midH);
 					break;
 				case ALIGN_MID_CENTER:
-					return inside(tx - midW, ty - midH);
+					return inside(tx + midW, ty + midH);
 					break;
 				case ALIGN_MID_RIGHT:
-					return inside(tx - width, ty - midH);
+					return inside(tx + width, ty + midH);
 					break;
 					
 				case ALIGN_BOT_LEFT:
-					return inside(tx, ty - height);
+					return inside(tx, ty + height);
 					break;
 				case ALIGN_BOT_CENTER:
-					return inside(tx - midW, ty - height);
+					return inside(tx + midW, ty + height);
 					break;
 				case ALIGN_BOT_RIGHT:
-					return inside(tx - width, ty - height);
+					return inside(tx + width, ty + height);
 					break;
 			}
 		}
@@ -80,16 +83,16 @@ namespace Apollo {
 		float boundsX() {
 			if(alignment == ALIGN_TOP_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_BOT_LEFT) {
 				return x;
-			} else if(alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT) {
+			} else if(alignment == ALIGN_TOP_CENTER || alignment == ALIGN_MID_CENTER || alignment == ALIGN_BOT_CENTER) {
 				return x - (width * 0.5f);
 			}
 			return x-width;
 		}
 		
 		float boundsY() {
-			if(alignment == ALIGN_TOP_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_BOT_LEFT) {
+			if(alignment == ALIGN_TOP_LEFT || alignment == ALIGN_TOP_CENTER || alignment == ALIGN_TOP_RIGHT) {
 				return y;
-			} else if(alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_LEFT) {
+			} else if(alignment == ALIGN_MID_LEFT || alignment == ALIGN_MID_CENTER || alignment == ALIGN_MID_RIGHT) {
 				return y - (height * 0.5f);
 			}
 			return y-height;
@@ -113,6 +116,10 @@ namespace Apollo {
 		
 		void enableTouch();
 		void disableTouch();
+		
+		// App event handlers
+		void _updateHandler(ofEventArgs& e);
+		void _drawHandler(ofEventArgs& e);
 		
 		// Mouse events handlers
 		void _mouseDown(ofMouseEventArgs &e);
