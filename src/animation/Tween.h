@@ -4,8 +4,8 @@
 //
 
 #pragma once
-
-#define BEZIER_SEGMENTS		10
+#include "Vec.h"
+#include <Poco/Timestamp.h>
 
 typedef enum {
 	EaseLinear = 0,
@@ -40,34 +40,46 @@ typedef enum {
 	
 } PennerEases;
 
-typedef enum {
-	Linear = 0,
-	Stepped = -1,
-	Custom = 1
-} EaseTypes;
-
-struct Vec2f {
-	float x, y;
-	void set(float nx, float ny) {
-		x = nx; y = ny;
+struct CustomEase {
+	vec2f c0, c1;
+	void set(float x0, float y0, float x1, float y1) {
+		c0.set(x0, y0); c1.set(x1, y1);
 	}
 };
 
 class Tween {
 protected:
-	Vec2f c0, c1;
+	
+	static const int BEZIER_SEGMENTS = 10;
+	
+	CustomEase points;
 	float curves[6];
+	
 	void setCurve(float x0, float y0, float x1, float y1);
 	float getCurvePercent(float percent);
+	
 public:
 	
-	float from, to;
-	float duration, delay;
 	float* var;
+	float from, to, duration;
+	Poco::Timestamp timestamp;
 	
+	// Generic
+	void update(float percent);
+	
+	// Getters
+	static CustomEase getEase(PennerEases ease);
+	
+	// Setters
 	void setLinear();
-	void setPenner(PennerEases ease);
+	void setEase(float x0, float y0, float x1, float y1);
+	void setEase(vec2f c0, vec2f c1);
 	void setStepped();
+	
+	void setPenner(PennerEases ease);
+	
+	// Getters
+	float range();
 	
 };
 
