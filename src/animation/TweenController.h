@@ -26,7 +26,7 @@ namespace Apollo {
 		void drawDebug();
 		
 		// Management
-		void addTween(float &var, float to, float time, CustomEase ease,	float delay = 0.f);
+		void addTween(float &var, float to, float time, CubicEase ease,	float delay = 0.f);
 		void addTween(float &var, float to, float time, PennerEases ease,   float delay = 0.f);
 		void addTween(float &var, float to, float time, vec2f c0, vec2f c1, float delay = 0.f);
 		void addTween(float &var, float to, float time, float x0, float y0, float x1, float y1, float delay = 0.f);

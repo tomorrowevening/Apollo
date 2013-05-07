@@ -97,8 +97,8 @@ namespace Apollo {
 		return y + (1 - y) * (percent - x) / (1 - x);
 	}
 	
-	CustomEase Tween::getEase(PennerEases ease) {
-		CustomEase pts;
+	CubicEase Tween::getEase(PennerEases ease) {
+		CubicEase pts;
 		
 		switch (ease) {
 				// Circ

@@ -40,10 +40,10 @@ typedef enum {
 	
 } PennerEases;
 
-struct CustomEase {
+struct CubicEase {
 	vec2f c0, c1;
 	
-	CustomEase(float x0 = 0.333f, float y0 = 0.333f, float x1 = 0.667f, float y1 = 0.667f) {
+	CubicEase(float x0 = 0.333f, float y0 = 0.333f, float x1 = 0.667f, float y1 = 0.667f) {
 		set(x0, y0, x1, y1);
 	}
 	

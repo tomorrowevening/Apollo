@@ -111,8 +111,8 @@ public:
 		printf("%f, %f, %f, %f\n", d1x, d1y, d2x, d2y);
 	}
 	
-	CustomEase getCurve() {
-		return CustomEase(bezier.getC1X(), bezier.getC1Y(), bezier.getC2X(), bezier.getC2Y());
+	CubicEase getCurve() {
+		return CubicEase(bezier.getC1X(), bezier.getC1Y(), bezier.getC2X(), bezier.getC2Y());
 	}
 	
 	void resize(float wid, float hei) {

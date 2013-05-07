@@ -16,7 +16,7 @@ namespace Apollo {
 		
 		static const int BEZIER_SEGMENTS = 12;
 		
-		CustomEase points;
+		CubicEase points;
 		float curves[6];
 		
 		void setCurve(float x0, float y0, float x1, float y1);
@@ -32,7 +32,7 @@ namespace Apollo {
 		void update(float percent);
 		
 		// Getters
-		static CustomEase getEase(PennerEases ease);
+		static CubicEase getEase(PennerEases ease);
 		
 		// Setters
 		void setLinear();

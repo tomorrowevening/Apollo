@@ -40,12 +40,12 @@ namespace Apollo {
 	#pragma mark - Management
 	//////////////////////////////////////////////////
 
-	void TweenController::addTween(float &var, float to, float time, CustomEase ease, float delay) {
+	void TweenController::addTween(float &var, float to, float time, CubicEase ease, float delay) {
 		addTween(var, to, time, ease.c0.x, ease.c0.y, ease.c1.x, ease.c1.y, delay);
 	}
 	
 	void TweenController::addTween(float &var, float to, float time, PennerEases ease, float delay) {
-		CustomEase tEase = Tween::getEase(ease);
+		CubicEase tEase = Tween::getEase(ease);
 		addTween(var, to, time, tEase.c0.x, tEase.c0.y, tEase.c1.x, tEase.c1.y, delay);
 	}
 
