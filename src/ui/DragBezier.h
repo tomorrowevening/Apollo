@@ -11,6 +11,8 @@
 #include "Bezier.h"
 #include "AnimationEnum.h"
 
+using namespace Apollo;
+
 class DragBezier : public ofRectangle {
 private:
 	
@@ -43,13 +45,12 @@ public:
 		this->width  = width;
 		this->height = height;
 		
-		drag0.setup();
-		drag1.setup();
-		drag2.setup();
-		drag3.setup();
+		drag0.enable();
+		drag1.enable();
+		drag2.enable();
+		drag3.enable();
 		
-		drag0.disableMouseEvents();
-		drag3.disableMouseEvents();
+		drag0.enabled = drag3.enabled = false;
 		
 		linear();
 		update();
@@ -144,10 +145,10 @@ public:
 	
 	void destroy() {
 		disableEvents();
-		drag0.killMe();
-		drag1.killMe();
-		drag2.killMe();
-		drag3.killMe();
+		drag0.disable();
+		drag1.disable();
+		drag2.disable();
+		drag3.disable();
 	}
 	
 	void update() {
@@ -157,10 +158,10 @@ public:
 		float prevD2X = drag2.x;
 		float prevD2Y = drag2.y;
 		
-		drag0._onUpdate();
-		drag1._onUpdate();
-		drag2._onUpdate();
-		drag3._onUpdate();
+		drag0.update();
+		drag1.update();
+		drag2.update();
+		drag3.update();
 		
 		// Stop further calculations if there weren't any changes
 		if(drag1.x == prevD1X && drag1.y == prevD1Y && drag2.x == prevD2X && drag2.y == prevD2Y) return;
@@ -217,10 +218,10 @@ public:
 		ofSetColor(255);
 		ofFill();
 		
-		drag0.draw();
-		drag1.draw();
-		drag2.draw();
-		drag3.draw();
+		drag0.render();
+		drag1.render();
+		drag2.render();
+		drag3.render();
 	}
 	
 };
