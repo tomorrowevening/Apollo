@@ -8,7 +8,7 @@
 
 namespace Apollo {
 
-	EventDispatcher Dispatcher;
+//	EventDispatcher Dispatcher;
 
 	//////////////////////////////////////////////////
 	// Event Dispatcher

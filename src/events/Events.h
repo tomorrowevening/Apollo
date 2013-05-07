@@ -44,7 +44,7 @@ namespace Apollo {
 	public:
 		
 		EventDispatcher() {
-			printf("!!! Apollo::EventDispatcher is still in production! Do not use yet.\n");
+			printf("!!! Apollo::EventDispatcher is still in development! Do not use yet.\n");
 		}
 		
 		bool hasListener(const std::string type);
@@ -77,7 +77,7 @@ namespace Apollo {
 		
 	};
 	
-	extern EventDispatcher Dispatcher;
+//	extern EventDispatcher Dispatcher; // *** Uncomment when working
 
 	//////////////////////////////////////////////////
 	// Common event types
