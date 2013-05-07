@@ -6,9 +6,10 @@
 //
 
 #pragma once
+#include "Apollo.h"
 #include "DragPoint.h"
 #include "Bezier.h"
-#include "MathUtil.h"
+#include "AnimationEnum.h"
 
 class DragBezier : public ofRectangle {
 private:
@@ -100,6 +101,18 @@ public:
 		drag2.y = ofLerp(bottom, py, 1.f - ((drag2.y-y)/height));
 		drag3.y = py;
 		y = py;
+	}
+	
+	void logCurve() {
+		const float d1x = bezier.getC1X();
+		const float d2x = bezier.getC2X();
+		const float d1y = bezier.getC1Y();
+		const float d2y = bezier.getC2Y();
+		printf("%f, %f, %f, %f\n", d1x, d1y, d2x, d2y);
+	}
+	
+	CustomEase getCurve() {
+		return CustomEase(bezier.getC1X(), bezier.getC1Y(), bezier.getC2X(), bezier.getC2Y());
 	}
 	
 	void resize(float wid, float hei) {
