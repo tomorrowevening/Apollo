@@ -8,7 +8,7 @@ void testApp::setup(){
 	ofEnableAlphaBlending();
 	ofEnableSmoothing();
 	
-	btn.buttonID = "Hello world";
+	btn.buttonID = "Click to Ease";
 	btn.setRect(100, -30, 150, 30);
 	btn.enable();
 	ofAddListener(btn.CLICK, this, &testApp::btnHandler);
@@ -16,7 +16,7 @@ void testApp::setup(){
 	Tweener.setPlaymode(Override);
 	Tweener.addTween(btn.y, 100, 2.5f, EaseExpoOut, 1.5f);
 	
-	bezier.setup(100, 100, 200, 200);
+	bezier.setup(100, 150, 200, 200);
 	bezier.enableEvents();
 }
 
