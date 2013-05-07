@@ -1,5 +1,6 @@
 //
 //  TweenController.h
+//  Apollo
 //  An extended/cleaned up version of ofxTweener
 //  https://github.com/hautetechnique/ofxTweener/
 //  Created by Colin Duffy on 5/6/13.
