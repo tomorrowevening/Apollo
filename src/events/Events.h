@@ -1,19 +1,16 @@
 //
 //  Event.h
-//
+//  Apollo
 //  Created by Colin Duffy on 4/25/13.
-//
 //
 
 #pragma once
 #include "Apollo.h"
-#include <tr1/functional>
-#include <stdio.h>
-#include <stdlib.h>
 
 namespace Apollo {
 
 	using namespace std;
+	using namespace Apollo;
 	
 	class EventArgs {};
 	
@@ -34,7 +31,8 @@ namespace Apollo {
 		bool hasArgs() { return args != NULL; }
 	};
 	
-	typedef std::tr1::function<void(const Event&)> Callback;
+//	typedef std::tr1::function<void(const Event&)> Callback;
+	typedef int Callback;
 	
 	//////////////////////////////////////////////////
 	// Event dispatcher
@@ -42,32 +40,19 @@ namespace Apollo {
 	
 	class EventDispatcher {
 	private:
-		std::map<const std::string, std::map<int, std::vector<Callback > > > eventHandlers;
+		std::map<const std::string, std::map<int, std::vector<Callback > > > eventHandlers; // The deep-rooted std::vector<float> should be of Callback type
 	public:
 		
+		EventDispatcher() {
+			printf("!!! Apollo::EventDispatcher is still in production! Do not use yet.\n");
+		}
 		
 		bool hasListener(const std::string type);
 		void dispatchEvent(const Event& evt);
-		/*
-		template <class ListenerClass, typename ArgumentsType>
-		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(const void*, ArgumentsType&), int priority = 0) {
-			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
-		}
-		
-		template <class ListenerClass, typename ArgumentsType>
-		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(ArgumentsType&), int priority = 0) {
-			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
-		}
-		
-		template <class ListenerClass>
-		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(const void*), int priority = 0) {
-			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
-		}
-		*/
 		
 		template <class ListenerClass>
 		void addListener(const std::string &type, ListenerClass* listener, void (ListenerClass::*listenerMethod)(), int priority = 0) {
-			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
+//			eventHandlers[type][priority].push_back( std::tr1::bind( listenerMethod, listener ) );
 		}
 		
 		template <class ListenerClass>
@@ -83,7 +68,7 @@ namespace Apollo {
 //				i->second.remove(listener);
 				
 				// Remove object from the map if list gone empty to eliminate false positives
-//				if(i->second.empty()) allFunctions.erase(i);
+				if(i->second.empty()) allFunctions.erase(i);
 			}
 			
 			// Remove map to eliminate false positives
