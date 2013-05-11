@@ -1,1 +1,2 @@
-A set of personal classes created to extend functionality with animation, mobile, physics, etc.
+A set of personal classes used across multiple frameworks & platforms focused on animation & extendability.
+Tested with openFrameworks, Cinder, and Cocos2d on Mac, Windows, UNIX, iOS, and Android.

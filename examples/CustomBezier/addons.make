@@ -1,3 +1,0 @@
-ofxApollo
-ofxMSAInteractiveObject
-ofxUI
