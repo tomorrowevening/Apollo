@@ -82,6 +82,8 @@ namespace Apollo {
 //		else if(evt.type == TouchEvent::UP())			onTouchUp(evt);
 //	}
 	
-	
+	void Button::eventHandler(Event& evt) {
+		
+	}
 	
 }

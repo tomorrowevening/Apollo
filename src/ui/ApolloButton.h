@@ -7,6 +7,7 @@
 
 #pragma once
 #include "ApolloCore.h"
+#include "ApolloEvent.h"
 #include "ApolloVec.h"
 
 namespace Apollo {
@@ -49,6 +50,9 @@ namespace Apollo {
 		virtual void update();
 		virtual void draw();
 		virtual void drawBounds();
+		
+	private:
+		void eventHandler(Event& evt);
 		
 	};
 }
