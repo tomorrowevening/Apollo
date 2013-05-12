@@ -6,26 +6,49 @@
 //
 
 #include "ApolloEventDispatcher.h"
+#include "ApolloStrings.h"
 
 namespace Apollo {
 	
-	EventDispatcher Trigger;
+	EventDispatcher Dispatcher;
 	
-	void EventDispatcher::dispatchEvent(const Event& evt) {
-		printf("Dispatch event: %s\n", evt.type.c_str());
-	}
-	
-	void EventDispatcher::addListener(string type) {
+	void EventDispatcher::dispatchEvent(Event *event){
+		if(!hasListener(event->type)) return;
 		
-	}
-	
-	void EventDispatcher::removeListener(string type) {
+		event->target = target;
+		vector<EventData> &eHandlers = handlers[event->type];
+		for(vector<EventData>::iterator f = eHandlers.begin(); f != eHandlers.end(); ++f){
+			event->listener = f->listener;
+			(*f->handler)(*event);
+		}
 		
+		delete event;
 	}
 	
-	bool EventDispatcher::hasListener(string type) {
-		return false;
+	void EventDispatcher::addListener(const string &type, void* listener, listenerHandler handler){
+		EventData data;
+		data.listener = listener;
+		data.handler = handler;
+		handlers[type].push_back(data);
 	}
 	
+	void EventDispatcher::removeListener(const string &type, listenerHandler handler){
+		if(!hasListener(type)) return;
+		
+		const string sHandler = Apollo::toString(handler);
+		vector<EventData> &eHandlers = handlers[type];
+		for(vector<EventData>::iterator f = eHandlers.begin(); f != eHandlers.end(); f) {
+			if(Apollo::toString(f->handler) == sHandler) {
+				eHandlers.erase(f);
+			} else {
+				++f;
+			}
+		}
+		if(eHandlers.empty()) handlers.erase(type);
+	}
+	
+	bool EventDispatcher::hasListener(const string &type){
+		return (handlers.find(type) != handlers.end());
+	}
 	
 }

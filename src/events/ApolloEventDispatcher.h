@@ -11,19 +11,28 @@
 
 namespace Apollo {
 	
-	using std::string;
-	using namespace Apollo;
-	
 	class EventDispatcher {
+	protected:
+		void *target;
+	private:
+		typedef struct st_Data {
+			void* listener;
+			listenerHandler handler;
+		} EventData;
+		
+		map<const string, vector<EventData> > handlers;
 	public:
 		
-		void dispatchEvent(const Event& evt);
-		void addListener(string type);
-		void removeListener(string type);
-		bool hasListener(string type);
+		EventDispatcher() { target = this; }
+		~EventDispatcher(){ target = NULL; handlers.clear(); }
 		
+		void dispatchEvent(Event *event);
+		void addListener(const string &type, void* listener, listenerHandler handler);
+		void removeListener(const string &type, listenerHandler handler);
+		bool hasListener(const string &type);
+		const int totalListeners() { return (int)handlers.size(); }
 	};
 	
-	extern EventDispatcher Trigger;
+	extern EventDispatcher Dispatcher;
 	
 }

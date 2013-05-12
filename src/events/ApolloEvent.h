@@ -10,47 +10,100 @@
 
 namespace Apollo {
 	
-	using std::string;
-	using namespace Apollo;
-	
-	class EventArgs {};
-	
-	class Event {
+	class EventDispatcher;
+	class Event{
+		friend EventDispatcher;
 	public:
 		
-		static const std::string UPDATE;
-		static const std::string DRAW;
+		Event(){}
+		Event(string type){}
+		Event(string type, void* params = NULL):type(type), params(params) {}
+		~Event(){ params = NULL; }
+		bool hasParams() { return params != NULL; }
 		
-		std::string type;
-		EventArgs* args;
+		string type;
+		void* params;
 		
-		Event(std::string type = ""){
-			this->type = type;
-		}
+	private:
+		void *target, *listener;
 	};
+	
+	//////////////////////////////////////////////////
+	// Key Event
+	//////////////////////////////////////////////////
+	
+	class AppEvent : public Event {
+	public:
+		static string INIT;
+		static string UPDATE;
+		static string DRAW;
+		static string RESIZE;
+	};
+	
+	//////////////////////////////////////////////////
+	// Key Event
+	//////////////////////////////////////////////////
 	
 	class KeyEvent : public Event {
 	public:
-		static const std::string DOWN;
-		static const std::string UP;
+		static string DOWN;
+		static string UP;
+		int key;
+		
+		KeyEvent(string type, int key, void* params = NULL) {
+			this->type = type;
+			this->key = key;
+			this->params = params;
+		}
 	};
+	
+	//////////////////////////////////////////////////
+	// Mouse Event
+	//////////////////////////////////////////////////
 	
 	class MouseEvent : public Event {
 	public:
-		static const std::string MOVED;
-		static const std::string PRESSED;
-		static const std::string RELEASED;
-		static const std::string SCROLLED;
+		static string DRAGGED;
+		static string MOVED;
+		static string PRESSED;
+		static string RELEASED;
+		static string SCROLLED;
+		
+		MouseEvent(string type, int x, int y, int index = 0, void* params = NULL) {
+			this->type = type;
+			this->x = x;
+			this->y = y;
+			this->index = index;
+			this->params = params;
+		}
+		
+		int x, y, index;
 	};
+	
+	//////////////////////////////////////////////////
+	// Touch Event
+	//////////////////////////////////////////////////
 	
 	class TouchEvent : public Event {
 	public:
-		static const std::string MOVE;
-		static const std::string DOWN;
-		static const std::string UP;
-		static const std::string DOUBLE_TAP;
-		static const std::string CANCEL;
+		static string MOVE;
+		static string DOWN;
+		static string UP;
+		static string DOUBLE_TAP;
+		static string CANCEL;
+		
+		TouchEvent(string type, int x, int y, int index = 0, float pressure = 0, void* params = NULL) {
+			this->type = type;
+			this->x = x;
+			this->y = y;
+			this->index = index;
+			this->pressure = pressure;
+			this->params = params;
+		}
+		
+		int x, y, index;
+		float pressure;
 	};
 	
+	typedef void (*listenerHandler)(Event&);
 }
-
