@@ -23,6 +23,7 @@
 // Events
 #include "ApolloEvent.h"
 #include "ApolloEventDispatcher.h"
+#include "OFDispatcher.h"
 
 // Geom
 #include "ApolloVec.h"
@@ -40,4 +41,7 @@
 // Utils
 #include "ApolloMath.h"
 #include "ApolloStrings.h"
+
+// Apps
+#include "BaseApp.h"
 
