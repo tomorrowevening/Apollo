@@ -78,7 +78,6 @@ namespace Apollo {
 	
 	void ApolloApp::appHandlers(Event& evt) {
 		ApolloApp* app = (ApolloApp*)evt.listener;
-		app->touchHandler((TouchEvent&)evt);
 		
 		// Core
 		if(evt.type == AppEvent::UPDATE) app->update();
