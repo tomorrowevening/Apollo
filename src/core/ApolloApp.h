@@ -17,6 +17,7 @@ namespace Apollo {
 	class ApolloApp {
 	public:
 		
+		ApolloApp();
 		virtual ~ApolloApp(){ exit(); }
 		
 		// Core
@@ -35,13 +36,8 @@ namespace Apollo {
 		virtual void mouseHandler(MouseEvent& key) {}
 		virtual void touchHandler(TouchEvent& key) {}
 		
-		static ApolloApp& app();
-		
 	private:
 		
-		ApolloApp() {};
-		ApolloApp(ApolloApp const&);
-		void operator=(ApolloApp const&);
 		static void appHandlers(Event& evt);
 		
 	};

@@ -19,24 +19,25 @@
 #include <vector>
 #include <iterator>
 
-#define APOLLO_VERSION 100
+#define APOLLO_VERSION 125
 
-#if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
-#define APOLLO_MSW
+#if defined(_WIN64) || defined(_WIN32)
+	#define APOLLO_MSW
 #elif defined(linux) || defined(__linux) || defined(__linux__)
-#define APOLLO_LINUX
-#elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
-#define APOLLO_COCOA
-#if TARGET_OS_IPHONE
-#define APOLLO_COCOA_TOUCH
-#if TARGET_IPHONE_SIMULATOR
-#define APOLLO_COCOA_TOUCH_SIMULATOR
-#else
-#define APOLLO_COCOA_TOUCH_DEVICE
-#endif
-#else
-#define APOLLO_MAC
-#endif
+	#define APOLLO_LINUX
+#elif __APPLE__
+	#include "TargetConditionals.h"
+	#define APOLLO_COCOA
+	#if TARGET_OS_IPHONE
+		#define APOLLO_COCOA_TOUCH
+		#if TARGET_IPHONE_SIMULATOR
+			#define APOLLO_COCOA_TOUCH_SIMULATOR
+		#else
+			#define APOLLO_COCOA_TOUCH_DEVICE
+		#endif
+	#else
+		#define APOLLO_MAC
+	#endif
 #endif
 
 namespace Apollo {}

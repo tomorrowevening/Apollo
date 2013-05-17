@@ -23,9 +23,9 @@ namespace Apollo {
 		
 		string type;
 		void* params;
-		
-	private:
 		void *target, *listener;
+	private:
+		
 	};
 	
 	//////////////////////////////////////////////////

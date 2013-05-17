@@ -1,0 +1,481 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17142FD31745DBD900118FA2 /* ApolloApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142F961745DBD900118FA2 /* ApolloApp.cpp */; };
+		17142FD41745DBD900118FA2 /* ApolloMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142F991745DBD900118FA2 /* ApolloMask.cpp */; };
+		17142FD51745DBD900118FA2 /* ApolloEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FA11745DBD900118FA2 /* ApolloEvent.cpp */; };
+		17142FD61745DBD900118FA2 /* ApolloEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FA31745DBD900118FA2 /* ApolloEventDispatcher.cpp */; };
+		17142FD71745DBD900118FA2 /* ApolloVec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FA81745DBD900118FA2 /* ApolloVec.cpp */; };
+		17142FD81745DBD900118FA2 /* ApolloFBO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FAB1745DBD900118FA2 /* ApolloFBO.cpp */; };
+		17142FD91745DBD900118FA2 /* ApolloShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FAD1745DBD900118FA2 /* ApolloShader.cpp */; };
+		17142FDA1745DBD900118FA2 /* ApolloTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FAF1745DBD900118FA2 /* ApolloTexture.cpp */; };
+		17142FDB1745DBD900118FA2 /* ApolloButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FB21745DBD900118FA2 /* ApolloButton.cpp */; };
+		17142FDC1745DBD900118FA2 /* ApolloMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FB51745DBD900118FA2 /* ApolloMath.cpp */; };
+		17142FE21745DC3700118FA2 /* BasicApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17142FE01745DC3700118FA2 /* BasicApp.cpp */; };
+		174065A11745D32500BD877A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174065A01745D32500BD877A /* UIKit.framework */; };
+		174065A31745D32500BD877A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174065A21745D32500BD877A /* Foundation.framework */; };
+		174065A51745D32500BD877A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174065A41745D32500BD877A /* CoreGraphics.framework */; };
+		174065AB1745D32500BD877A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 174065A91745D32500BD877A /* InfoPlist.strings */; };
+		174065AD1745D32500BD877A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 174065AC1745D32500BD877A /* main.m */; };
+		174065B11745D32500BD877A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 174065B01745D32500BD877A /* AppDelegate.m */; };
+		174065B31745D32500BD877A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 174065B21745D32500BD877A /* Default.png */; };
+		174065B51745D32500BD877A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 174065B41745D32500BD877A /* Default@2x.png */; };
+		174065B71745D32500BD877A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 174065B61745D32500BD877A /* Default-568h@2x.png */; };
+		174065BA1745D32500BD877A /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 174065B91745D32500BD877A /* ViewController.mm */; };
+		174065BD1745D32500BD877A /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174065BB1745D32500BD877A /* ViewController_iPhone.xib */; };
+		174065C01745D32500BD877A /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174065BE1745D32500BD877A /* ViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		17142F941745DBD900118FA2 /* Apollo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apollo.h; sourceTree = "<group>"; };
+		17142F961745DBD900118FA2 /* ApolloApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloApp.cpp; sourceTree = "<group>"; };
+		17142F971745DBD900118FA2 /* ApolloApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloApp.h; sourceTree = "<group>"; };
+		17142F991745DBD900118FA2 /* ApolloMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloMask.cpp; sourceTree = "<group>"; };
+		17142F9A1745DBD900118FA2 /* ApolloMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloMask.h; sourceTree = "<group>"; };
+		17142F9C1745DBD900118FA2 /* ApolloAnimationEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloAnimationEnum.h; sourceTree = "<group>"; };
+		17142F9D1745DBD900118FA2 /* ApolloCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloCore.h; sourceTree = "<group>"; };
+		17142F9E1745DBD900118FA2 /* ApolloGLEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloGLEnum.h; sourceTree = "<group>"; };
+		17142F9F1745DBD900118FA2 /* ApolloKeyboardEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloKeyboardEnum.h; sourceTree = "<group>"; };
+		17142FA11745DBD900118FA2 /* ApolloEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloEvent.cpp; sourceTree = "<group>"; };
+		17142FA21745DBD900118FA2 /* ApolloEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloEvent.h; sourceTree = "<group>"; };
+		17142FA31745DBD900118FA2 /* ApolloEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloEventDispatcher.cpp; sourceTree = "<group>"; };
+		17142FA41745DBD900118FA2 /* ApolloEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloEventDispatcher.h; sourceTree = "<group>"; };
+		17142FA51745DBD900118FA2 /* ApolloOFDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloOFDispatcher.h; sourceTree = "<group>"; };
+		17142FA61745DBD900118FA2 /* OFDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFDispatcher.h; sourceTree = "<group>"; };
+		17142FA81745DBD900118FA2 /* ApolloVec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloVec.cpp; sourceTree = "<group>"; };
+		17142FA91745DBD900118FA2 /* ApolloVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloVec.h; sourceTree = "<group>"; };
+		17142FAB1745DBD900118FA2 /* ApolloFBO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloFBO.cpp; sourceTree = "<group>"; };
+		17142FAC1745DBD900118FA2 /* ApolloFBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloFBO.h; sourceTree = "<group>"; };
+		17142FAD1745DBD900118FA2 /* ApolloShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloShader.cpp; sourceTree = "<group>"; };
+		17142FAE1745DBD900118FA2 /* ApolloShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloShader.h; sourceTree = "<group>"; };
+		17142FAF1745DBD900118FA2 /* ApolloTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloTexture.cpp; sourceTree = "<group>"; };
+		17142FB01745DBD900118FA2 /* ApolloTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloTexture.h; sourceTree = "<group>"; };
+		17142FB21745DBD900118FA2 /* ApolloButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloButton.cpp; sourceTree = "<group>"; };
+		17142FB31745DBD900118FA2 /* ApolloButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloButton.h; sourceTree = "<group>"; };
+		17142FB51745DBD900118FA2 /* ApolloMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloMath.cpp; sourceTree = "<group>"; };
+		17142FB61745DBD900118FA2 /* ApolloMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloMath.h; sourceTree = "<group>"; };
+		17142FB71745DBD900118FA2 /* ApolloStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloStrings.h; sourceTree = "<group>"; };
+		17142FE01745DC3700118FA2 /* BasicApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BasicApp.cpp; path = src/BasicApp.cpp; sourceTree = "<group>"; };
+		17142FE11745DC3700118FA2 /* BasicApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicApp.h; path = src/BasicApp.h; sourceTree = "<group>"; };
+		1740659D1745D32500BD877A /* SingleViewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SingleViewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		174065A01745D32500BD877A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		174065A21745D32500BD877A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		174065A41745D32500BD877A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		174065A81745D32500BD877A /* SingleViewApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SingleViewApp-Info.plist"; sourceTree = "<group>"; };
+		174065AA1745D32500BD877A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		174065AC1745D32500BD877A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		174065AE1745D32500BD877A /* SingleViewApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SingleViewApp-Prefix.pch"; sourceTree = "<group>"; };
+		174065AF1745D32500BD877A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		174065B01745D32500BD877A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		174065B21745D32500BD877A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		174065B41745D32500BD877A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		174065B61745D32500BD877A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		174065B81745D32500BD877A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		174065B91745D32500BD877A /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		174065BC1745D32500BD877A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		174065BF1745D32500BD877A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1740659A1745D32500BD877A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174065A11745D32500BD877A /* UIKit.framework in Frameworks */,
+				174065A31745D32500BD877A /* Foundation.framework in Frameworks */,
+				174065A51745D32500BD877A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17142F501745DBD900118FA2 /* Apollo */ = {
+			isa = PBXGroup;
+			children = (
+				17142F8E1745DBD900118FA2 /* src */,
+			);
+			name = Apollo;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
+		17142F8E1745DBD900118FA2 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				17142F941745DBD900118FA2 /* Apollo.h */,
+				17142F951745DBD900118FA2 /* core */,
+				17142F981745DBD900118FA2 /* display */,
+				17142F9B1745DBD900118FA2 /* enums */,
+				17142FA01745DBD900118FA2 /* events */,
+				17142FA71745DBD900118FA2 /* geom */,
+				17142FAA1745DBD900118FA2 /* gl */,
+				17142FB11745DBD900118FA2 /* ui */,
+				17142FB41745DBD900118FA2 /* utils */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		17142F951745DBD900118FA2 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				17142F961745DBD900118FA2 /* ApolloApp.cpp */,
+				17142F971745DBD900118FA2 /* ApolloApp.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		17142F981745DBD900118FA2 /* display */ = {
+			isa = PBXGroup;
+			children = (
+				17142F991745DBD900118FA2 /* ApolloMask.cpp */,
+				17142F9A1745DBD900118FA2 /* ApolloMask.h */,
+			);
+			path = display;
+			sourceTree = "<group>";
+		};
+		17142F9B1745DBD900118FA2 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				17142F9C1745DBD900118FA2 /* ApolloAnimationEnum.h */,
+				17142F9D1745DBD900118FA2 /* ApolloCore.h */,
+				17142F9E1745DBD900118FA2 /* ApolloGLEnum.h */,
+				17142F9F1745DBD900118FA2 /* ApolloKeyboardEnum.h */,
+			);
+			path = enums;
+			sourceTree = "<group>";
+		};
+		17142FA01745DBD900118FA2 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				17142FA11745DBD900118FA2 /* ApolloEvent.cpp */,
+				17142FA21745DBD900118FA2 /* ApolloEvent.h */,
+				17142FA31745DBD900118FA2 /* ApolloEventDispatcher.cpp */,
+				17142FA41745DBD900118FA2 /* ApolloEventDispatcher.h */,
+				17142FA51745DBD900118FA2 /* ApolloOFDispatcher.h */,
+				17142FA61745DBD900118FA2 /* OFDispatcher.h */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		17142FA71745DBD900118FA2 /* geom */ = {
+			isa = PBXGroup;
+			children = (
+				17142FA81745DBD900118FA2 /* ApolloVec.cpp */,
+				17142FA91745DBD900118FA2 /* ApolloVec.h */,
+			);
+			path = geom;
+			sourceTree = "<group>";
+		};
+		17142FAA1745DBD900118FA2 /* gl */ = {
+			isa = PBXGroup;
+			children = (
+				17142FAB1745DBD900118FA2 /* ApolloFBO.cpp */,
+				17142FAC1745DBD900118FA2 /* ApolloFBO.h */,
+				17142FAD1745DBD900118FA2 /* ApolloShader.cpp */,
+				17142FAE1745DBD900118FA2 /* ApolloShader.h */,
+				17142FAF1745DBD900118FA2 /* ApolloTexture.cpp */,
+				17142FB01745DBD900118FA2 /* ApolloTexture.h */,
+			);
+			path = gl;
+			sourceTree = "<group>";
+		};
+		17142FB11745DBD900118FA2 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				17142FB21745DBD900118FA2 /* ApolloButton.cpp */,
+				17142FB31745DBD900118FA2 /* ApolloButton.h */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		17142FB41745DBD900118FA2 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				17142FB51745DBD900118FA2 /* ApolloMath.cpp */,
+				17142FB61745DBD900118FA2 /* ApolloMath.h */,
+				17142FB71745DBD900118FA2 /* ApolloStrings.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		174065941745D32500BD877A = {
+			isa = PBXGroup;
+			children = (
+				174065A61745D32500BD877A /* SingleViewApp */,
+				1740659F1745D32500BD877A /* Frameworks */,
+				1740659E1745D32500BD877A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1740659E1745D32500BD877A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1740659D1745D32500BD877A /* SingleViewApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1740659F1745D32500BD877A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				174065A01745D32500BD877A /* UIKit.framework */,
+				174065A21745D32500BD877A /* Foundation.framework */,
+				174065A41745D32500BD877A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		174065A61745D32500BD877A /* SingleViewApp */ = {
+			isa = PBXGroup;
+			children = (
+				174065AF1745D32500BD877A /* AppDelegate.h */,
+				174065B01745D32500BD877A /* AppDelegate.m */,
+				174065B81745D32500BD877A /* ViewController.h */,
+				174065B91745D32500BD877A /* ViewController.mm */,
+				17142FE01745DC3700118FA2 /* BasicApp.cpp */,
+				17142FE11745DC3700118FA2 /* BasicApp.h */,
+				174065BB1745D32500BD877A /* ViewController_iPhone.xib */,
+				174065BE1745D32500BD877A /* ViewController_iPad.xib */,
+				17142F501745DBD900118FA2 /* Apollo */,
+				174065A71745D32500BD877A /* Supporting Files */,
+			);
+			path = SingleViewApp;
+			sourceTree = "<group>";
+		};
+		174065A71745D32500BD877A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				174065A81745D32500BD877A /* SingleViewApp-Info.plist */,
+				174065A91745D32500BD877A /* InfoPlist.strings */,
+				174065AC1745D32500BD877A /* main.m */,
+				174065AE1745D32500BD877A /* SingleViewApp-Prefix.pch */,
+				174065B21745D32500BD877A /* Default.png */,
+				174065B41745D32500BD877A /* Default@2x.png */,
+				174065B61745D32500BD877A /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1740659C1745D32500BD877A /* SingleViewApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174065C31745D32500BD877A /* Build configuration list for PBXNativeTarget "SingleViewApp" */;
+			buildPhases = (
+				174065991745D32500BD877A /* Sources */,
+				1740659A1745D32500BD877A /* Frameworks */,
+				1740659B1745D32500BD877A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SingleViewApp;
+			productName = SingleViewApp;
+			productReference = 1740659D1745D32500BD877A /* SingleViewApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		174065951745D32500BD877A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Tomorrow Evening";
+			};
+			buildConfigurationList = 174065981745D32500BD877A /* Build configuration list for PBXProject "SingleViewApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 174065941745D32500BD877A;
+			productRefGroup = 1740659E1745D32500BD877A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1740659C1745D32500BD877A /* SingleViewApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1740659B1745D32500BD877A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174065AB1745D32500BD877A /* InfoPlist.strings in Resources */,
+				174065B31745D32500BD877A /* Default.png in Resources */,
+				174065B51745D32500BD877A /* Default@2x.png in Resources */,
+				174065B71745D32500BD877A /* Default-568h@2x.png in Resources */,
+				174065BD1745D32500BD877A /* ViewController_iPhone.xib in Resources */,
+				174065C01745D32500BD877A /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		174065991745D32500BD877A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174065AD1745D32500BD877A /* main.m in Sources */,
+				174065B11745D32500BD877A /* AppDelegate.m in Sources */,
+				174065BA1745D32500BD877A /* ViewController.mm in Sources */,
+				17142FD31745DBD900118FA2 /* ApolloApp.cpp in Sources */,
+				17142FD41745DBD900118FA2 /* ApolloMask.cpp in Sources */,
+				17142FD51745DBD900118FA2 /* ApolloEvent.cpp in Sources */,
+				17142FD61745DBD900118FA2 /* ApolloEventDispatcher.cpp in Sources */,
+				17142FD71745DBD900118FA2 /* ApolloVec.cpp in Sources */,
+				17142FD81745DBD900118FA2 /* ApolloFBO.cpp in Sources */,
+				17142FD91745DBD900118FA2 /* ApolloShader.cpp in Sources */,
+				17142FDA1745DBD900118FA2 /* ApolloTexture.cpp in Sources */,
+				17142FDB1745DBD900118FA2 /* ApolloButton.cpp in Sources */,
+				17142FDC1745DBD900118FA2 /* ApolloMath.cpp in Sources */,
+				17142FE21745DC3700118FA2 /* BasicApp.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		174065A91745D32500BD877A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				174065AA1745D32500BD877A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		174065BB1745D32500BD877A /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				174065BC1745D32500BD877A /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		174065BE1745D32500BD877A /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				174065BF1745D32500BD877A /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		174065C11745D32500BD877A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		174065C21745D32500BD877A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		174065C41745D32500BD877A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SingleViewApp/SingleViewApp-Prefix.pch";
+				INFOPLIST_FILE = "SingleViewApp/SingleViewApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		174065C51745D32500BD877A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SingleViewApp/SingleViewApp-Prefix.pch";
+				INFOPLIST_FILE = "SingleViewApp/SingleViewApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		174065981745D32500BD877A /* Build configuration list for PBXProject "SingleViewApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174065C11745D32500BD877A /* Debug */,
+				174065C21745D32500BD877A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		174065C31745D32500BD877A /* Build configuration list for PBXNativeTarget "SingleViewApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174065C41745D32500BD877A /* Debug */,
+				174065C51745D32500BD877A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 174065951745D32500BD877A /* Project object */;
+}

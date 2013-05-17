@@ -9,13 +9,15 @@
 #include "ApolloApp.h"
 
 namespace Apollo {
+	
+	ApolloApp::ApolloApp() {}
 
 	void ApolloApp::setup() {
-		enableEvents();
+		enable();
 	}
 	
 	void ApolloApp::exit() {
-		disableEvents();
+		disable();
 	}
 	
 	void ApolloApp::update() {
@@ -27,11 +29,11 @@ namespace Apollo {
 	}
 	
 	void ApolloApp::enable() {
-		
+		enableEvents();
 	}
 	
 	void ApolloApp::disable() {
-		
+		disableEvents();
 	}
 	
 	void ApolloApp::enableEvents() {
@@ -74,34 +76,32 @@ namespace Apollo {
 #endif
 	}
 	
-	ApolloApp& ApolloApp::app() {
-		static ApolloApp _app;
-		return _app;
-	}
-	
 	void ApolloApp::appHandlers(Event& evt) {
+		ApolloApp* app = (ApolloApp*)evt.listener;
+		app->touchHandler((TouchEvent&)evt);
+		
 		// Core
-		if(evt.type == AppEvent::UPDATE) app().update();
-		else if(evt.type == AppEvent::DRAW) app().draw();
+		if(evt.type == AppEvent::UPDATE) app->update();
+		else if(evt.type == AppEvent::DRAW) app->draw();
 		
 #ifdef APOLLO_COCOA_TOUCH
 		// Touch
-		else if(evt.type == TouchEvent::CANCEL) app().touchHandler( (TouchEvent&)evt );
-		else if(evt.type == TouchEvent::DOUBLE_TAP) app().touchHandler( (TouchEvent&)evt );
-		else if(evt.type == TouchEvent::DOWN) app().touchHandler( (TouchEvent&)evt );
-		else if(evt.type == TouchEvent::MOVE) app().touchHandler( (TouchEvent&)evt );
-		else if(evt.type == TouchEvent::UP) app().touchHandler( (TouchEvent&)evt );
+		else if(evt.type == TouchEvent::CANCEL) app->touchHandler( (TouchEvent&)evt );
+		else if(evt.type == TouchEvent::DOUBLE_TAP) app->touchHandler( (TouchEvent&)evt );
+		else if(evt.type == TouchEvent::DOWN) app->touchHandler( (TouchEvent&)evt );
+		else if(evt.type == TouchEvent::MOVE) app->touchHandler( (TouchEvent&)evt );
+		else if(evt.type == TouchEvent::UP) app->touchHandler( (TouchEvent&)evt );
 #else
 		// Key
-		else if(evt.type == KeyEvent::DOWN) app().keyHandler( (KeyEvent&)evt );
-		else if(evt.type == KeyEvent::UP) app().keyHandler( (KeyEvent&)evt );
+		else if(evt.type == KeyEvent::DOWN) app->keyHandler( (KeyEvent&)evt );
+		else if(evt.type == KeyEvent::UP) app->keyHandler( (KeyEvent&)evt );
 		
 		// Mouse
-		else if(evt.type == MouseEvent::DRAGGED) app().mouseHandler( (MouseEvent&)evt );
-		else if(evt.type == MouseEvent::MOVED) app().mouseHandler( (MouseEvent&)evt );
-		else if(evt.type == MouseEvent::PRESSED) app().mouseHandler( (MouseEvent&)evt );
-		else if(evt.type == MouseEvent::RELEASED) app().mouseHandler( (MouseEvent&)evt );
-		else if(evt.type == MouseEvent::SCROLLED) app().mouseHandler( (MouseEvent&)evt );
+		else if(evt.type == MouseEvent::DRAGGED) app->mouseHandler( (MouseEvent&)evt );
+		else if(evt.type == MouseEvent::MOVED) app->mouseHandler( (MouseEvent&)evt );
+		else if(evt.type == MouseEvent::PRESSED) app->mouseHandler( (MouseEvent&)evt );
+		else if(evt.type == MouseEvent::RELEASED) app->mouseHandler( (MouseEvent&)evt );
+		else if(evt.type == MouseEvent::SCROLLED) app->mouseHandler( (MouseEvent&)evt );
 #endif
 	}
 	
