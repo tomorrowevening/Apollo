@@ -22,10 +22,10 @@ namespace Apollo {
 		bool hasParams() { return params != NULL; }
 		
 		string type;
-		void* params;
-		void *target, *listener;
+		void *params;
+		void *listener;
 	private:
-		
+		void *target;
 	};
 	
 	//////////////////////////////////////////////////
