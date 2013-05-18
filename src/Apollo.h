@@ -23,7 +23,7 @@
 // Events
 #include "ApolloEvent.h"
 #include "ApolloEventDispatcher.h"
-#include "OFDispatcher.h"
+#include "ApolloOFDispatcher.h"
 
 // Geom
 #include "ApolloVec.h"

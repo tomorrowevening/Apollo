@@ -7,113 +7,80 @@
 //
 
 #pragma once
+#ifdef OF_VERSION_MAJOR
 #include "ofMain.h"
 #include "ApolloCore.h"
 #include "ApolloEvent.h"
-#include "ApolloEventDispatcher.h"
 
 namespace Apollo {
 	
-	class ApolloOFDispatcher {
+	class OFDispatcher {
 	public:
 		
-		ApolloOFDispatcher() {}
-		~ApolloOFDispatcher(){ disable(); }
+		~OFDispatcher() { disable(); }
 		
-		virtual void enable() {
-			enableAppEvents();
+		void enable() {
+			ofAddListener(ofEvents().update, this, &OFDispatcher::evtUpdateHandler);
+			ofAddListener(ofEvents().draw, this, &OFDispatcher::evtDrawHandler);
+			
 #ifdef APOLLO_COCOA_TOUCH
-			enableTouchEvents();
+			ofAddListener(ofEvents().touchCancelled, this, &OFDispatcher::evtTouchCancelHandler);
+			ofAddListener(ofEvents().touchDoubleTap, this, &OFDispatcher::evtTouchDoubleTapHandler);
+			ofAddListener(ofEvents().touchDown, this, &OFDispatcher::evtTouchDownHandler);
+			ofAddListener(ofEvents().touchMoved, this, &OFDispatcher::evtTouchMoveHandler);
+			ofAddListener(ofEvents().touchUp, this, &OFDispatcher::evtTouchUpHandler);
 #else
-			enableKeyEvents();
-			enableMouseEvents();
+			ofAddListener(ofEvents().keyPressed, this, &OFDispatcher::evtKeyDownHandler);
+			ofAddListener(ofEvents().keyReleased, this, &OFDispatcher::evtKeyUpHandler);
+			
+			ofAddListener(ofEvents().mouseDragged, this, &OFDispatcher::evtMouseDraggedHandler);
+			ofAddListener(ofEvents().mouseMoved, this, &OFDispatcher::evtMouseMovedHandler);
+			ofAddListener(ofEvents().mousePressed, this, &OFDispatcher::evtMousePressedHandler);
+			ofAddListener(ofEvents().mouseReleased, this, &OFDispatcher::evtMouseReleasedHandler);
 #endif
 		}
 		
-		virtual void disable() {
-			disableAppEvents();
+		void disable() {
+			ofRemoveListener(ofEvents().update, this, &OFDispatcher::evtUpdateHandler);
+			ofRemoveListener(ofEvents().draw, this, &OFDispatcher::evtDrawHandler);
+			
 #ifdef APOLLO_COCOA_TOUCH
-			disableTouchEvents();
+			ofRemoveListener(ofEvents().touchCancelled, this, &OFDispatcher::evtTouchCancelHandler);
+			ofRemoveListener(ofEvents().touchDoubleTap, this, &OFDispatcher::evtTouchDoubleTapHandler);
+			ofRemoveListener(ofEvents().touchDown, this, &OFDispatcher::evtTouchDownHandler);
+			ofRemoveListener(ofEvents().touchMoved, this, &OFDispatcher::evtTouchMoveHandler);
+			ofRemoveListener(ofEvents().touchUp, this, &OFDispatcher::evtTouchUpHandler);
 #else
-			disableKeyEvents();
-			disableMouseEvents();
+			ofRemoveListener(ofEvents().keyPressed, this, &OFDispatcher::evtKeyDownHandler);
+			ofRemoveListener(ofEvents().keyReleased, this, &OFDispatcher::evtKeyUpHandler);
+			
+			ofRemoveListener(ofEvents().mouseDragged, this, &OFDispatcher::evtMouseDraggedHandler);
+			ofRemoveListener(ofEvents().mouseMoved, this, &OFDispatcher::evtMouseMovedHandler);
+			ofRemoveListener(ofEvents().mousePressed, this, &OFDispatcher::evtMousePressedHandler);
+			ofRemoveListener(ofEvents().mouseReleased, this, &OFDispatcher::evtMouseReleasedHandler);
 #endif
 		}
 		
-		virtual void enableAppEvents() {
-			ofAddListener(ofEvents().update,	this, &ApolloOFDispatcher::updateHandler);
-			ofAddListener(ofEvents().draw,		this, &ApolloOFDispatcher::drawHandler);
-		}
+		// Handlers
+		void evtUpdateHandler(ofEventArgs& evt) {	Dispatcher.dispatchEvent(new AppEvent(AppEvent::UPDATE)); }
+		void evtDrawHandler(ofEventArgs& evt) {		Dispatcher.dispatchEvent(new AppEvent(AppEvent::DRAW)); }
 		
-		virtual void enableKeyEvents() {
-			ofAddListener(ofEvents().keyPressed,	this, &ApolloOFDispatcher::keyDownHandler);
-			ofAddListener(ofEvents().keyReleased,	this, &ApolloOFDispatcher::keyUpHandler);
-		}
+		void evtKeyDownHandler(ofKeyEventArgs& evt) {	Dispatcher.dispatchEvent(new KeyEvent(KeyEvent::DOWN, evt.key)); }
+		void evtKeyUpHandler(ofKeyEventArgs& evt) {		Dispatcher.dispatchEvent(new KeyEvent(KeyEvent::UP, evt.key)); }
 		
-		virtual void enableMouseEvents() {
-			ofAddListener(ofEvents().mouseDragged,		this, &ApolloOFDispatcher::mouseDraggedHandler);
-			ofAddListener(ofEvents().mouseMoved,		this, &ApolloOFDispatcher::mouseMovedHandler);
-			ofAddListener(ofEvents().mousePressed,		this, &ApolloOFDispatcher::mousePressedHandler);
-			ofAddListener(ofEvents().mouseReleased,		this, &ApolloOFDispatcher::mouseReleasedHandler);
-		}
+		void evtMouseDraggedHandler(ofMouseEventArgs& evt) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::DRAGGED, evt.x, evt.y, evt.button)); }
+		void evtMouseMovedHandler(ofMouseEventArgs& evt) {		Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::MOVED, evt.x, evt.y, evt.button)); }
+		void evtMousePressedHandler(ofMouseEventArgs& evt) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::PRESSED, evt.x, evt.y, evt.button)); }
+		void evtMouseReleasedHandler(ofMouseEventArgs& evt) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::RELEASED, evt.x, evt.y, evt.button)); }
+		void evtMouseScrolledHandler(ofMouseEventArgs& evt) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::SCROLLED, evt.x, evt.y, evt.button)); }
 		
-		virtual void enableTouchEvents() {
-			ofAddListener(ofEvents().touchCancelled,	this, &ApolloOFDispatcher::touchCancelHandler);
-			ofAddListener(ofEvents().touchDoubleTap,	this, &ApolloOFDispatcher::touchDownHandler);
-			ofAddListener(ofEvents().touchDown,			this, &ApolloOFDispatcher::touchDoubleTapHandler);
-			ofAddListener(ofEvents().touchMoved,		this, &ApolloOFDispatcher::touchMovedHandler);
-			ofAddListener(ofEvents().touchUp,			this, &ApolloOFDispatcher::touchUpHandler);
-		}
-		
-		virtual void disableAppEvents() {
-			ofRemoveListener(ofEvents().update,	this, &ApolloOFDispatcher::updateHandler);
-			ofRemoveListener(ofEvents().draw,		this, &ApolloOFDispatcher::drawHandler);
-		}
-		
-		virtual void disableKeyEvents() {
-			ofRemoveListener(ofEvents().keyPressed,	this, &ApolloOFDispatcher::keyDownHandler);
-			ofRemoveListener(ofEvents().keyReleased,	this, &ApolloOFDispatcher::keyUpHandler);
-		}
-		
-		virtual void disableMouseEvents() {
-			ofRemoveListener(ofEvents().mouseDragged,		this, &ApolloOFDispatcher::mouseDraggedHandler);
-			ofRemoveListener(ofEvents().mouseMoved,		this, &ApolloOFDispatcher::mouseMovedHandler);
-			ofRemoveListener(ofEvents().mousePressed,		this, &ApolloOFDispatcher::mousePressedHandler);
-			ofRemoveListener(ofEvents().mouseReleased,		this, &ApolloOFDispatcher::mouseReleasedHandler);
-		}
-		
-		virtual void disableTouchEvents() {
-			ofRemoveListener(ofEvents().touchCancelled,	this, &ApolloOFDispatcher::touchCancelHandler);
-			ofRemoveListener(ofEvents().touchDoubleTap,	this, &ApolloOFDispatcher::touchDownHandler);
-			ofRemoveListener(ofEvents().touchDown,			this, &ApolloOFDispatcher::touchDoubleTapHandler);
-			ofRemoveListener(ofEvents().touchMoved,		this, &ApolloOFDispatcher::touchMovedHandler);
-			ofRemoveListener(ofEvents().touchUp,			this, &ApolloOFDispatcher::touchUpHandler);
-		}
-		
-	protected:
-		
-		// Core events
-		void updateHandler(ofEventArgs& args) {	Dispatcher.dispatchEvent(new AppEvent(AppEvent::UPDATE)); }
-		void drawHandler(ofEventArgs& args) {	Dispatcher.dispatchEvent(new AppEvent(AppEvent::DRAW)); }
-		
-		// Key events
-		void keyDownHandler(ofKeyEventArgs& args) {	Dispatcher.dispatchEvent(new KeyEvent(KeyEvent::DOWN, args.key)); }
-		void keyUpHandler(ofKeyEventArgs& args) {	Dispatcher.dispatchEvent(new KeyEvent(KeyEvent::UP, args.key)); }
-		
-		// Mouse events
-		void mouseDraggedHandler(ofMouseEventArgs& args) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::DRAGGED,	args.x, args.y, args.button)); }
-		void mouseMovedHandler(ofMouseEventArgs& args) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::MOVED,		args.x, args.y, args.button)); }
-		void mousePressedHandler(ofMouseEventArgs& args) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::PRESSED,	args.x, args.y, args.button)); }
-		void mouseReleasedHandler(ofMouseEventArgs& args) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::RELEASED,	args.x, args.y, args.button)); }
-		void mouseScrolledHandler(ofMouseEventArgs& args) {	Dispatcher.dispatchEvent(new MouseEvent(MouseEvent::SCROLLED,	args.x, args.y, args.button)); }
-		
-		// Touch events
-		void touchCancelHandler(ofTouchEventArgs& args) {		Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::CANCEL,		args.x, args.y, args.id, args.pressure)); }
-		void touchDownHandler(ofTouchEventArgs& args) {			Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::DOWN,		args.x, args.y, args.id, args.pressure)); }
-		void touchDoubleTapHandler(ofTouchEventArgs& args) {	Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::DOUBLE_TAP,	args.x, args.y, args.id, args.pressure)); }
-		void touchMovedHandler(ofTouchEventArgs& args) {		Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::MOVE,		args.x, args.y, args.id, args.pressure)); }
-		void touchUpHandler(ofTouchEventArgs& args) {			Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::UP,			args.x, args.y, args.id, args.pressure)); }
-		
+		void evtTouchCancelHandler(ofTouchEventArgs& evt) {		Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::CANCEL, evt.x, evt.y, evt.id, evt.pressure)); }
+		void evtTouchDoubleTapHandler(ofTouchEventArgs& evt) {	Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::DOUBLE_TAP, evt.x, evt.y, evt.id, evt.pressure)); }
+		void evtTouchDownHandler(ofTouchEventArgs& evt) {		Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::DOWN, evt.x, evt.y, evt.id, evt.pressure)); }
+		void evtTouchMoveHandler(ofTouchEventArgs& evt) {		Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::MOVE, evt.x, evt.y, evt.id, evt.pressure)); }
+		void evtTouchUpHandler(ofTouchEventArgs& evt) {			Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::UP, evt.x, evt.y, evt.id, evt.pressure)); }
 	};
 	
 }
+
+#endif
