@@ -13,7 +13,7 @@
 #include "ofMain.h"
 #endif
 
-class BoxPlusDebugger : public b2DebugDraw {
+class BoxPlusDebugger : public b2Draw {
 public:
 	
 	float scale;
