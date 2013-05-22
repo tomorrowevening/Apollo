@@ -30,6 +30,7 @@
 	#define APOLLO_COCOA
 	#if TARGET_OS_IPHONE
 		#define APOLLO_COCOA_TOUCH
+		#define APOLLO_GLES
 		#if TARGET_IPHONE_SIMULATOR
 			#define APOLLO_COCOA_TOUCH_SIMULATOR
 		#else
@@ -38,6 +39,9 @@
 	#else
 		#define APOLLO_MAC
 	#endif
+#elif defined (ANDROID)
+	#define APOLL_ANDROID
+	#define APOLLO_GLES
 #endif
 
 namespace Apollo {}
