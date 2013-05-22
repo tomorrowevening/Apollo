@@ -44,4 +44,5 @@
 
 // Apps
 #include "ApolloApp.h"
+#include "ApolloCocosApp.h"
 
