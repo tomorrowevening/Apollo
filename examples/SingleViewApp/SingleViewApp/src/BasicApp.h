@@ -8,12 +8,15 @@
 
 #pragma once
 #include "Apollo.h"
+#include "ApolloUIView.h"
 
 using namespace Apollo;
 
 class BasicApp : public ApolloApp {
 public:
 	
+	ApolloUIView* v;
+	UIViewController* parent;
 	BasicApp() {}
 	virtual void setup();
 	virtual void exit();

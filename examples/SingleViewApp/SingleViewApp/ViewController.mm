@@ -17,6 +17,8 @@
 
 static BasicApp* MyApp;
 
+#define APP_FPS 1.0f / 60.0f
+
 @implementation ViewController
 
 - (void)viewDidLoad
@@ -24,14 +26,32 @@ static BasicApp* MyApp;
     [super viewDidLoad];
 	
 	MyApp = new BasicApp();
+	MyApp->parent = self;
 	MyApp->setup();
+	
+	[self startTimer];
 	
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)dealloc {
+	[self stopTimer];
 	delete MyApp;
 	[super dealloc];
+}
+
+-(void)startTimer {
+	timer = [NSTimer scheduledTimerWithTimeInterval:APP_FPS target:self selector:@selector(update) userInfo:nil repeats:YES];
+}
+
+-(void)stopTimer {
+	[timer invalidate];
+	timer = nil;
+}
+
+-(void)update {
+	Dispatcher.dispatchEvent(new AppEvent(AppEvent::UPDATE));
+	Dispatcher.dispatchEvent(new AppEvent(AppEvent::DRAW));
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

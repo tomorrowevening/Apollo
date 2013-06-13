@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+	NSTimeInterval startDate;
+	NSTimer* timer;
+}
+
+-(void)startTimer;
+-(void)stopTimer;
+-(void)update;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;

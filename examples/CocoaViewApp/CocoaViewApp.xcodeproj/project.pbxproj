@@ -1,0 +1,534 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1705BCD01753DF1800A6BBCE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1705BC101753DF1700A6BBCE /* .gitignore */; };
+		1705BD1F1753DF1800A6BBCE /* README in Resources */ = {isa = PBXBuildFile; fileRef = 1705BC9F1753DF1800A6BBCE /* README */; };
+		1705BD201753DF1800A6BBCE /* ApolloTween.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCA31753DF1800A6BBCE /* ApolloTween.mm */; };
+		1705BD211753DF1800A6BBCE /* ApolloTweenController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCA51753DF1800A6BBCE /* ApolloTweenController.mm */; };
+		1705BD221753DF1800A6BBCE /* ApolloApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCA81753DF1800A6BBCE /* ApolloApp.cpp */; };
+		1705BD231753DF1800A6BBCE /* ApolloCocosApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCAA1753DF1800A6BBCE /* ApolloCocosApp.cpp */; };
+		1705BD241753DF1800A6BBCE /* ApolloMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCAD1753DF1800A6BBCE /* ApolloMask.cpp */; };
+		1705BD251753DF1800A6BBCE /* ApolloEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCB51753DF1800A6BBCE /* ApolloEvent.cpp */; };
+		1705BD261753DF1800A6BBCE /* ApolloEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCB71753DF1800A6BBCE /* ApolloEventDispatcher.cpp */; };
+		1705BD271753DF1800A6BBCE /* ApolloVec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCBB1753DF1800A6BBCE /* ApolloVec.cpp */; };
+		1705BD281753DF1800A6BBCE /* ApolloFBO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCBE1753DF1800A6BBCE /* ApolloFBO.cpp */; };
+		1705BD291753DF1800A6BBCE /* ApolloShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCC01753DF1800A6BBCE /* ApolloShader.cpp */; };
+		1705BD2A1753DF1800A6BBCE /* ApolloTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCC21753DF1800A6BBCE /* ApolloTexture.cpp */; };
+		1705BD2B1753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCC61753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.mm */; };
+		1705BD2C1753DF1800A6BBCE /* ApolloButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCC81753DF1800A6BBCE /* ApolloButton.cpp */; };
+		1705BD2D1753DF1800A6BBCE /* ApolloMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCCB1753DF1800A6BBCE /* ApolloMath.cpp */; };
+		1705BD2E1753DF1800A6BBCE /* ApolloTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1705BCCE1753DF1800A6BBCE /* ApolloTime.cpp */; };
+		1705BD401753EBB700A6BBCE /* ApolloCocoaWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1705BD3F1753EBB700A6BBCE /* ApolloCocoaWindow.mm */; };
+		17ED25551753C5C3004907E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17ED25541753C5C3004907E5 /* Cocoa.framework */; };
+		17ED255F1753C5C3004907E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17ED255D1753C5C3004907E5 /* InfoPlist.strings */; };
+		17ED25611753C5C3004907E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17ED25601753C5C3004907E5 /* main.m */; };
+		17ED25651753C5C3004907E5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 17ED25631753C5C3004907E5 /* Credits.rtf */; };
+		17ED25681753C5C3004907E5 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17ED25671753C5C3004907E5 /* AppDelegate.mm */; };
+		17ED256B1753C5C3004907E5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17ED25691753C5C3004907E5 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1705BC101753DF1700A6BBCE /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1705BC9F1753DF1800A6BBCE /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		1705BCA21753DF1800A6BBCE /* ApolloTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloTween.h; sourceTree = "<group>"; };
+		1705BCA31753DF1800A6BBCE /* ApolloTween.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApolloTween.mm; sourceTree = "<group>"; };
+		1705BCA41753DF1800A6BBCE /* ApolloTweenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloTweenController.h; sourceTree = "<group>"; };
+		1705BCA51753DF1800A6BBCE /* ApolloTweenController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApolloTweenController.mm; sourceTree = "<group>"; };
+		1705BCA61753DF1800A6BBCE /* Apollo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apollo.h; sourceTree = "<group>"; };
+		1705BCA81753DF1800A6BBCE /* ApolloApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloApp.cpp; sourceTree = "<group>"; };
+		1705BCA91753DF1800A6BBCE /* ApolloApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloApp.h; sourceTree = "<group>"; };
+		1705BCAA1753DF1800A6BBCE /* ApolloCocosApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloCocosApp.cpp; sourceTree = "<group>"; };
+		1705BCAB1753DF1800A6BBCE /* ApolloCocosApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloCocosApp.h; sourceTree = "<group>"; };
+		1705BCAD1753DF1800A6BBCE /* ApolloMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloMask.cpp; sourceTree = "<group>"; };
+		1705BCAE1753DF1800A6BBCE /* ApolloMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloMask.h; sourceTree = "<group>"; };
+		1705BCB01753DF1800A6BBCE /* ApolloAnimationEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloAnimationEnum.h; sourceTree = "<group>"; };
+		1705BCB11753DF1800A6BBCE /* ApolloCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloCore.h; sourceTree = "<group>"; };
+		1705BCB21753DF1800A6BBCE /* ApolloGLEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloGLEnum.h; sourceTree = "<group>"; };
+		1705BCB31753DF1800A6BBCE /* ApolloKeyboardEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloKeyboardEnum.h; sourceTree = "<group>"; };
+		1705BCB51753DF1800A6BBCE /* ApolloEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloEvent.cpp; sourceTree = "<group>"; };
+		1705BCB61753DF1800A6BBCE /* ApolloEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloEvent.h; sourceTree = "<group>"; };
+		1705BCB71753DF1800A6BBCE /* ApolloEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloEventDispatcher.cpp; sourceTree = "<group>"; };
+		1705BCB81753DF1800A6BBCE /* ApolloEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloEventDispatcher.h; sourceTree = "<group>"; };
+		1705BCB91753DF1800A6BBCE /* ApolloOFDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloOFDispatcher.h; sourceTree = "<group>"; };
+		1705BCBB1753DF1800A6BBCE /* ApolloVec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloVec.cpp; sourceTree = "<group>"; };
+		1705BCBC1753DF1800A6BBCE /* ApolloVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloVec.h; sourceTree = "<group>"; };
+		1705BCBE1753DF1800A6BBCE /* ApolloFBO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloFBO.cpp; sourceTree = "<group>"; };
+		1705BCBF1753DF1800A6BBCE /* ApolloFBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloFBO.h; sourceTree = "<group>"; };
+		1705BCC01753DF1800A6BBCE /* ApolloShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloShader.cpp; sourceTree = "<group>"; };
+		1705BCC11753DF1800A6BBCE /* ApolloShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloShader.h; sourceTree = "<group>"; };
+		1705BCC21753DF1800A6BBCE /* ApolloTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloTexture.cpp; sourceTree = "<group>"; };
+		1705BCC31753DF1800A6BBCE /* ApolloTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloTexture.h; sourceTree = "<group>"; };
+		1705BCC51753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+ApolloCocoaAppController.h"; sourceTree = "<group>"; };
+		1705BCC61753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSViewController+ApolloCocoaAppController.mm"; sourceTree = "<group>"; };
+		1705BCC81753DF1800A6BBCE /* ApolloButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloButton.cpp; sourceTree = "<group>"; };
+		1705BCC91753DF1800A6BBCE /* ApolloButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloButton.h; sourceTree = "<group>"; };
+		1705BCCB1753DF1800A6BBCE /* ApolloMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloMath.cpp; sourceTree = "<group>"; };
+		1705BCCC1753DF1800A6BBCE /* ApolloMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloMath.h; sourceTree = "<group>"; };
+		1705BCCD1753DF1800A6BBCE /* ApolloStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloStrings.h; sourceTree = "<group>"; };
+		1705BCCE1753DF1800A6BBCE /* ApolloTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApolloTime.cpp; sourceTree = "<group>"; };
+		1705BCCF1753DF1800A6BBCE /* ApolloTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloTime.h; sourceTree = "<group>"; };
+		1705BD3E1753EBB700A6BBCE /* ApolloCocoaWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloCocoaWindow.h; sourceTree = "<group>"; };
+		1705BD3F1753EBB700A6BBCE /* ApolloCocoaWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApolloCocoaWindow.mm; sourceTree = "<group>"; };
+		17ED25511753C5C3004907E5 /* CocoaViewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaViewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17ED25541753C5C3004907E5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		17ED25571753C5C3004907E5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		17ED25581753C5C3004907E5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		17ED25591753C5C3004907E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		17ED255C1753C5C3004907E5 /* CocoaViewApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaViewApp-Info.plist"; sourceTree = "<group>"; };
+		17ED255E1753C5C3004907E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		17ED25601753C5C3004907E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		17ED25621753C5C3004907E5 /* CocoaViewApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaViewApp-Prefix.pch"; sourceTree = "<group>"; };
+		17ED25641753C5C3004907E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		17ED25661753C5C3004907E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		17ED25671753C5C3004907E5 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		17ED256A1753C5C3004907E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17ED254E1753C5C3004907E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17ED25551753C5C3004907E5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1705BC0F1753DF1700A6BBCE /* Apollo */ = {
+			isa = PBXGroup;
+			children = (
+				1705BC101753DF1700A6BBCE /* .gitignore */,
+				1705BC9E1753DF1800A6BBCE /* libs */,
+				1705BC9F1753DF1800A6BBCE /* README */,
+				1705BCA01753DF1800A6BBCE /* src */,
+			);
+			name = Apollo;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
+		1705BC9E1753DF1800A6BBCE /* libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		1705BCA01753DF1800A6BBCE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCA11753DF1800A6BBCE /* animation */,
+				1705BCA61753DF1800A6BBCE /* Apollo.h */,
+				1705BCA71753DF1800A6BBCE /* core */,
+				1705BCAC1753DF1800A6BBCE /* display */,
+				1705BCAF1753DF1800A6BBCE /* enums */,
+				1705BCB41753DF1800A6BBCE /* events */,
+				1705BCBA1753DF1800A6BBCE /* geom */,
+				1705BCBD1753DF1800A6BBCE /* gl */,
+				1705BCC41753DF1800A6BBCE /* objc */,
+				1705BCC71753DF1800A6BBCE /* ui */,
+				1705BCCA1753DF1800A6BBCE /* utils */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		1705BCA11753DF1800A6BBCE /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCA21753DF1800A6BBCE /* ApolloTween.h */,
+				1705BCA31753DF1800A6BBCE /* ApolloTween.mm */,
+				1705BCA41753DF1800A6BBCE /* ApolloTweenController.h */,
+				1705BCA51753DF1800A6BBCE /* ApolloTweenController.mm */,
+			);
+			path = animation;
+			sourceTree = "<group>";
+		};
+		1705BCA71753DF1800A6BBCE /* core */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCA81753DF1800A6BBCE /* ApolloApp.cpp */,
+				1705BCA91753DF1800A6BBCE /* ApolloApp.h */,
+				1705BCAA1753DF1800A6BBCE /* ApolloCocosApp.cpp */,
+				1705BCAB1753DF1800A6BBCE /* ApolloCocosApp.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		1705BCAC1753DF1800A6BBCE /* display */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCAD1753DF1800A6BBCE /* ApolloMask.cpp */,
+				1705BCAE1753DF1800A6BBCE /* ApolloMask.h */,
+			);
+			path = display;
+			sourceTree = "<group>";
+		};
+		1705BCAF1753DF1800A6BBCE /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCB01753DF1800A6BBCE /* ApolloAnimationEnum.h */,
+				1705BCB11753DF1800A6BBCE /* ApolloCore.h */,
+				1705BCB21753DF1800A6BBCE /* ApolloGLEnum.h */,
+				1705BCB31753DF1800A6BBCE /* ApolloKeyboardEnum.h */,
+			);
+			path = enums;
+			sourceTree = "<group>";
+		};
+		1705BCB41753DF1800A6BBCE /* events */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCB51753DF1800A6BBCE /* ApolloEvent.cpp */,
+				1705BCB61753DF1800A6BBCE /* ApolloEvent.h */,
+				1705BCB71753DF1800A6BBCE /* ApolloEventDispatcher.cpp */,
+				1705BCB81753DF1800A6BBCE /* ApolloEventDispatcher.h */,
+				1705BCB91753DF1800A6BBCE /* ApolloOFDispatcher.h */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		1705BCBA1753DF1800A6BBCE /* geom */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCBB1753DF1800A6BBCE /* ApolloVec.cpp */,
+				1705BCBC1753DF1800A6BBCE /* ApolloVec.h */,
+			);
+			path = geom;
+			sourceTree = "<group>";
+		};
+		1705BCBD1753DF1800A6BBCE /* gl */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCBE1753DF1800A6BBCE /* ApolloFBO.cpp */,
+				1705BCBF1753DF1800A6BBCE /* ApolloFBO.h */,
+				1705BCC01753DF1800A6BBCE /* ApolloShader.cpp */,
+				1705BCC11753DF1800A6BBCE /* ApolloShader.h */,
+				1705BCC21753DF1800A6BBCE /* ApolloTexture.cpp */,
+				1705BCC31753DF1800A6BBCE /* ApolloTexture.h */,
+			);
+			path = gl;
+			sourceTree = "<group>";
+		};
+		1705BCC41753DF1800A6BBCE /* objc */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCC51753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.h */,
+				1705BCC61753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.mm */,
+			);
+			path = objc;
+			sourceTree = "<group>";
+		};
+		1705BCC71753DF1800A6BBCE /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCC81753DF1800A6BBCE /* ApolloButton.cpp */,
+				1705BCC91753DF1800A6BBCE /* ApolloButton.h */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		1705BCCA1753DF1800A6BBCE /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				1705BCCB1753DF1800A6BBCE /* ApolloMath.cpp */,
+				1705BCCC1753DF1800A6BBCE /* ApolloMath.h */,
+				1705BCCD1753DF1800A6BBCE /* ApolloStrings.h */,
+				1705BCCE1753DF1800A6BBCE /* ApolloTime.cpp */,
+				1705BCCF1753DF1800A6BBCE /* ApolloTime.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		17ED25481753C5C3004907E5 = {
+			isa = PBXGroup;
+			children = (
+				17ED255A1753C5C3004907E5 /* CocoaViewApp */,
+				17ED25531753C5C3004907E5 /* Frameworks */,
+				17ED25521753C5C3004907E5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		17ED25521753C5C3004907E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17ED25511753C5C3004907E5 /* CocoaViewApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17ED25531753C5C3004907E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17ED25541753C5C3004907E5 /* Cocoa.framework */,
+				17ED25561753C5C3004907E5 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		17ED25561753C5C3004907E5 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17ED25571753C5C3004907E5 /* AppKit.framework */,
+				17ED25581753C5C3004907E5 /* CoreData.framework */,
+				17ED25591753C5C3004907E5 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		17ED255A1753C5C3004907E5 /* CocoaViewApp */ = {
+			isa = PBXGroup;
+			children = (
+				17ED25661753C5C3004907E5 /* AppDelegate.h */,
+				17ED25671753C5C3004907E5 /* AppDelegate.mm */,
+				1705BD3E1753EBB700A6BBCE /* ApolloCocoaWindow.h */,
+				1705BD3F1753EBB700A6BBCE /* ApolloCocoaWindow.mm */,
+				17ED25691753C5C3004907E5 /* MainMenu.xib */,
+				1705BC0F1753DF1700A6BBCE /* Apollo */,
+				17ED255B1753C5C3004907E5 /* Supporting Files */,
+			);
+			path = CocoaViewApp;
+			sourceTree = "<group>";
+		};
+		17ED255B1753C5C3004907E5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				17ED255C1753C5C3004907E5 /* CocoaViewApp-Info.plist */,
+				17ED255D1753C5C3004907E5 /* InfoPlist.strings */,
+				17ED25601753C5C3004907E5 /* main.m */,
+				17ED25621753C5C3004907E5 /* CocoaViewApp-Prefix.pch */,
+				17ED25631753C5C3004907E5 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		17ED25501753C5C3004907E5 /* CocoaViewApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17ED256E1753C5C3004907E5 /* Build configuration list for PBXNativeTarget "CocoaViewApp" */;
+			buildPhases = (
+				17ED254D1753C5C3004907E5 /* Sources */,
+				17ED254E1753C5C3004907E5 /* Frameworks */,
+				17ED254F1753C5C3004907E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoaViewApp;
+			productName = CocoaViewApp;
+			productReference = 17ED25511753C5C3004907E5 /* CocoaViewApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		17ED25491753C5C3004907E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Tomorrow Evening";
+			};
+			buildConfigurationList = 17ED254C1753C5C3004907E5 /* Build configuration list for PBXProject "CocoaViewApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 17ED25481753C5C3004907E5;
+			productRefGroup = 17ED25521753C5C3004907E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17ED25501753C5C3004907E5 /* CocoaViewApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		17ED254F1753C5C3004907E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17ED255F1753C5C3004907E5 /* InfoPlist.strings in Resources */,
+				17ED25651753C5C3004907E5 /* Credits.rtf in Resources */,
+				17ED256B1753C5C3004907E5 /* MainMenu.xib in Resources */,
+				1705BCD01753DF1800A6BBCE /* .gitignore in Resources */,
+				1705BD1F1753DF1800A6BBCE /* README in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17ED254D1753C5C3004907E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17ED25611753C5C3004907E5 /* main.m in Sources */,
+				17ED25681753C5C3004907E5 /* AppDelegate.mm in Sources */,
+				1705BD201753DF1800A6BBCE /* ApolloTween.mm in Sources */,
+				1705BD211753DF1800A6BBCE /* ApolloTweenController.mm in Sources */,
+				1705BD221753DF1800A6BBCE /* ApolloApp.cpp in Sources */,
+				1705BD231753DF1800A6BBCE /* ApolloCocosApp.cpp in Sources */,
+				1705BD241753DF1800A6BBCE /* ApolloMask.cpp in Sources */,
+				1705BD251753DF1800A6BBCE /* ApolloEvent.cpp in Sources */,
+				1705BD261753DF1800A6BBCE /* ApolloEventDispatcher.cpp in Sources */,
+				1705BD271753DF1800A6BBCE /* ApolloVec.cpp in Sources */,
+				1705BD281753DF1800A6BBCE /* ApolloFBO.cpp in Sources */,
+				1705BD291753DF1800A6BBCE /* ApolloShader.cpp in Sources */,
+				1705BD2A1753DF1800A6BBCE /* ApolloTexture.cpp in Sources */,
+				1705BD2B1753DF1800A6BBCE /* NSViewController+ApolloCocoaAppController.mm in Sources */,
+				1705BD2C1753DF1800A6BBCE /* ApolloButton.cpp in Sources */,
+				1705BD2D1753DF1800A6BBCE /* ApolloMath.cpp in Sources */,
+				1705BD2E1753DF1800A6BBCE /* ApolloTime.cpp in Sources */,
+				1705BD401753EBB700A6BBCE /* ApolloCocoaWindow.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		17ED255D1753C5C3004907E5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17ED255E1753C5C3004907E5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		17ED25631753C5C3004907E5 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17ED25641753C5C3004907E5 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		17ED25691753C5C3004907E5 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17ED256A1753C5C3004907E5 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		17ED256C1753C5C3004907E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		17ED256D1753C5C3004907E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		17ED256F1753C5C3004907E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CocoaViewApp/CocoaViewApp-Prefix.pch";
+				INFOPLIST_FILE = "CocoaViewApp/CocoaViewApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		17ED25701753C5C3004907E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CocoaViewApp/CocoaViewApp-Prefix.pch";
+				INFOPLIST_FILE = "CocoaViewApp/CocoaViewApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17ED254C1753C5C3004907E5 /* Build configuration list for PBXProject "CocoaViewApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17ED256C1753C5C3004907E5 /* Debug */,
+				17ED256D1753C5C3004907E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17ED256E1753C5C3004907E5 /* Build configuration list for PBXNativeTarget "CocoaViewApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17ED256F1753C5C3004907E5 /* Debug */,
+				17ED25701753C5C3004907E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 17ED25491753C5C3004907E5 /* Project object */;
+}
