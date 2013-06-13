@@ -28,7 +28,7 @@ namespace Apollo {
 		
 		void dispatchEvent(Event *event);
 		void addListener(const string &type, void* listener, listenerHandler handler);
-		void removeListener(const string &type, listenerHandler handler);
+		void removeListener(const string &type, void* listener, listenerHandler handler);
 		bool hasListener(const string &type);
 		const int totalListeners() { return (int)handlers.size(); }
 	};

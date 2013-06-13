@@ -8,12 +8,14 @@
 
 #pragma once
 
+//#ifdef COCOS2D_VERSION
 #include "cocos2d.h"
 using namespace cocos2d;
+//#endif
 
-class ApolloCocosApp :
+class ApolloCocosApp
 #ifdef COCOS2D_VERSION
-public CCLayer
+: public CCLayer
 #endif
 {
 public:

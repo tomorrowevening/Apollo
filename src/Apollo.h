@@ -14,8 +14,8 @@
 #include "ApolloKeyboardEnum.h"
 
 // Animation
-//#include "ApolloTween.h"
-//#include "ApolloTweenController.h"
+#include "ApolloTween.h"
+#include "ApolloTweenController.h"
 
 // Display
 #include "ApolloMask.h"
@@ -41,6 +41,7 @@
 // Utils
 #include "ApolloMath.h"
 #include "ApolloStrings.h"
+#include "ApolloTime.h"
 
 // Apps
 #include "ApolloApp.h"

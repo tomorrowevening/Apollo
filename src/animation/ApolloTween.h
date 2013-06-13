@@ -7,8 +7,8 @@
 #pragma once
 #include "ApolloCore.h"
 #include "ApolloAnimationEnum.h"
+#include "ApolloTime.h"
 #include "ApolloVec.h"
-#include <Poco/Timestamp.h>
 
 namespace Apollo {
 	
@@ -23,12 +23,13 @@ namespace Apollo {
 	public:
 		
 		float* var;
-		float from, to, duration;
-		Poco::Timestamp timestamp;
+		float from, to;
+		double duration, timestamp;
+		double end();
 		void update(float percent);
 		
 		// Getters
-		float range();
+		double range();
 		static CubicEase getEase(PennerEases ease);
 		
 		// Setters

@@ -8,6 +8,7 @@
 
 #pragma once
 #include "ApolloCore.h"
+#include "ApolloTime.h"
 #include "ApolloTween.h"
 
 namespace Apollo {
@@ -38,6 +39,7 @@ namespace Apollo {
 		void removeAllTweens();
 		
 		// Getters
+		int activeTweens();
 		int totalTweens();
 		
 		// Setters
@@ -45,6 +47,7 @@ namespace Apollo {
 		
 	private:
 		Playmode playMode;
+		int _activeTweens;
 		std::vector<Tween> tweens;
 		const bool overrideTween() { return playMode == Override; }
 		void removeTween(int index);

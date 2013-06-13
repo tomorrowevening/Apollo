@@ -25,11 +25,18 @@ ApolloCocosApp::~ApolloCocosApp() {
 
 bool ApolloCocosApp::init() {
 	printf("ApolloCocosApp inited\n");
+#ifdef COCOS2D_VERSION
 	return CCLayer::init();
+#else
+	return true;
+#endif
 }
 
 void ApolloCocosApp::onExit() {
+#ifdef COCOS2D_VERSION
 	CCLayer::onExit();
+#else
+#endif
 }
 
 void ApolloCocosApp::update(float dt) {

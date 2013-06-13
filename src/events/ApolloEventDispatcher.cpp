@@ -32,7 +32,7 @@ namespace Apollo {
 		handlers[type].push_back(data);
 	}
 	
-	void EventDispatcher::removeListener(const string &type, listenerHandler handler){
+	void EventDispatcher::removeListener(const string &type, void* listener, listenerHandler handler){
 		if(!hasListener(type)) return;
 		
 		const string sHandler = Apollo::toString(handler);

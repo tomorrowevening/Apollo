@@ -15,14 +15,16 @@ namespace Apollo {
 	TweenController Tweener;
 
 	void TweenController::update() {
+		_activeTweens = 0;
 		float aniPercent;
 		for(int i = tweens.size() -1; i >= 0; --i){
-			aniPercent = float(tweens[i].timestamp.elapsed()) / float(tweens[i].duration);
+			aniPercent = float( getElapsedMS(tweens[i].timestamp) / tweens[i].duration );
 			if(aniPercent >= 1.f){
 				tweens[i].var[0] = tweens[i].to;
 				removeTween(i);
 			} else if(aniPercent > 0){
 				tweens[i].update(aniPercent);
+				++_activeTweens;
 			}
 		}
 	}
@@ -37,7 +39,7 @@ namespace Apollo {
 	//////////////////////////////////////////////////
 	#pragma mark - Management
 	//////////////////////////////////////////////////
-
+	
 	void TweenController::addTween(float &var, float to, float time, CubicEase ease, float delay) {
 		addTween(var, to, time, ease.c0.x, ease.c0.y, ease.c1.x, ease.c1.y, delay);
 	}
@@ -54,7 +56,8 @@ namespace Apollo {
 	void TweenController::addTween(float &var, float to, float time, float x0, float y0, float x1, float y1, float delay) {
 		float from = var;
 		float _delay = delay;
-		Poco::Timestamp latest = 0;
+		float latest = 0;
+		double now = getSystemMS();
 		
 		const int total = totalTweens();
 		const bool override = overrideTween();
@@ -64,14 +67,14 @@ namespace Apollo {
 					tweens[i].from = from;
 					tweens[i].to = to;
 					tweens[i].setEase(x0, y0, x1, y1);
-					tweens[i].timestamp = Poco::Timestamp() + (delay * 1000000.0f);
-					tweens[i].duration = time * 1000000.0f;
+					tweens[i].timestamp = now + (delay * 1000.);
+					tweens[i].duration = time * 1000.;
 					return;
 				} else {
 					//sequence mode
 					if((tweens[i].timestamp + tweens[i].duration) > latest){
 						latest = (tweens[i].timestamp + tweens[i].duration);
-						delay = _delay + ((tweens[i].duration - tweens[i].timestamp.elapsed())/1000000.0f);
+						delay = _delay + (tweens[i].duration - Apollo::getElapsedMS(tweens[i].timestamp));
 						from = tweens[i].to;
 					}
 				}
@@ -83,8 +86,8 @@ namespace Apollo {
 		t.from = from;
 		t.to = to;
 		t.setEase(x0, y0, x1, y1);
-		t.timestamp = Poco::Timestamp() + (delay * 1000000.0f) ;
-		t.duration = time * 1000000.0f;
+		t.timestamp = now + (delay * 1000.);
+		t.duration = time * 1000.;
 		tweens.push_back(t);
 	}
 
@@ -101,6 +104,8 @@ namespace Apollo {
 	//////////////////////////////////////////////////
 	#pragma mark - Getters
 	//////////////////////////////////////////////////
+	
+	int TweenController::activeTweens() { return _activeTweens; }
 
 	int TweenController::totalTweens() { return (int)tweens.size(); }
 

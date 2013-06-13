@@ -21,7 +21,7 @@
 
 #define APOLLO_VERSION 125
 
-#if defined(_WIN64) || defined(_WIN32)
+#if defined(_WIN64) || defined(_WIN32) || defined(__WIN32__) || defined(_WIN32)
 	#define APOLLO_MSW
 #elif defined(linux) || defined(__linux) || defined(__linux__)
 	#define APOLLO_LINUX

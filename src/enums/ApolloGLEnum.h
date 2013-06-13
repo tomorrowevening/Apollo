@@ -9,7 +9,6 @@
 #include "ApolloCore.h"
 
 #ifdef APOLLO_MAC
-#include "GL/glew.h"
 #include <OpenGL/gl.h>
 #endif
 
@@ -44,6 +43,8 @@
 
 namespace Apollo {
 	namespace gl {
+		
+		
 		
 	}
 }

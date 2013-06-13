@@ -57,22 +57,22 @@ namespace Apollo {
 	}
 	
 	void ApolloApp::disableEvents() {
-		Dispatcher.removeListener(AppEvent::UPDATE, appHandlers);
-		Dispatcher.removeListener(AppEvent::DRAW, appHandlers);
+		Dispatcher.removeListener(AppEvent::UPDATE, this, appHandlers);
+		Dispatcher.removeListener(AppEvent::DRAW, this, appHandlers);
 #ifdef APOLLO_COCOA_TOUCH
-		Dispatcher.removeListener(TouchEvent::CANCEL, appHandlers);
-		Dispatcher.removeListener(TouchEvent::DOUBLE_TAP, appHandlers);
-		Dispatcher.removeListener(TouchEvent::DOWN, appHandlers);
-		Dispatcher.removeListener(TouchEvent::MOVE, appHandlers);
-		Dispatcher.removeListener(TouchEvent::UP, appHandlers);
+		Dispatcher.removeListener(TouchEvent::CANCEL, this, appHandlers);
+		Dispatcher.removeListener(TouchEvent::DOUBLE_TAP, this, appHandlers);
+		Dispatcher.removeListener(TouchEvent::DOWN, this, appHandlers);
+		Dispatcher.removeListener(TouchEvent::MOVE, this, appHandlers);
+		Dispatcher.removeListener(TouchEvent::UP, this, appHandlers);
 #else
-		Dispatcher.removeListener(KeyEvent::DOWN, appHandlers);
-		Dispatcher.removeListener(KeyEvent::UP, appHandlers);
-		Dispatcher.removeListener(MouseEvent::DRAGGED, appHandlers);
-		Dispatcher.removeListener(MouseEvent::MOVED, appHandlers);
-		Dispatcher.removeListener(MouseEvent::PRESSED, appHandlers);
-		Dispatcher.removeListener(MouseEvent::RELEASED, appHandlers);
-		Dispatcher.removeListener(MouseEvent::SCROLLED, appHandlers);
+		Dispatcher.removeListener(KeyEvent::DOWN, this, appHandlers);
+		Dispatcher.removeListener(KeyEvent::UP, this, appHandlers);
+		Dispatcher.removeListener(MouseEvent::DRAGGED, this, appHandlers);
+		Dispatcher.removeListener(MouseEvent::MOVED, this, appHandlers);
+		Dispatcher.removeListener(MouseEvent::PRESSED, this, appHandlers);
+		Dispatcher.removeListener(MouseEvent::RELEASED, this, appHandlers);
+		Dispatcher.removeListener(MouseEvent::SCROLLED, this, appHandlers);
 #endif
 	}
 	

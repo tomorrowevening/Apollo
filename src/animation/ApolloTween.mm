@@ -39,8 +39,12 @@ namespace Apollo {
 	//////////////////////////////////////////////////
 	#pragma mark - Getters
 	//////////////////////////////////////////////////
+	
+	double Tween::end() {
+		return timestamp + duration;
+	}
 
-	float Tween::range() {
+	double Tween::range() {
 		return to - from;
 	}
 	
