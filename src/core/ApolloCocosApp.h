@@ -8,10 +8,10 @@
 
 #pragma once
 
-//#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 #include "cocos2d.h"
 using namespace cocos2d;
-//#endif
+#endif
 
 class ApolloCocosApp
 #ifdef COCOS2D_VERSION

@@ -44,6 +44,9 @@
 	#define APOLLO_GLES
 #endif
 
+// Uncomment for Cocos2D integration
+//#define APOLLO_COCOS2D
+
 namespace Apollo {}
 
 using namespace std;
