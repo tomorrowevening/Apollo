@@ -42,9 +42,5 @@
 #include "ApolloTexture.h"
 
 namespace Apollo {
-	namespace gl {
-		
-		
-		
-	}
+	namespace gl {}
 }

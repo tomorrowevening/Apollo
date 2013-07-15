@@ -29,14 +29,17 @@
 #include "ApolloVec.h"
 
 // GL
+#include "ApolloGL.h"
+#include "ApolloTexture.h"
 #include "ApolloFBO.h"
 #include "ApolloShader.h"
-#include "ApolloTexture.h"
 
 // Mobile
 
 // UI
 #include "ApolloButton.h"
+#include "ApolloSlider.h"
+#include "ApolloToggle.h"
 
 // Utils
 #include "ApolloMath.h"

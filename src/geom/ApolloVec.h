@@ -33,6 +33,7 @@ namespace Apollo {
 		static Vec2f range(float minX, float maxX, float minY, float maxY, float per);
 		static Vec2f randomRange(float minX, float maxX, float minY, float maxY);
 		static Vec2f random(float maxX, float maxY);
+		static Vec2f alignmentOffset(MatrixAlign align, float x, float y);
 		
 		// Setters
 		void set(float _x, float _y){ x = _x; y = _y; }
@@ -131,8 +132,15 @@ namespace Apollo {
 		MatrixAlign align;
 		float width, height;
 		
-		Rectangle(float _x = 0, float _y = 0){ x = _x; y = _y;}
-		Rectangle(const Vec2f& v){ x = v.x; y = v.y; }
+		Rectangle(float _x = 0, float _y = 0){
+			x = _x; y = _y;
+			align = ALIGN_TOP_LEFT;
+		}
+		
+		Rectangle(const Vec2f& v){
+			x = v.x; y = v.y;
+			align = ALIGN_TOP_LEFT;
+		}
 		
 		// Getters
 		float left();

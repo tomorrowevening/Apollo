@@ -25,6 +25,25 @@ namespace Apollo {
 		return Vec2f(Apollo::random(maxX), Apollo::random(maxY));
 	}
 	
+	Vec2f Vec2f::alignmentOffset(MatrixAlign align, float x, float y) {
+		Vec2f offset;
+		switch (align) {
+			default:
+			case ALIGN_TOP_LEFT:	offset.set(0,			0);			break;
+			case ALIGN_TOP_CENTER:	offset.set(-x * 0.5f,	0);			break;
+			case ALIGN_TOP_RIGHT:	offset.set(-x,			0);			break;
+				
+			case ALIGN_MID_LEFT:	offset.set(0,			-y*0.5f);	break;
+			case ALIGN_MID_CENTER:	offset.set(-x * 0.5f,	-y*0.5f);	break;
+			case ALIGN_MID_RIGHT:	offset.set(-x,			-y*0.5f);	break;
+				
+			case ALIGN_BOT_LEFT:	offset.set(0,			-y);		break;
+			case ALIGN_BOT_CENTER:	offset.set(-x * 0.5f,	-y);		break;
+			case ALIGN_BOT_RIGHT:	offset.set(-x,			-y);		break;
+		}
+		return offset;
+	}
+	
 	#pragma mark Operators
 
 	bool Vec2f::operator==( const Vec2f& vec ) const { return vec.x == x && vec.y == y; }
