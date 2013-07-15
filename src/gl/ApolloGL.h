@@ -22,7 +22,7 @@ namespace Apollo {
 		public:
 			
 			MatrixAlign		alignment;
-			bool			fill;
+			bool			fill, smooth;
 			
 			Vec3f			linePts[1];
 			Vec3f			rectPts[3];
@@ -30,6 +30,7 @@ namespace Apollo {
 			ApolloGLSettings() {
 				alignment		= ALIGN_TOP_LEFT;
 				fill			= true;
+				smooth			= false;
 				
 				linePts[0].set(0, 0, 0);
 				linePts[1].set(1, 1, 0);
@@ -51,6 +52,14 @@ namespace Apollo {
 		
 		void pushMatrix();
 		void popMatrix();
+		
+		void rotate(float degrees);
+		void rotateX(float degrees);
+		void rotateY(float degrees);
+		void rotateZ(float degrees);
+		void scale(float amount);
+		void scale(float x, float y, float z = 1.f);
+		void translate(float x, float y, float z = 0);
 		
 		void drawLine(float x1, float y1, float x2, float y2);
 		void drawLine(float x1, float y1, float z1, float x2, float y2, float z2);

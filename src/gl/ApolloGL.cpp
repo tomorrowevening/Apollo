@@ -9,6 +9,10 @@
 #include "ApolloGL.h"
 #include "ApolloMath.h"
 
+#ifdef APOLLO_OPENFRAMEWORKS
+#include "ofMain.h"
+#endif
+
 namespace Apollo {
 	namespace gl {
 		
@@ -16,6 +20,7 @@ namespace Apollo {
 		void noFill() { glSettings.fill = false; }
 		
 		void enableSmooth() {
+			glSettings.smooth = true;
 #ifndef APOLLO_GLES
 			glPushAttrib(GL_COLOR_BUFFER_BIT | GL_ENABLE_BIT);
 #endif
@@ -25,6 +30,7 @@ namespace Apollo {
 		}
 		
 		void disableSmooth() {
+			glSettings.smooth = false;
 #ifndef APOLLO_GLES
 			glDisable(GL_BLEND);
 			glDisable(GL_LINE_SMOOTH);
@@ -34,6 +40,16 @@ namespace Apollo {
 		
 		void pushMatrix() { glPushMatrix(); }
 		void popMatrix()  { glPopMatrix(); }
+		
+		void rotate (float degrees) { glRotatef(degrees, 0, 0, 1); }
+		void rotateX(float degrees) { glRotatef(degrees, 1, 0, 0); }
+		void rotateY(float degrees) { glRotatef(degrees, 0, 1, 0); }
+		void rotateZ(float degrees) { rotate(degrees); }
+		
+		void scale(float amount) { scale(amount, amount, amount); }
+		void scale(float x, float y, float z) { glScalef(x, y, z); }
+		
+		void translate(float x, float y, float z) { glTranslatef(x, y, z); }
 		
 #pragma mark - Primitives
 		
@@ -81,16 +97,22 @@ namespace Apollo {
 			
 			vector<Vec3f> circlePts;
 			for(int i = 0; i < segments; ++i) {
-				ang = toRad((float)i * dis);
+				ang = toRad((float)i * dis + 90.f);
 				circlePts.push_back( Vec3f( cos(ang) * halfRadius + l, sin(ang) * halfRadius + t, z ) );
 			}
 			
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glVertexPointer(3, GL_FLOAT, sizeof(Vec3f), &circlePts[0].x);
 			glDrawArrays(glSettings.fill ? GL_TRIANGLE_FAN : GL_LINE_LOOP, 0, segments);
+			
+			if(glSettings.smooth && glSettings.fill) glDrawArrays(GL_LINE_LOOP, 0, segments); // smooth edges
 		}
 		
-		void drawText(string msg, float x, float y) {}
+		void drawText(string msg, float x, float y) {
+#ifdef APOLLO_OPENFRAMEWORKS
+			ofDrawBitmapString(msg, x, y);
+#endif
+		}
 		
 #pragma mark - Getters
 		

@@ -46,6 +46,7 @@
 
 // Uncomment for Cocos2D integration
 //#define APOLLO_COCOS2D
+#define APOLLO_OPENFRAMEWORKS
 
 namespace Apollo {}
 

@@ -40,7 +40,3 @@
 #include "ApolloFBO.h"
 #include "ApolloShader.h"
 #include "ApolloTexture.h"
-
-namespace Apollo {
-	namespace gl {}
-}
