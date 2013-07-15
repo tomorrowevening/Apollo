@@ -37,7 +37,7 @@ namespace Apollo {
 		
 		const string sHandler = Apollo::toString(handler);
 		vector<EventData> &eHandlers = handlers[type];
-		for(vector<EventData>::iterator f = eHandlers.begin(); f != eHandlers.end(); f) {
+		for(vector<EventData>::iterator f = eHandlers.begin(); f != eHandlers.end(); f=f) {
 			if(Apollo::toString(f->handler) == sHandler) {
 				eHandlers.erase(f);
 			} else {
