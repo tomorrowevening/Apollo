@@ -9,24 +9,49 @@
 #pragma once
 
 #import <UIKit/UIKit.h>
-//#include "Apollo.h"
+#import "ApolloMath.h"
 
-struct ApolloMatrix {
-	float x, y, width, height;
-	float a, b, c, d, tx, ty;
-	ApolloMatrix() {
-		x = y = width = height = 0;
-		a = d = 1;
-		b = c = tx = ty = 0;
+struct ViewMatrix {
+private:
+	
+	float _rotation;
+	
+public:
+	
+	float	scaleX, scaleY, skewX, skewY,
+			x, y, width, height;
+	
+	ViewMatrix() {
+		_rotation = 0;
+		scaleX = scaleY = 1; // (matrix: a & d)
+		skewX  = skewY = 0;  // (matrix: b & c)
+		x = y = 0; // (matrix: tx & ty)
+		width  = height = 0;
 	}
+	
+	void rotation(float rx) {
+		_rotation = rx;
+		const float rad = Apollo::toRad(rx);
+		scaleX *= cosf(rad);
+		scaleY *= sinf(rad);
+		
+		skewX *= -sinf(rad);
+		skewY *= cosf(rad);
+	}
+	
+	float rotation() { return _rotation; }
+	
+	const float scaledWidth()  { return scaleX * width;  }
+	const float scaledHeight() { return scaleY * height; }
+	
 };
 
 @interface ApolloUIView : UIView {
 @public
-	ApolloMatrix matrix;
+	ViewMatrix matrix;
 }
 
-@property (nonatomic, readwrite) ApolloMatrix matrix;
+@property (nonatomic, readwrite) ViewMatrix matrix;
 
 -(void)update;
 

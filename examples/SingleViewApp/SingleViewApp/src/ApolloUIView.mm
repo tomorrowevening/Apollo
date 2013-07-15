@@ -25,15 +25,14 @@
 }
 
 -(void)update {
-//	CGAffineTransform mTransform;
-//	mTransform.a  = matrix.a;
-//	mTransform.b  = matrix.b;
-//	mTransform.c  = matrix.c;
-//	mTransform.d  = matrix.d;
-//	mTransform.tx = matrix.tx;
-//	mTransform.ty = matrix.ty;
-//	self.transform = mTransform;
-	[self setFrame: CGRectMake(matrix.x, matrix.y, matrix.width, matrix.height)];
+	CGAffineTransform mTransform;
+	mTransform.a  = matrix.scaleX;
+	mTransform.b  = matrix.skewX;
+	mTransform.c  = matrix.skewY;
+	mTransform.d  = matrix.scaleY;
+	mTransform.tx = matrix.x;
+	mTransform.ty = matrix.y;
+	[self setTransform: mTransform];
 }
 
 @end

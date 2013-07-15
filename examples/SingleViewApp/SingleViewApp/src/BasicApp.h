@@ -15,7 +15,7 @@ using namespace Apollo;
 class BasicApp : public ApolloApp {
 public:
 	
-	ApolloUIView* v;
+	ApolloUIView* view;
 	UIViewController* parent;
 	BasicApp() {}
 	virtual void setup();

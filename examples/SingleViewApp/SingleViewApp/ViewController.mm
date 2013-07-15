@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Config.h"
 #import "Apollo.h"
 #import "BasicApp.h"
 #import "ApolloEventDispatcher.h"
@@ -17,8 +18,6 @@
 
 static BasicApp* MyApp;
 
-#define APP_FPS 1.0f / 60.0f
-
 @implementation ViewController
 
 - (void)viewDidLoad
@@ -28,6 +27,13 @@ static BasicApp* MyApp;
 	MyApp = new BasicApp();
 	MyApp->parent = self;
 	MyApp->setup();
+	
+	// Calling from a C++ to Obj-C object
+#ifdef EXAMPLE_OBJC_TO_OBJC
+	NSLog(@"Tweener call from Obj-C UIViewController::ViewController");
+	Apollo::Tweener.addTween( MyApp->view->matrix.x, 100, 1.5f, EaseQuartInOut, 1.5 );
+	Apollo::Tweener.addTween( MyApp->view->matrix.y, 100, 1.5f, EaseQuartInOut, 2.5 );
+#endif
 	
 	[self startTimer];
 	
@@ -41,7 +47,7 @@ static BasicApp* MyApp;
 }
 
 -(void)startTimer {
-	timer = [NSTimer scheduledTimerWithTimeInterval:APP_FPS target:self selector:@selector(update) userInfo:nil repeats:YES];
+	timer = [NSTimer scheduledTimerWithTimeInterval: (1.f / APP_FPS) target:self selector:@selector(update) userInfo:nil repeats:YES];
 }
 
 -(void)stopTimer {

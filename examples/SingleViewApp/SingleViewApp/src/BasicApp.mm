@@ -7,26 +7,32 @@
 //
 
 #include "BasicApp.h"
+#include "Config.h"
 
 void BasicApp::setup() {
 	ApolloApp::setup();
 	printf("basic app setup\n");
 	
-	v = [[[ApolloUIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
-	[v setBackgroundColor:[UIColor redColor]];
-	[parent.view addSubview:v];
-	Tweener.addTween(v->matrix.x, 100, 1.5f, EaseExpoInOut, 1.5);
+	view = [[[ApolloUIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
+	[view setBackgroundColor:[UIColor redColor]];
+	[parent.view addSubview: view];
+	
+#ifdef EXAMPLE_CPP_TO_OBJC
+	printf("Tweener call from C++ ApolloApp::BasicApp\n");
+	Tweener.addTween( view->matrix.x, 100, 1.5f, EaseQuartInOut, 1.5 );
+	Tweener.addTween( view->matrix.y, 100, 1.5f, EaseQuartInOut, 2.5 );
+#endif
 }
 
 void BasicApp::exit() {
-	v = NULL;
+	view = NULL;
 	ApolloApp::exit();
 	parent = NULL;
 }
 
 void BasicApp::update() {
 	Tweener.update();
-	[v update];
+	[view update];
 }
 
 void BasicApp::draw() {
