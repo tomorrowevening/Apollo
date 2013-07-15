@@ -18,6 +18,11 @@ namespace Apollo {
 	};
 	
 	class Slider : public Button {
+	private:
+		void remap() {
+			percent = clamp(percent, 0, 1);
+			value = percent * (max - min);
+		}
 	public:
 		
 		float min, max, percent, value;
@@ -26,8 +31,14 @@ namespace Apollo {
 		Slider() {
 			min = 0;
 			max = 1;
-			value = 0;
+			percent = 0.5;
 			direction = SLIDER_HORIZONTAL;
+			remap();
+		}
+		
+		void scrollTo(float percent) {
+			this->percent = percent;
+			remap();
 		}
 		
 		void scrollTo(float tx, float ty) {
@@ -36,10 +47,10 @@ namespace Apollo {
 			} else {
 				percent = (height - ty - y) / height;
 			}
-			percent = clamp(percent, 0, 1);
-			value = percent * (max - min);
+			remap();
 		}
 		
+		virtual void setup(float _x, float _y, float _width, float _height);
 		virtual void draw();
 		virtual void onPress(MouseEvent& evt);
 		virtual void onTouchDown(TouchEvent& evt);

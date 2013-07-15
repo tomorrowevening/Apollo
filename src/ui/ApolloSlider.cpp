@@ -10,6 +10,11 @@
 
 namespace Apollo {
 	
+	void Slider::setup(float _x, float _y, float _width, float _height) {
+		Button::setup(_x, _y, _width, _height);
+		remap();
+	}
+	
 	void Slider::draw() {
 		if(_isDown) {
 			gl::setColor(16);
