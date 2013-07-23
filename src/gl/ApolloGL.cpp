@@ -19,6 +19,17 @@ namespace Apollo {
 		void fill()   { glSettings.fill = true; }
 		void noFill() { glSettings.fill = false; }
 		
+		void enableAlpha() {
+			glEnable(GL_BLEND);
+#ifdef APOLLO_GLES
+			glBlendEquation(GL_FUNC_ADD);
+#endif
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		}
+		
+		void enableDepth() { glEnable( GL_DEPTH_TEST ); }
+		void enableDepthMask() { glDepthMask( GL_TRUE ); }
+		
 		void enableSmooth() {
 			glSettings.smooth = true;
 #ifndef APOLLO_GLES
@@ -28,6 +39,10 @@ namespace Apollo {
 			glEnable(GL_LINE_SMOOTH);
 			glEnable(GL_BLEND);
 		}
+		
+		void disableAlpha() { glDisable( GL_BLEND ); }
+		void disableDepth() { glDisable( GL_DEPTH_TEST ); }
+		void disableDepthMask() { glDepthMask( GL_FALSE ); }
 		
 		void disableSmooth() {
 			glSettings.smooth = false;
@@ -41,19 +56,28 @@ namespace Apollo {
 		void pushMatrix() { glPushMatrix(); }
 		void popMatrix()  { glPopMatrix(); }
 		
+		void rotate(Vec3f amount) {
+			glRotatef(amount.x, 1, 0, 0);
+			glRotatef(amount.y, 0, 1, 0);
+			glRotatef(amount.z, 0, 0, 1);
+		}
 		void rotate (float degrees) { glRotatef(degrees, 0, 0, 1); }
 		void rotateX(float degrees) { glRotatef(degrees, 1, 0, 0); }
 		void rotateY(float degrees) { glRotatef(degrees, 0, 1, 0); }
 		void rotateZ(float degrees) { rotate(degrees); }
 		
 		void scale(float amount) { scale(amount, amount, amount); }
+		void scale(Vec3f amount) { scale(amount.x, amount.y, amount.z); }
 		void scale(float x, float y, float z) { glScalef(x, y, z); }
 		
+		void translate(Vec3f amount) { translate(amount.x, amount.y, amount.z); }
 		void translate(float x, float y, float z) { glTranslatef(x, y, z); }
 		
 #pragma mark - Primitives
 		
 		void drawLine(float x1, float y1, float x2, float y2) { drawLine(x1, y1, 0, x2, y2, 0); }
+		void drawLine(Vec2f a, Vec2f b) { drawLine(a.x, a.y, 0, b.x, b.y, 0); }
+		void drawLine(Vec3f a, Vec3f b) { drawLine(a.x, a.y, a.z, b.x, b.y, b.z); }
 		
 		void drawLine(float x1, float y1, float z1, float x2, float y2, float z2) {
 			glSettings.linePts[0].set(x1, y1, z1);
@@ -65,6 +89,7 @@ namespace Apollo {
 		}
 		
 		void drawRect(float x, float y, float w, float h) { drawRect(x, y, 0, w, h); }
+		void drawRect(Vec3f pos, Vec3f size) { drawRect(pos.x, pos.y, pos.z, size.x, size.y); }
 		
 		void drawRect(float x, float y, float z, float w, float h) {
 			Vec2f offset = Vec2f::alignmentOffset(glSettings.alignment, w, h);
@@ -84,9 +109,11 @@ namespace Apollo {
 			glDrawArrays(glSettings.fill ? GL_TRIANGLE_FAN : GL_LINE_LOOP, 0, 4);
 		}
 		
-		void drawCircle(float x, float y, float radius, int segments) { drawCircle(x, y, 0, radius, segments); }
+		void drawCircle(Vec3f pos, float radius, int segments, float rotationOffset) {
+			drawCircle(pos.x, pos.y, pos.z, radius, segments, rotationOffset);
+		}
 		
-		void drawCircle(float x, float y, float z, float radius, int segments) {
+		void drawCircle(float x, float y, float z, float radius, int segments, float rotationOffset) {
 			const float halfRadius = radius * 0.5f;
 			Vec2f offset = Vec2f::alignmentOffset(glSettings.alignment, radius, radius);
 			
@@ -97,17 +124,24 @@ namespace Apollo {
 			
 			vector<Vec3f> circlePts;
 			for(int i = 0; i < segments; ++i) {
-				ang = toRad((float)i * dis + 90.f);
+				ang = toRad((float)i * dis + rotationOffset);
 				circlePts.push_back( Vec3f( cos(ang) * halfRadius + l, sin(ang) * halfRadius + t, z ) );
 			}
 			
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glVertexPointer(3, GL_FLOAT, sizeof(Vec3f), &circlePts[0].x);
-			glDrawArrays(glSettings.fill ? GL_TRIANGLE_FAN : GL_LINE_LOOP, 0, segments);
-			
-			if(glSettings.smooth && glSettings.fill) glDrawArrays(GL_LINE_LOOP, 0, segments); // smooth edges
+			if(glSettings.fill) {
+				glDrawArrays(GL_TRIANGLE_FAN, 0, segments);
+				
+				 // smooth edges
+				if(glSettings.smooth)
+					glDrawArrays(GL_LINE_LOOP, 0, segments);
+			} else {
+				glDrawArrays(GL_LINE_LOOP, 0, segments);
+			}
 		}
 		
+		void drawText(string msg, Vec3f pos) { drawText(msg, pos.x, pos.y); }
 		void drawText(string msg, float x, float y) {
 #ifdef APOLLO_OPENFRAMEWORKS
 			ofDrawBitmapString(msg, x, y);
@@ -120,8 +154,11 @@ namespace Apollo {
 		
 #pragma mark - Setters
 		
+		void setColorGL(float r, float g, float b, float a) { glColor4f(r, g, b, a); }
+		void setColorGL(float brightness, float a) { setColorGL(brightness, brightness, brightness, a); }
 		void setColor(float r, float g, float b, float a) { glColor4f(r / 255.f, g / 255.f, b / 255.f, a / 255.f); }
 		void setColor(float brightness, float alpha) { setColor(brightness, brightness, brightness, alpha); }
+		void setColor(Vec3f col) { setColor(col.x, col.y, col.z); }
 		
 		void setAlignment(MatrixAlign align) { glSettings.alignment = align; }
 		

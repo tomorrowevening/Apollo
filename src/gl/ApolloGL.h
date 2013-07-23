@@ -47,30 +47,46 @@ namespace Apollo {
 		void fill();
 		void noFill();
 		
+		void enableAlpha();
+		void enableDepth();
+		void enableDepthMask();
 		void enableSmooth();
+		void disableAlpha();
+		void disableDepth();
+		void disableDepthMask();
 		void disableSmooth();
 		
 		void pushMatrix();
 		void popMatrix();
 		
 		void rotate(float degrees);
+		void rotate(Vec3f amount);
 		void rotateX(float degrees);
 		void rotateY(float degrees);
 		void rotateZ(float degrees);
 		void scale(float amount);
 		void scale(float x, float y, float z = 1.f);
+		void scale(Vec3f amount);
 		void translate(float x, float y, float z = 0);
+		void translate(Vec3f amount);
 		
 		void drawLine(float x1, float y1, float x2, float y2);
 		void drawLine(float x1, float y1, float z1, float x2, float y2, float z2);
+		void drawLine(Vec2f a, Vec2f b);
+		void drawLine(Vec3f a, Vec3f b);
 		void drawRect(float x, float y, float w, float h);
 		void drawRect(float x, float y, float z, float w, float h);
-		void drawCircle(float x, float y, float radius, int segments = 36);
-		void drawCircle(float x, float y, float z, float radius, int segments = 36);
+		void drawRect(Vec3f pos, Vec3f size);
+		void drawCircle(float x, float y, float z, float radius, int segments = 36, float rotationOffset = 90.f);
+		void drawCircle(Vec3f pos, float radius, int segments = 36, float rotationOffset = 90.f);
 		void drawText(string msg, float x, float y);
+		void drawText(string msg, Vec3f pos);
 		
+		void setColorGL(float r, float g, float b, float a = 1.f);
+		void setColorGL(float brightness, float a = 1.f);
 		void setColor(float r, float g, float b, float a = 255.f);
 		void setColor(float brightness, float alpha = 255.f);
+		void setColor(Vec3f col);
 		
 		void setAlignment(MatrixAlign align);
 		MatrixAlign getAlignment();

@@ -10,7 +10,25 @@
 namespace Apollo {
 	namespace gl {
 		
+		void FBO::setup() {
+			
+		}
 		
+		void FBO::dispose() {
+			
+		}
+		
+		void FBO::start() {
+			
+		}
+		
+		void FBO::stop() {
+			
+		}
+		
+		void FBO::draw() {
+			
+		}
 		
 	}
 }
