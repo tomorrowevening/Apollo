@@ -18,6 +18,7 @@
 #include "ApolloTweenController.h"
 
 // Display
+#include "ApolloDisplayObject.h"
 #include "ApolloMask.h"
 
 // Events
