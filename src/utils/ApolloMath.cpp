@@ -21,6 +21,10 @@ namespace Apollo {
 		return (value - min) / (max - min);
 	}
 	
+	float cosRange(float degrees, float range, float min) {
+		return (((1 + cos(degrees * RADIANS)) * 0.5) * range) + min;
+	}
+	
 	// Bools
 	
 	bool inRange(float value, float min, float max) {
