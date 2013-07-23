@@ -21,7 +21,6 @@ namespace Apollo {
 			_selected = false;
 		}
 		
-		virtual void drawBounds();
 		void select();
 		void deselect();
 		void toggle();

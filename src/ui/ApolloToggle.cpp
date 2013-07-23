@@ -23,13 +23,6 @@ namespace Apollo {
 		_selected ? deselect() : select();
 	}
 	
-	void ToggleButton::drawBounds() {
-		gl::noFill();
-		gl::setColor(255, _selected ? 255 : 0, 0);
-		gl::drawRect(x, y, width, height);
-		gl::fill();
-	}
-	
 	void ToggleButton::onPress(MouseEvent& evt) { select(); }
 	void ToggleButton::onTouchUpInside(TouchEvent& evt) { toggle(); }
 	

@@ -21,10 +21,8 @@ namespace Apollo {
 	Button::~Button() { disable(); }
 	
 	void Button::setup(float _x, float _y, float _width, float _height) {
-		x = _x;
-		y = _y;
-		width  = _width;
-		height = _height;
+		position.set(_x, _y, 0);
+		size.set(_width, _height, 0);
 	}
 	
 	void Button::enable() {
@@ -45,34 +43,21 @@ namespace Apollo {
 #endif
 	}
 	
-	void Button::update() {
-		
-	}
-	
-	void Button::draw() {
+	void Button::render() {
 		if(_isDown) {
-			gl::setColor(255, 0, 0);
+			gl::setColorGL(1.f, 0, 0);
 		}
 #ifndef APOLLO_COCOA_TOUCH
 		else if(_isOver) {
-			gl::setColor(204);
+			gl::setColorGL(0.8f);
 		}
 #endif
-	else {
-		gl::setColor(0, _enabled ? 255 : 102);
-	}
-		gl::setColor(0, _enabled ? 255 : 102);
-		gl::drawRect(x, y, width, height);
-		gl::setColor(255);
-		gl::drawText(name, x+10, y+15);
-		drawBounds();
-	}
-	
-	void Button::drawBounds() {
-		gl::noFill();
-		gl::setColor(255, 0, 0);
-		gl::drawRect(x, y, width, height);
-		gl::fill();
+		else {
+			gl::setColorGL(0, _enabled ? 1.f : 0.5f);
+		}
+		gl::drawRect(position, size);
+		gl::setColorGL(1);
+		gl::drawText(name, position.x+10, position.y+15);
 	}
 	
 #pragma mark - Private

@@ -15,30 +15,29 @@ namespace Apollo {
 		remap();
 	}
 	
-	void Slider::draw() {
+	void Slider::render() {
 		if(_isDown) {
 			gl::setColor(16);
 		}
 #ifndef APOLLO_COCOA_TOUCH
 		else if(_isOver) {
-			gl::setColor(204);
+			gl::setColorGL(0.8f);
 		}
 #endif
 		else {
-			gl::setColor(0, _enabled ? 255 : 102);
+			gl::setColorGL(0, _enabled ? 1.f : 0.5f);
 		}
-		gl::drawRect(x, y, width, height);
-		gl::setColor(64);
+		gl::drawRect(position, size);
+		gl::setColorGL(0.25f);
 		if(direction == SLIDER_HORIZONTAL) {
-			gl::drawRect(x, y, width*percent, height);
+			gl::drawRect(position.x, position.y, size.x*percent, size.y);
 		} else {
-			float amt = height*percent;
-			gl::drawRect(x, y + amt, width, amt);
+			float amt = size.y*percent;
+			gl::drawRect(position.x, position.y + amt, size.x, amt);
 		}
 		
-		gl::setColor(255);
-		gl::drawText(name + ": " + toString(round(value)), x + 10, y + 18);
-		drawBounds();
+		gl::setColorGL(1.f);
+		gl::drawText(name + ": " + toString(round(value)), position.x + 10, position.y + 18);
 	}
 	
 	void Slider::onPress(MouseEvent& evt) {

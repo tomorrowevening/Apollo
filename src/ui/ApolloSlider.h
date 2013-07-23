@@ -43,19 +43,21 @@ namespace Apollo {
 		
 		void scrollTo(float tx, float ty) {
 			if(direction == SLIDER_HORIZONTAL) {
-				percent = (tx - x) / width;
+				percent = (tx - position.x) / size.x;
 			} else {
-				percent = (height - ty - y) / height;
+				percent = (size.y - ty - position.y) / size.y;
 			}
 			remap();
 		}
 		
 		virtual void setup(float _x, float _y, float _width, float _height);
-		virtual void draw();
 		virtual void onPress(MouseEvent& evt);
 		virtual void onTouchDown(TouchEvent& evt);
 		virtual void onTouchMove(TouchEvent& evt);
 		
+	protected:
+		virtual void render();
+
 	};
 	
 }

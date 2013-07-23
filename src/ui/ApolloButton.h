@@ -7,6 +7,7 @@
 
 #pragma once
 #include "ApolloCore.h"
+#include "ApolloDisplayObject.h"
 #include "ApolloEvent.h"
 #include "ApolloEventDispatcher.h"
 #include "ApolloStrings.h"
@@ -16,7 +17,7 @@ namespace Apollo {
 	using namespace std;
 	using namespace Apollo;
 	
-	class Button : public Rectangle {
+	class Button : public DisplayObject {
 	public:
 		
 		string name;
@@ -28,10 +29,6 @@ namespace Apollo {
 		virtual void setup(float _x, float _y, float _width, float _height);
 		virtual void enable();
 		virtual void disable();
-		virtual void update();
-		virtual void draw();
-		virtual void drawBounds();
-		virtual bool hitTest(float x, float y) { return Rectangle::inside(x, y); }
 		
 		// Getters
 		const bool enabled() { return _enabled; }
@@ -70,6 +67,8 @@ namespace Apollo {
 		virtual void onTouchMove(TouchEvent& evt) {}
 		virtual void onTouchDoubleTap(TouchEvent& evt) {}
 		virtual void onTouchCancel(TouchEvent& evt) {}
+		
+		virtual void render();
 		
 	private:
 		

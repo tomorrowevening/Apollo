@@ -44,9 +44,10 @@
 	#define APOLLO_GLES
 #endif
 
-// Uncomment for Cocos2D integration
+//#define APOLLO_DEBUG
+//#define APOLLO_OPENFRAMEWORKS
+//#define APOLLO_CINDER
 //#define APOLLO_COCOS2D
-#define APOLLO_OPENFRAMEWORKS
 
 namespace Apollo {}
 
