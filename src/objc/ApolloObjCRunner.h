@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ApolloObjCRunner : NSObject
+@interface ApolloObjCRunner : NSObject {
+	NSTimer* timer;
+}
+
+-(void)start;
+-(void)stop;
+-(void)onUpdate;
 
 @end

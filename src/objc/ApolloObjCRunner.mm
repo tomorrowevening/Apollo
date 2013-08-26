@@ -7,7 +7,27 @@
 //
 
 #import "ApolloObjCRunner.h"
+#include "Apollo.h"
 
 @implementation ApolloObjCRunner
+
+-(void)dealloc {
+	[self stop];
+	[super dealloc];
+}
+
+-(void)start {
+	timer = [NSTimer scheduledTimerWithTimeInterval: 1.f / 60.f target: self selector: @selector(onUpdate) userInfo: nil repeats: YES];
+}
+
+-(void)stop {
+	[timer invalidate];
+	timer = nil;
+}
+
+-(void)onUpdate {
+	Dispatcher.dispatchEvent(new AppEvent(AppEvent::UPDATE));
+	Dispatcher.dispatchEvent(new AppEvent(AppEvent::DRAW));
+}
 
 @end
