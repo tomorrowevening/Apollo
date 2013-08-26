@@ -12,7 +12,7 @@
 using namespace Apollo;
 
 ApolloCocosApp::ApolloCocosApp() {
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 	setTouchEnabled(true);
 	setAccelerometerEnabled(true);
 	scheduleUpdate();
@@ -24,8 +24,7 @@ ApolloCocosApp::~ApolloCocosApp() {
 }
 
 bool ApolloCocosApp::init() {
-	printf("ApolloCocosApp inited\n");
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 	return CCLayer::init();
 #else
 	return true;
@@ -33,9 +32,8 @@ bool ApolloCocosApp::init() {
 }
 
 void ApolloCocosApp::onExit() {
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 	CCLayer::onExit();
-#else
 #endif
 }
 
@@ -44,13 +42,13 @@ void ApolloCocosApp::update(float dt) {
 }
 
 void ApolloCocosApp::draw() {
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 	CCLayer::draw();
 #endif
 	Dispatcher.dispatchEvent(new AppEvent(AppEvent::DRAW));
 }
 
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 void ApolloCocosApp::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
 	for(CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it) {
 		CCTouch* t = (CCTouch*)(*it);
@@ -82,7 +80,6 @@ void ApolloCocosApp::ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent) {
 		Dispatcher.dispatchEvent(new TouchEvent(TouchEvent::CANCEL, pos.x, pos.y, t->getID()));
 	}
 }
-
 
 CCScene* ApolloCocosApp::scene() {
 	CCScene *scene = CCScene::create();

@@ -7,14 +7,19 @@
 //
 
 #pragma once
-
+#include "Apollo.h"
 #ifdef APOLLO_COCOS2D
 #include "cocos2d.h"
 using namespace cocos2d;
 #endif
 
+using namespace Apollo;
+#ifdef APOLLO_COCOS2D
+using namespace cocos2d;
+#endif
+
 class ApolloCocosApp
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 : public CCLayer
 #endif
 {
@@ -28,7 +33,7 @@ public:
 	virtual void update(float dt);
 	virtual void draw();
 	
-#ifdef COCOS2D_VERSION
+#ifdef APOLLO_COCOS2D
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
