@@ -86,23 +86,23 @@ namespace Apollo {
 		gl::popMatrix();
 	}
 	
-	void DisplayObject::addView(DisplayObject* obj) {
+	void DisplayObject::addChild(DisplayObject* obj) {
 		obj->parent = this;
 		children.push_back( obj );
 	}
 	
-	void DisplayObject::removeView(DisplayObject* obj) {
+	void DisplayObject::removeChild(DisplayObject* obj) {
 		int i, index = -1, total = numChildren();
 		for(i = 0; i < total; ++i) {
 			if(children[i] == obj) {
 				index = i;
-				removeViewAt(index);
+				removeChildAt(index);
 				return;
 			}
 		}
 	}
 	
-	void DisplayObject::removeViewAt(int index) {
+	void DisplayObject::removeChildAt(int index) {
 		children[index]->dispose();
 		children.erase( children.begin() + index );
 	}

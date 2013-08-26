@@ -37,9 +37,9 @@ namespace Apollo {
 		virtual void				draw();
 		virtual void				drawBounds();
 		
-		virtual void				addView(DisplayObject* obj);
-		virtual void				removeView(DisplayObject* obj);
-		virtual void				removeViewAt(int index);
+		virtual void				addChild(DisplayObject* obj);
+		virtual void				removeChild(DisplayObject* obj);
+		virtual void				removeChildAt(int index);
 		
 		// Getters
 		
