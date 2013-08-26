@@ -54,6 +54,7 @@ namespace Apollo {
 	// Bools
 	
 	bool inRange(float value, float min, float max);
+	bool inRange(float x, float y, float minX, float minY, float maxX, float maxY);
 	
 	// Random
 	

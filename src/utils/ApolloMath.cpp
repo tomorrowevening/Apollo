@@ -31,6 +31,10 @@ namespace Apollo {
 		return value >= min && value <= max;
 	}
 	
+	bool inRange(float x, float y, float minX, float minY, float maxX, float maxY) {
+		return inRange(x, minX, maxX) && inRange(y, minY, maxY);
+	}
+	
 	// Random
 	
 	float random(float max) {
@@ -62,15 +66,21 @@ namespace Apollo {
 	// Distance
 	
 	float distance(float a, float b) {
-		return sqrtf((a-b) * (a-b));
+		float v = a-b;
+		return sqrtf(v * v);
 	}
 	
 	float distance(float x1, float y1, float x2, float y2) {
-		return distance(x1, x2) + distance(y1, y2);
+		float x = x1 - x2;
+		float y = y1 - y2;
+		return sqrtf( (x*x) + (y*y));
 	}
 	
 	float distance(float x1, float y1, float z1, float x2, float y2, float z2) {
-		return distance(x1, x2, y1, y2) + distance(z1, z2);
+		float x = x1 - x2;
+		float y = y1 - y2;
+		float z = z1 - z2;
+		return sqrtf( (x*x) + (y*y) + (z*z));
 	}
 	
 	
