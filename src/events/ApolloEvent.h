@@ -16,7 +16,6 @@ namespace Apollo {
 	public:
 		
 		Event(){}
-		Event(string type){ this->type = type; }
 		Event(string type, void* params = NULL):type(type), params(params) {}
 		virtual ~Event(){ params = NULL; }
 		bool hasParams() { return params != NULL; }
@@ -39,8 +38,7 @@ namespace Apollo {
 		static string DRAW;
 		static string RESIZE;
 		AppEvent(){}
-		AppEvent(string type){ this->type = type; }
-		AppEvent(string type, void* params){ this->type = type; this->params = params; }
+		AppEvent(string type, void* params = NULL){ this->type = type; this->params = params; }
 	};
 	
 	//////////////////////////////////////////////////
