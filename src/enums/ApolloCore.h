@@ -44,10 +44,17 @@
 	#define APOLLO_GLES
 #endif
 
+// Set these within the project's Preprocessor Macros
 //#define APOLLO_DEBUG
 //#define APOLLO_OPENFRAMEWORKS
 //#define APOLLO_CINDER
 //#define APOLLO_COCOS2D
+//#define APOLLO_GLSL
+//#define APOLLO_BOX2D
+//#define APOLLO_KINECT
+//#define APOLLO_LEAP
+//#define APOLLO_ARDUINO
+//#define APOLLO_RASPBERRY_PI
 
 namespace Apollo {}
 
