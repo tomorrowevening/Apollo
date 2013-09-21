@@ -25,6 +25,11 @@ namespace Apollo {
 		return (((1 + cos(degrees * RADIANS)) * 0.5) * range) + min;
 	}
 	
+	// Rounds by hundreds
+	float roundTo(float value, int ordinal) {
+		return round(value * ordinal) * (1.f / (float)ordinal);
+	}
+	
 	// Bools
 	
 	bool inRange(float value, float min, float max) {

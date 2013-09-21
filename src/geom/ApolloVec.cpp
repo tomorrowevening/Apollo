@@ -13,6 +13,11 @@ namespace Apollo {
 	#pragma mark - Vec2
 	//////////////////////////////////////////////////
 	
+	Vec2f::Vec2f(const Vec3f& v) {
+		x = v.x;
+		y = v.y;
+	}
+	
 	Vec2f Vec2f::range(float minX, float maxX, float minY, float maxY, float per) {
 		return Vec2f(Apollo::lerp(per, minX, maxX), Apollo::lerp(per, minY, maxY));
 	}
@@ -330,8 +335,8 @@ namespace Apollo {
 	}
 	
 	bool Rectangle::overlapping(Rectangle r) {
-		bool xOverlap = Apollo::inRange(r.left(), left(), right())	|| Apollo::inRange(left(), r.left(), r.bottom());
-		bool yOverlap = Apollo::inRange(r.top(),  top(),  bottom())	|| Apollo::inRange(top(), r.top(), r.bottom());
+		bool xOverlap = Apollo::inRange(left(), r.left(), r.right()) || Apollo::inRange(r.left(), left(), right());
+		bool yOverlap = Apollo::inRange(top(), r.top(), r.bottom()) || Apollo::inRange(r.top(), top(), bottom());
 		return xOverlap && yOverlap;
 	}
 	

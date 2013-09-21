@@ -14,6 +14,7 @@
 #include "ApolloKeyboardEnum.h"
 
 // Animation
+#include "ApolloInterpolation.h"
 #include "ApolloTween.h"
 #include "ApolloTweenController.h"
 

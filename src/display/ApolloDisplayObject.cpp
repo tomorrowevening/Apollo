@@ -87,8 +87,19 @@ namespace Apollo {
 	}
 	
 	void DisplayObject::addChild(DisplayObject* obj) {
+		if( obj->parent != NULL ) obj->parent->removeChild(obj);
 		obj->parent = this;
 		children.push_back( obj );
+	}
+	
+	bool DisplayObject::hasChild(DisplayObject* obj) {
+		return getChildIndex(obj) > -1;
+	}
+	
+	int DisplayObject::getChildIndex(DisplayObject* obj) {
+		int i, total = numChildren();
+		for(i = 0; i < total; ++i) if(children[i] == obj) return i;
+		return -1;
 	}
 	
 	void DisplayObject::removeChild(DisplayObject* obj) {
@@ -103,7 +114,6 @@ namespace Apollo {
 	}
 	
 	void DisplayObject::removeChildAt(int index) {
-		children[index]->dispose();
 		children.erase( children.begin() + index );
 	}
 	

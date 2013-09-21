@@ -37,6 +37,14 @@ namespace Apollo {
 		return out.str();
 	}
 	
+	static int hexToInt(string hexValue) {
+		unsigned int x;
+		std::stringstream ss;
+		ss << std::hex << hexValue;
+		ss >> x;
+		return x;
+	}
+	
 	static string formatDigits(int num, int totalDigits, string prefix, string suffix) {
 		int i, n;
 		int hundreds = 1;

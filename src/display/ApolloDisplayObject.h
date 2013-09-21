@@ -38,27 +38,42 @@ namespace Apollo {
 		virtual void				drawBounds();
 		
 		virtual void				addChild(DisplayObject* obj);
+		virtual bool				hasChild(DisplayObject* obj);
+		virtual int					getChildIndex(DisplayObject* obj);
 		virtual void				removeChild(DisplayObject* obj);
 		virtual void				removeChildAt(int index);
 		
 		// Getters
 		
 		// Position
-		const float					left()  { return position.x; }
-		const float					top()   { return position.y; }
-		const float					front() { return position.z; }
+		virtual const float			left()  { return position.x; }
+		virtual const float			top()   { return position.y; }
+		virtual const float			front() { return position.z; }
+		virtual const float			right() { return left()  + size.x; }
+		virtual const float			bottom(){ return top()   + size.y; }
+		virtual const float			back()  { return front() + size.z; }
 		
 		// Size
-		const float					width()  { return size.x; }
-		const float					height() { return size.y; }
-		const float					depth()  { return size.z; }
+		virtual const float			width()  { return size.x; }
+		virtual const float			height() { return size.y; }
+		virtual const float			depth()  { return size.z; }
 		
-		const float					right()  { return position.x + size.x; }
-		const float					bottom() { return position.y + size.y; }
-		const float					back()   { return position.z + size.z; }
+		virtual const bool hitTest(float x, float y) {
+			return Apollo::inRange(x, left(), right()) && Apollo::inRange(y, top(), bottom());
+		}
 		
-		const bool hitTest(float x, float y) {
-			return Apollo::inRange(x, position.x, right()) && Apollo::inRange(y, position.y, bottom());
+		virtual const bool hitTest(Vec2f pos, Vec2f size) {
+			float	vRight  = pos.x + size.x,
+					vBottom = pos.y + size.y;
+			bool overlapX =	Apollo::inRange(pos.x, left(), right()) || Apollo::inRange(pos.x+size.x, left(), right()) ||
+							Apollo::inRange(left(), pos.x, vRight)  || Apollo::inRange(right(), pos.x, vRight);
+			bool overlapY =	Apollo::inRange(pos.y, top(), bottom()) || Apollo::inRange(vBottom, top(), bottom()) ||
+							Apollo::inRange(top(), pos.y, vBottom)  || Apollo::inRange(bottom(), pos.y, vBottom);
+			return overlapX && overlapY;
+		}
+		
+		virtual const bool hitTest(DisplayObject *dObj) {
+			return this->hitTest(dObj->position, dObj->size);
 		}
 		
 		const int numChildren() {

@@ -14,11 +14,13 @@ namespace Apollo {
 	// Vec 2
 	//////////////////////////////////////////////////
 	
+	class Vec3f;
 	class Vec2f {
 	public:
 		float x, y;
 		Vec2f(float _x = 0, float _y = 0):x(_x), y(_y){}
 		Vec2f(const Vec2f& v){ x = v.x; y = v.y; }
+		Vec2f(const Vec3f& v);
 		
 		void normalize() {
 			float delim = 1.0f / length();
@@ -74,8 +76,11 @@ namespace Apollo {
 	class Vec3f {
 	public:
 		float x, y, z;
-		Vec3f(float _x = 0, float _y = 0, float _z = 0):x(_x), y(_y), z(_z){}
+		Vec3f(float _x = 0, float _y = 0, float _z = 0){
+			x = _x; y = _y; z = _z;
+		}
 		Vec3f(const Vec3f& v){ x = v.x; y = v.y; z = v.z; }
+		Vec3f(const Vec2f& v);
 		
 		void normalize() {
 			float delim = 1.0f / length();
@@ -85,6 +90,8 @@ namespace Apollo {
 		}
 		
 		// Getters
+		float distanceTo(float ox, float oy, float oz) { return Apollo::distance(x, y, z, ox, oy, oz); }
+		float distanceTo(const Vec3f& other) { return Apollo::distance(x, y, z, other.x, other.y, other.z); }
 		float length() { return sqrt(x*x + y*y + z*z); }
 		static Vec3f range(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float per);
 		static Vec3f randomRange(float minX, float maxX, float minY, float maxY, float minZ, float maxZ);
@@ -122,6 +129,8 @@ namespace Apollo {
 	Vec3f operator*( float f, const Vec3f& vec );
 	Vec3f operator/( float f, const Vec3f& vec );
 	
+	inline Vec3f::Vec3f( const Vec2f &v):x(v.x), y(v.y), z(0) {}
+	
 	//////////////////////////////////////////////////
 	// Rectangle
 	//////////////////////////////////////////////////
@@ -132,13 +141,15 @@ namespace Apollo {
 		MatrixAlign align;
 		float width, height;
 		
-		Rectangle(float _x = 0, float _y = 0){
+		Rectangle(float _x = 0, float _y = 0, float _w = 1.f, float _h = 1.f){
 			x = _x; y = _y;
+			width = _w; height = _h;
 			align = ALIGN_TOP_LEFT;
 		}
 		
-		Rectangle(const Vec2f& v){
-			x = v.x; y = v.y;
+		Rectangle(const Vec2f& p = Vec2f(0, 0), const Vec2f& s = Vec2f(1, 1)){
+			x = p.x; y = p.y;
+			width = s.x; height = s.y;
 			align = ALIGN_TOP_LEFT;
 		}
 		

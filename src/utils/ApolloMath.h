@@ -50,6 +50,7 @@ namespace Apollo {
 	float lerp(float per, float min, float max);
 	float getRange(float value, float min, float max);
 	float cosRange(float degrees, float range = 1.f, float min = 0.f);
+	float roundTo(float value, int ordinal = 1);
 	
 	// Bools
 	
