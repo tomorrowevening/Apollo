@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 Tomorrow Evening. All rights reserved.
 //
 
+#include "ApolloCore.h"
+
+#ifdef APOLLO_COCOA
+
 #import <Foundation/Foundation.h>
 
 @interface ApolloObjCRunner : NSObject {
@@ -17,3 +21,5 @@
 -(void)onUpdate;
 
 @end
+
+#endif
