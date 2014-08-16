@@ -1,15 +1,16 @@
 //
 //  ApolloTime.cpp
 //  Apollo
-//  Created by Colin Duffy on 5/26/13.
-//  Copyright (c) 2013 Tomorrow Evening. All rights reserved.
+//
+//  Created by Colin Duffy on 7/18/14.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #include "ApolloTime.h"
 
 namespace Apollo {
-	
-	double getElapsedMS(double from) {
+    
+    double getElapsedMS(double from) {
 		return getSystemMS() - (from != -1 ? from : startTime);
 	}
 	
@@ -26,32 +27,5 @@ namespace Apollo {
 		return timeGetTime();
 #endif
 	}
-	
-	//////////////////////////////////////////////////
-	// Stopwatch
-	//////////////////////////////////////////////////
-	
-	float Stopwatch::start() {
-		lastLap = initTime = getSystemMS();
-		return read();
-	}
-	
-	float Stopwatch::stop() {
-		endTime = getSystemMS();
-		ms = endTime - initTime;
-		return ms;
-	}
-	
-	float Stopwatch::lap() {
-		float now = getSystemMS();
-		ms = now - lastLap;
-		lastLap = now;
-		return ms;
-	}
-	
-	float Stopwatch::read() {
-		return getSystemMS() - initTime;
-	}
-	
-	
+    
 }

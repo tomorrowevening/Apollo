@@ -1,54 +1,42 @@
 //
 //  Apollo.h
 //  Apollo
-//  Created by Colin Duffy on 4/25/13.
 //
+//  Created by Colin Duffy on 7/18/14.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #pragma once
 
-// Enums
+// Apollo
+
 #include "ApolloCore.h"
-#include "ApolloAnimationEnum.h"
-#include "ApolloGLEnum.h"
-#include "ApolloKeyboardEnum.h"
-
-// Animation
-#include "ApolloInterpolation.h"
-#include "ApolloTween.h"
-#include "ApolloTweenController.h"
-
-// Display
-#include "ApolloDisplayObject.h"
-#include "ApolloMask.h"
-
-// Events
-#include "ApolloEvent.h"
-#include "ApolloEventDispatcher.h"
-#include "ApolloOFDispatcher.h"
-
-// Geom
-#include "ApolloVec.h"
-
-// GL
-#include "ApolloGL.h"
-#include "ApolloTexture.h"
-#include "ApolloFBO.h"
-#include "ApolloShader.h"
-
-// Mobile
-
-// UI
-#include "ApolloButton.h"
-#include "ApolloSlider.h"
-#include "ApolloToggle.h"
 
 // Utils
 #include "ApolloMath.h"
 #include "ApolloStrings.h"
 #include "ApolloTime.h"
 
-// Apps
-#include "ApolloApp.h"
-#include "ApolloCocosApp.h"
+// Enums
+#include "ApolloColor.h"
+#include "ApolloVec3.h"
 
+// Events
+#include "ApolloEvent.h"
+#include "ApolloEventHandler.h"
+#include "ApolloEventDispatcher.h"
+
+// Display
+#include "ApolloGL.h"
+#include "ApolloDisplayObject.h"
+#include "ApolloButton.h"
+#include "ApolloInput.h"
+
+// Animation
+#include "ApolloSpringController.h"
+#include "ApolloTweenController.h"
+
+// External
+#ifdef APOLLO_OPENFRAMEWORKS
+#include "ApolloOFDispatcher.h"
+#endif

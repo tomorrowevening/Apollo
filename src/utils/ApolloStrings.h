@@ -1,70 +1,33 @@
 //
 //  ApolloStrings.h
 //  Apollo
-//  Created by Colin Duffy on 5/10/13.
 //
+//  Created by Colin Duffy on 7/18/14.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #pragma once
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include "ApolloCore.h"
 
 namespace Apollo {
-	
+    
+    using namespace std;
 	using std::ostringstream;
 	using std::stringstream;
-	
-	template <class T>
-	string toString(const T& value) {
-		ostringstream out;
-		out << value;
-		return out.str();
-	}
+    
+    template <class T>
+	string toString(const T& value);
 	
 	template<class T>
-	string toString(const vector<T>& values) {
-		stringstream out;
-		int n = values.size();
-		out << "{";
-		if(n > 0) {
-			for(int i = 0; i < n - 1; i++) {
-				out << values[i] << ", ";
-			}
-			out << values[n - 1];
-		}
-		out << "}";
-		return out.str();
-	}
-	
-	static int hexToInt(string hexValue) {
-		unsigned int x;
-		std::stringstream ss;
-		ss << std::hex << hexValue;
-		ss >> x;
-		return x;
-	}
-	
-	static string formatDigits(int num, int totalDigits, string prefix, string suffix) {
-		int i, n;
-		int hundreds = 1;
-		string result = "";
-		for(i = 0; i <= totalDigits; ++i) {
-			hundreds *= 10;
-			if(num < hundreds) {
-				for(n = i; n < totalDigits-1; ++n) {
-					result += "0";
-				}
-				result += toString(num);
-				break;
-			}
-		}
+	string toString(const vector<T>& values);
 		
-		return prefix + result + suffix;
-	}
+	int hexToInt(string hexValue);
 	
-	static string fileType(string path) {
-		return path.substr(path.find_last_of(".")+1);
-	}
-	
+	string formatDigits(int num, int totalDigits, string prefix, string suffix);
+	string fileType(string path);
+    
 }

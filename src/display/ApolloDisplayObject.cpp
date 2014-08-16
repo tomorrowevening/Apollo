@@ -26,14 +26,20 @@ namespace Apollo {
 		++DisplayObject::displayObjectCount;
 	}
 	
-	void DisplayObject::setup() {}
+	void DisplayObject::setup(float _x, float _y, float _width, float _height) {
+		position.set(_x, _y, 0);
+		size.set(_width, _height, 0);
+	}
 	
 	void DisplayObject::dispose() {
 		parent = NULL;
-		screenshot.dispose();
+//		screenshot.dispose();
 		
 		int i, total = numChildren()-1;
-		for(i = total; i > -1; --i) children[i]->dispose();
+		for(i = total; i > -1; --i) {
+			children[i]->dispose();
+			delete children[i];
+		}
 		children.clear();
 	}
 	
@@ -42,16 +48,23 @@ namespace Apollo {
 	}
 	
 	void DisplayObject::drawBounds() {
-		gl::noFill();
-		gl::setColorGL(1.f, 0, 0);
-		gl::drawRect(Vec3f(), size);
-		gl::setColorGL(1.f);
-		gl::fill();
+		noFill();
+		setColorGL(1.f, 0, 0);
+		drawRect(0, 0, size.x, size.y);
+		setColorGL(1.f);
+		fill();
 	}
 	
 	void DisplayObject::updateChildren() {
+		DisplayObject *obj;
 		int i, total = numChildren();
-		for(i = 0; i < total; ++i) children[i]->update();
+		for(i = 0; i < total; ++i) {
+			obj = children[i];
+			if(obj->right()  > size.x) width( obj->right() );
+			if(obj->bottom() > size.y) height(obj->bottom());
+			obj->update();
+		}
+		obj = NULL;
 	}
 	
 	void DisplayObject::drawChildren() {
@@ -63,19 +76,19 @@ namespace Apollo {
 	void DisplayObject::draw() {
 		if(!visible || alpha <= 0) return;
 		
-		gl::pushMatrix();
+		Apollo::pushMatrix();
 		
-		gl::translate(position);
-		gl::rotate(rotation);
-		gl::scale(scale);
-		gl::translate(-anchor);
-		gl::setColorGL(1.f, opacity());
+		Apollo::translate(position);
+		Apollo::rotate(rotation);
+		Apollo::scale(scale);
+		Apollo::translate(-anchor);
+		setColorGL(1.f, opacity());
 		
-		if(snapshot) {
-			screenshot.draw();
-		} else {
+//		if(snapshot) {
+//			screenshot.draw();
+//		} else {
 			render();
-		}
+//		}
 		
 #ifdef APOLLO_DEBUG
 		drawBounds();
@@ -83,10 +96,12 @@ namespace Apollo {
 		
 		// Layers
 		drawChildren();
-		gl::popMatrix();
+		Apollo::popMatrix();
+		drawAfter();
 	}
 	
 	void DisplayObject::addChild(DisplayObject* obj) {
+		if( obj->parent == this ) return;
 		if( obj->parent != NULL ) obj->parent->removeChild(obj);
 		obj->parent = this;
 		children.push_back( obj );
@@ -114,7 +129,33 @@ namespace Apollo {
 	}
 	
 	void DisplayObject::removeChildAt(int index) {
+		children[index]->parent = NULL;
 		children.erase( children.begin() + index );
+	}
+	
+	void DisplayObject::removeAllChildren() {
+		for(int i = numChildren()-1; i > -1; --i) removeChildAt(i);
+		children.clear();
+	}
+	
+	const Vec3 DisplayObject::absolutePos() {
+		if(parent != NULL) return parent->absolutePos() + position;
+		return position;
+	}
+	
+	const float DisplayObject::absoluteLeft() {
+		if(parent != NULL) return parent->absoluteLeft() + position.x;
+		return position.x;
+	}
+	
+	const float DisplayObject::absoluteTop() {
+		if(parent != NULL) return parent->absoluteTop() + position.y;
+		return position.y;
+	}
+	
+	const float DisplayObject::absoluteFront() {
+		if(parent != NULL) return parent->absoluteFront() + position.z;
+		return position.z;
 	}
 	
 	

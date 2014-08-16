@@ -1,31 +1,36 @@
 //
 //  ApolloEvent.cpp
 //  Apollo
-//  Created by Colin Duffy on 5/10/13.
 //
+//  Created by Colin Duffy on 7/18/14.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #include "ApolloEvent.h"
 
 namespace Apollo {
 	
-	string AppEvent::INIT			= "Apollo::AppEvent::init";
-	string AppEvent::UPDATE			= "Apollo::AppEvent::update";
-	string AppEvent::DRAW			= "Apollo::AppEvent::draw";
-	string AppEvent::RESIZE			= "Apollo::AppEvent::resize";
+	const string Event::ADDED					= "Event::added";
+	const string Event::REMOVED					= "Event::removed";
+	const string Event::ENABLE					= "Event::enable";
+	const string Event::DISABLE					= "Event::disable";
+	const string Event::UPDATE					= "Event::update";
+	const string Event::DRAW					= "Event::draw";
+	const string Event::RESIZE					= "Event::resize";
 	
-	string KeyEvent::DOWN			= "Apollo::KeyEvent::down";
-	string KeyEvent::UP				= "Apollo::KeyEvent::up";
+	const string KeyEvent::DOWN					= "KeyEvent::down";
+	const string KeyEvent::UP					= "KeyEvent::up";
 	
-	string MouseEvent::DRAGGED		= "Apollo::MouseEvent::dragged";
-	string MouseEvent::MOVED		= "Apollo::MouseEvent::moved";
-	string MouseEvent::PRESSED		= "Apollo::MouseEvent::pressed";
-	string MouseEvent::RELEASED		= "Apollo::MouseEvent::released";
-	string MouseEvent::SCROLLED		= "Apollo::MouseEvent::scrolled";
+	const string AnimationEvent::ON_UPDATE		= "AnimationEvent::onUpdate";
+	const string AnimationEvent::ON_COMPLETE	= "AnimationEvent::onComplete";
 	
-	string TouchEvent::MOVE			= "Apollo::TouchEvent::move";
-	string TouchEvent::DOWN			= "Apollo::TouchEvent::down";
-	string TouchEvent::UP			= "Apollo::TouchEvent::up";
-	string TouchEvent::DOUBLE_TAP	= "Apollo::TouchEvent::doubleTap";
-	string TouchEvent::CANCEL		= "Apollo::TouchEvent::cancel";
+	const string ActionEvent::DOWN				= "ActionEvent::down";
+	const string ActionEvent::MOVE				= "ActionEvent::move";
+	const string ActionEvent::UP				= "ActionEvent::up";
+	const string ActionEvent::OVER				= "ActionEvent::over";
+	const string ActionEvent::OUT				= "ActionEvent::out";
+	const string ActionEvent::DRAGGED			= "ActionEvent::dragged";
+	const string ActionEvent::SCROLLED			= "ActionEvent::scrolled";
+	const string ActionEvent::DOUBLE_TAP		= "ActionEvent::doubleTap";
+	
 }

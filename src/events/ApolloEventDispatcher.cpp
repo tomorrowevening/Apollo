@@ -1,54 +1,75 @@
 //
-//  EventDispatcher.cpp
+//  ApolloEventDispatcher.cpp
 //  Apollo
-//  Created by Colin Duffy on 5/10/13.
 //
+//  Created by Colin Duffy on 7/18/14.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #include "ApolloEventDispatcher.h"
-#include "ApolloStrings.h"
 
 namespace Apollo {
 	
 	EventDispatcher Dispatcher;
+	int EventDispatcher::total = 0;
 	
-	void EventDispatcher::dispatchEvent(Event *event){
-		if(!hasListener(event->type)) return;
+	EventDispatcher::EventDispatcher() {
+		name = "EventDispatcher::" + toString(EventDispatcher::total);
+		++EventDispatcher::total;
+	}
+	
+	EventDispatcher::~EventDispatcher() {
+		removeAllListeners();
+	}
+	
+	void EventDispatcher::addListener(const string eventType, EventHandler *handler) {
+		EventData eData;
+		eData.handler	= handler;
+		eData.type		= eventType;
+		handlers.push_back( eData );
+	}
+	
+	void EventDispatcher::removeListener(const string eventType, EventHandler *handler) {
+		int i, total = totalHandlers();
+		for(i = 0; i < total; ++i) {
+			if(handlers[i].type == eventType && handlers[i].handler == handler) {
+				handlers.erase(handlers.begin() + i); // delete
+				return;
+			}
+		}
+	}
+	
+	void EventDispatcher::removeAllListeners() {
+		handlers.clear();
+	}
+	
+	void EventDispatcher::dispatchEvent(Event *event) {
+		if( !hasListener(event->type) ) return;
 		
-		event->target = target;
-		vector<EventData> &eHandlers = handlers[event->type];
-		for(vector<EventData>::iterator f = eHandlers.begin(); f != eHandlers.end(); ++f){
-			event->listener = f->listener;
-			(*f->handler)(*event);
+		event->setDispatcher(this);
+		
+		int i, total = totalHandlers();
+		for(i = 0; i < total; ++i) {
+			if(handlers[i].type == event->type) {
+				handlers[i].handler->evtHandler(event);
+			}
 		}
 		
 		delete event;
 	}
 	
-	void EventDispatcher::addListener(const string &type, void* listener, listenerHandler handler){
-		EventData data;
-		data.listener = listener;
-		data.handler = handler;
-		handlers[type].push_back(data);
+#pragma mark - Getters
+	
+	int EventDispatcher::totalHandlers() {
+		return handlers.size();
 	}
 	
-	void EventDispatcher::removeListener(const string &type, void* listener, listenerHandler handler){
-		if(!hasListener(type)) return;
-		
-		const string sHandler = Apollo::toString(handler);
-		vector<EventData> &eHandlers = handlers[type];
-		for(vector<EventData>::iterator f = eHandlers.begin(); f != eHandlers.end(); f=f) {
-			if(Apollo::toString(f->handler) == sHandler) {
-				eHandlers.erase(f);
-			} else {
-				++f;
-			}
+	bool EventDispatcher::hasListener(const string eventType) {
+		int i, total = totalHandlers();
+		for(i = 0; i < total; ++i) {
+			if(handlers[i].type == eventType) return true;
 		}
-		if(eHandlers.empty()) handlers.erase(type);
-	}
-	
-	bool EventDispatcher::hasListener(const string &type){
-		return (handlers.find(type) != handlers.end());
+		return false;
 	}
 	
 }
