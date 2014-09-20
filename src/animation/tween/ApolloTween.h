@@ -2,6 +2,7 @@
 //  Tween.h
 //  Apollo
 //  Created by Colin Duffy on 5/3/13.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #pragma once

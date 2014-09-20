@@ -1,9 +1,9 @@
 //
 //  ApolloOFDispatcher.h
-//  ImageGenerator
+//  Apollo
 //
 //  Created by Colin Duffy on 8/12/14.
-//
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #pragma once

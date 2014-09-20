@@ -2,6 +2,7 @@
 //  TweenController.h
 //  Apollo
 //  Created by Colin Duffy on 5/6/13.
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #pragma once

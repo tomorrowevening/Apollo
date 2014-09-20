@@ -1,9 +1,9 @@
 //
 //  ApolloParticle.cpp
-//  Fireworks
+//  Apollo
 //
 //  Created by Colin Duffy on 8/11/14.
-//
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #include "ApolloParticle.h"

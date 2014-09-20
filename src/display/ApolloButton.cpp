@@ -2,7 +2,7 @@
 //  ApolloButton.cpp
 //  Apollo
 //  Created by Colin Duffy on 5/10/13.
-//
+//  Copyright (c) 2014 Tomorrow Evening. All rights reserved.
 //
 
 #include "ApolloButton.h"
@@ -91,89 +91,6 @@ namespace Apollo {
 	}
 	
 #pragma mark - Handlers
-	/*
-	void Button::mouseHandler(MouseEvent& evt) {
-		if(evt.type == MouseEvent::MOVED) {
-			if(hitTest(evt.x, evt.y)) {
-				onRollOver(evt);
-				_isOver = true;
-			} else if(_isOver) {
-				onRollOut(evt);
-				_isOver = false;
-			}
-			onMouseMove(evt);
-		} else if(evt.type == MouseEvent::PRESSED) {
-			if(hitTest(evt.x, evt.y)) {
-				if(!_isDown) {
-					if(draggable) _touchOffset.set(evt.x-absoluteLeft(), evt.y-absoluteTop());
-					onPress(evt);
-					Dispatcher.dispatchEvent(new Event(Button::CLICK, this));
-				}
-				_isDown = true;
-			}
-		} else if(evt.type == MouseEvent::RELEASED) {
-			_touchOffset.set(0, 0);
-			if(_isDown) {
-				if(hitTest(evt.x, evt.y)) {
-					onReleased(evt);
-				} else {
-					onReleasedOutside(evt);
-				}
-				if(_isDragging) {
-					_isDragging = false;
-					Dispatcher.dispatchEvent(new Event(Button::DRAG_END, this));
-				}
-			}
-			
-			_isDown = false;
-		} else if(evt.type == MouseEvent::SCROLLED) {
-			onScroll(evt);
-		} else if(evt.type == MouseEvent::DRAGGED) {
-			if(_isDown) {
-				if(!_isDragging) {
-					Dispatcher.dispatchEvent(new Event(Button::DRAG_START, this));
-				}
-				_isDragging = true;
-				onMouseDrag(evt);
-			}
-		}
-	}
-	
-	void Button::touchHandler(TouchEvent& evt) {
-		if(evt.type == TouchEvent::CANCEL) {
-			_isDown = false;
-			onTouchCancel(evt);
-		} else if(evt.type == TouchEvent::DOUBLE_TAP) {
-			if(hitTest(evt.x, evt.y)) onTouchDoubleTap(evt);
-		} else if(evt.type == TouchEvent::DOWN) {
-			if(hitTest(evt.x, evt.y)) {
-				_isDown = true;
-				if(draggable) {
-					_touchOffsetID = evt.index;
-					_touchOffset.set(evt.x-absoluteLeft(), evt.y-absoluteTop());
-				}
-				onTouchDown(evt);
-			}
-		} else if(evt.type == TouchEvent::MOVE) {
-			if(_isDown) {
-				if(draggable) {
-					position.x = evt.x;
-					position.y = evt.y;
-				}
-				onTouchMove(evt);
-			}
-		} else if(evt.type == TouchEvent::UP) {
-			if(_isDown) {
-				_isDown = false;
-				if(evt.index == _touchOffsetID) {
-					_touchOffset.set(0, 0);
-					_touchOffsetID = 0;
-				}
-				hitTest(evt.x, evt.y) ? onTouchUpInside(evt) : onTouchUpOutside(evt);
-			}
-		}
-	}
-	 */
 	
 	void Button::evtHandler(Event *evt) {
 		const string eType = evt->type;
