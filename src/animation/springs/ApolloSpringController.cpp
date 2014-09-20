@@ -99,4 +99,12 @@ namespace Apollo {
 		vSprings.push_back( ani );
 	}
 	
+	void SpringController::removeAllSprings() {
+		int i = vSprings.size()-1;
+		for(i; i > -1; --i) {
+			vSprings.erase( vSprings.begin() + i );
+		}
+		vSprings.clear();
+	}
+	
 }

@@ -28,6 +28,8 @@ namespace Apollo {
 		virtual void to(float *item, float target, float friction = 0.7f, float mass = 8.f, float spring = 0.8f);
 		virtual void to( Vec3 *item,  Vec3 target, float friction = 0.7f, float mass = 8.f, float spring = 0.8f);
 		
+		virtual void removeAllSprings();
+		
 	};
 	
 	extern SpringController Springy;
