@@ -30,9 +30,13 @@
 #include "ApolloGL.h"
 #include "ApolloDisplayObject.h"
 #include "ApolloButton.h"
+#include "ApolloToggle.h"
 #include "ApolloInput.h"
+#include "ApolloScene.h"
+#include "ApolloStage.h"
 
 // Animation
+#include "ApolloInterpolation.h"
 #include "ApolloSpringController.h"
 #include "ApolloTweenController.h"
 
