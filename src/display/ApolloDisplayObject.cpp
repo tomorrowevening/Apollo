@@ -22,6 +22,7 @@ namespace Apollo {
 		this->scale.set(1, 1, 1);
 		this->size.set(0, 0, 0);
 		this->parent = NULL;
+		this->sortChildren = false;
 		
 		++DisplayObject::displayObjectCount;
 	}
@@ -68,7 +69,9 @@ namespace Apollo {
 	}
 	
 	void DisplayObject::drawChildren() {
-		sort(children.begin(), children.end());
+		if(sortChildren) {
+			sort(children.begin(), children.end(), DisplayObjectSort());
+		}
 		int i, total = numChildren();
 		for(i = 0; i < total; ++i) children[i]->draw();
 	}
@@ -100,20 +103,46 @@ namespace Apollo {
 		drawAfter();
 	}
 	
-	void DisplayObject::addChild(DisplayObject* obj) {
-		if( obj->parent == this ) return;
+	bool DisplayObject::addChild(DisplayObject* obj) {
+		if( obj->parent == this ) return false;
 		if( obj->parent != NULL ) obj->parent->removeChild(obj);
+		
+		if(!sortChildren) {
+			int total = numChildren();
+			if(total > 0) {
+				float z = children[0]->position.z;
+				for(int i = 0; i < total; ++i) {
+					if(children[i]->position.z != z) {
+						sortChildren = true;
+						break;
+					}
+				}
+			}
+		}
+		
 		obj->parent = this;
 		children.push_back( obj );
+		return true;
 	}
 	
 	bool DisplayObject::hasChild(DisplayObject* obj) {
 		return getChildIndex(obj) > -1;
 	}
 	
+	DisplayObject* DisplayObject::getChildAt(int index) {
+		if(index < numChildren()) return children[index];
+		return NULL;
+	}
+	
 	int DisplayObject::getChildIndex(DisplayObject* obj) {
 		int i, total = numChildren();
 		for(i = 0; i < total; ++i) if(children[i] == obj) return i;
+		return -1;
+	}
+	
+	int DisplayObject::getChildIndex(string name) {
+		int i, total = numChildren();
+		for(i = 0; i < total; ++i) if(children[i]->name == name) return i;
 		return -1;
 	}
 	

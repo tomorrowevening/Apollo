@@ -40,9 +40,11 @@ namespace Apollo {
 		virtual void				drawAfter() {} // called before draw is complete, outside matrices
 		virtual void				drawBounds();
 		
-		virtual void				addChild(DisplayObject* obj);
+		virtual bool				addChild(DisplayObject* obj);
 		virtual bool				hasChild(DisplayObject* obj);
+		virtual DisplayObject*		getChildAt(int index);
 		virtual int					getChildIndex(DisplayObject* obj);
+		virtual int					getChildIndex(string name);
 		virtual void				removeChild(DisplayObject* obj);
 		virtual void				removeChildAt(int index);
 		virtual void				removeAllChildren();
@@ -128,6 +130,8 @@ namespace Apollo {
 		
 //		gl::FBO						screenshot;
 		
+		bool						sortChildren;
+		
 		virtual void				updateChildren();
 		virtual void				drawChildren();
 		virtual void				render() {}
@@ -137,6 +141,12 @@ namespace Apollo {
 		static int					displayObjectCount;
 		bool operator<(const DisplayObject& val) const { return zIndex < val.zIndex; }
 		
+	};
+	
+	struct DisplayObjectSort {
+		inline bool operator() (DisplayObject *a, DisplayObject *b) {
+			return a->position.z < b->position.z;
+		}
 	};
 	
 }
