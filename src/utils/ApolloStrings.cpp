@@ -61,5 +61,17 @@ namespace Apollo {
 	string fileType(string path) {
 		return path.substr(path.find_last_of(".")+1);
 	}
+	
+	vector<string> split(string &text, char delim) {
+		vector<string> items;
+		
+		std::stringstream ss(text);
+		std::string item;
+		while (std::getline(ss, item, delim)) {
+			items.push_back(item);
+		}
+		
+		return items;
+	}
     
 }

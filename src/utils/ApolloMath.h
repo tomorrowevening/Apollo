@@ -37,6 +37,7 @@ namespace Apollo {
     float	clamp(float value, float minV, float maxV);
 	float	lerp(float per, float min, float max);
 	float	getRange(float value, float min, float max);
+	float	roundTo(float value, int ordinal = 1);
     
     // Random
     
@@ -57,5 +58,7 @@ namespace Apollo {
     float   distance(float a, float b);
 	float   distance(float x1, float y1, float x2, float y2);
 	float   distance(float x1, float y1, float z1, float x2, float y2, float z2);
+	
+	float cosRange(float degrees, float range, float min);
     
 }

@@ -29,5 +29,6 @@ namespace Apollo {
 	
 	string formatDigits(int num, int totalDigits, string prefix, string suffix);
 	string fileType(string path);
+	vector<string> split(string &text, char delim);
     
 }

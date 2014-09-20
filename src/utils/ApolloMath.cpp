@@ -21,6 +21,11 @@ namespace Apollo {
 	float getRange(float value, float min, float max) {
 		return (value - min) / (max - min);
 	}
+	
+	// Rounds by hundreds
+	float roundTo(float value, int ordinal) {
+		return round(value * ordinal) * (1.f / (float)ordinal);
+	}
     
     bool inRange(float value, float min, float max) {
 		return value >= min && value <= max;
@@ -66,6 +71,10 @@ namespace Apollo {
 		float y = y1 - y2;
 		float z = z1 - z2;
 		return sqrtf( (x*x) + (y*y) + (z*z));
+	}
+	
+	float cosRange(float degrees, float range, float min) {
+		return (((1.0f + cos(toRad(degrees))) * 0.5f) * range) + min;
 	}
     
 }
