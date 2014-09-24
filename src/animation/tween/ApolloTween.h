@@ -34,7 +34,8 @@ namespace Apollo {
 		void update(float percent);
 		
 		void onComplete() {
-			dispatchEvent(new AnimationEvent(AnimationEvent::ON_COMPLETE, name));
+			AnimationEvent aEvt = AnimationEvent(AnimationEvent::ON_COMPLETE, name);
+			dispatchEvent(aEvt);
 		}
 		
 		Tween(string name = "");

@@ -30,7 +30,8 @@ namespace Apollo {
 	
 	void Toggle::toggle() {
 		_selected ? deselect() : select();
-		dispatchEvent( new Event(Toggle::TOGGLE) );
+		Event aEvt = Event(Toggle::TOGGLE);
+		dispatchEvent( aEvt );
 	}
 	
 	void Toggle::render() {

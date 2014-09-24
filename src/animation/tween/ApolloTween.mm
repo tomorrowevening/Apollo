@@ -15,7 +15,8 @@ namespace Apollo {
 
 	void Tween::update(float percent) {
 		var[0] = points.getCurvePercent(percent) * range() + from;
-		dispatchEvent(new AnimationEvent(AnimationEvent::ON_UPDATE, name));
+		AnimationEvent aEvt = AnimationEvent(AnimationEvent::ON_UPDATE, name);
+		dispatchEvent(aEvt);
 	}
 
 	//////////////////////////////////////////////////

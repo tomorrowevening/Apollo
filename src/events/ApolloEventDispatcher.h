@@ -34,7 +34,7 @@ namespace Apollo {
 		virtual void			addListener(const string eventType, EventHandler *handler);
 		virtual void			removeListener(const string eventType, EventHandler *handler);
 		virtual void			removeAllListeners();
-		virtual void			dispatchEvent(Event *event);
+		virtual void			dispatchEvent(Event &event);
 		
 		// Getters
 		virtual int				totalHandlers();

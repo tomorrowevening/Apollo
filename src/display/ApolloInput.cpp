@@ -64,7 +64,8 @@ namespace Apollo {
 					_selected = true;
 					if(text == defaultText) text = "";
 					onPress(aEvt);
-					this->dispatchEvent(new Event(InputButton::CLICK));
+					Event eEvt = Event(InputButton::CLICK);
+					dispatchEvent(eEvt);
 				}
 				_isDown = true;
 			} else {

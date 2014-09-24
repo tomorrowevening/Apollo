@@ -55,7 +55,8 @@ namespace Apollo {
 
 	void Scene::animateInComplete() {
 		state = Scene_Idle;
-		dispatchEvent( new AnimationEvent(Scene::SCENE_IN, name) );
+		AnimationEvent aEvt = AnimationEvent(Scene::SCENE_IN, name);
+		dispatchEvent( aEvt );
 	}
 
 	void Scene::animateOut() {
@@ -66,7 +67,8 @@ namespace Apollo {
 		bShowing = false;
 		state = Scene_Hidden;
 		visible = false;
-		dispatchEvent( new AnimationEvent(Scene::SCENE_OUT, name) );
+		AnimationEvent aEvt = AnimationEvent(Scene::SCENE_OUT, name);
+		dispatchEvent( aEvt );
 	}
 
 }

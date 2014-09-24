@@ -50,9 +50,11 @@ namespace Apollo {
 		
 		// Update listeners
 		if( totalHandlers() > 0 ) {
-			dispatchEvent(new AnimationEvent(AnimationEvent::ON_UPDATE, identifer));
+			AnimationEvent aEvt = AnimationEvent(AnimationEvent::ON_UPDATE, identifer);
+			dispatchEvent( aEvt );
 			if(dead()) {
-				dispatchEvent(new AnimationEvent(AnimationEvent::ON_COMPLETE, identifer));
+				aEvt = AnimationEvent(AnimationEvent::ON_COMPLETE, identifer);
+				dispatchEvent( aEvt );
 			}
 		}
 	}

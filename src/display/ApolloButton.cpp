@@ -103,7 +103,8 @@ namespace Apollo {
 						_touchOffsetID = aEvt->index;
 					}
 					onPress(aEvt);
-					this->dispatchEvent(new Event(Button::CLICK));
+					Event aEvt = Event(Button::CLICK);
+					dispatchEvent( aEvt );
 				}
 				_isDown = true;
 			}
@@ -121,7 +122,8 @@ namespace Apollo {
 				}
 				if(_isDragging) {
 					_isDragging = false;
-					this->dispatchEvent(new Event(Button::DRAG_END));
+					Event eEvt = Event(Button::DRAG_END);
+					dispatchEvent( eEvt );
 				}
 			}
 			
@@ -140,7 +142,8 @@ namespace Apollo {
 		} else if(eType == ActionEvent::DRAGGED) {
 			if(_isDown) {
 				if(!_isDragging) {
-					this->dispatchEvent(new Event(Button::DRAG_START));
+					Event aEvt = Event(Button::DRAG_START);
+					dispatchEvent( aEvt );
 				}
 				_isDragging = true;
 				onDrag(aEvt);
