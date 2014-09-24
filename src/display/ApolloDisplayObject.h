@@ -43,6 +43,7 @@ namespace Apollo {
 		virtual bool				addChild(DisplayObject* obj);
 		virtual bool				hasChild(DisplayObject* obj);
 		virtual DisplayObject*		getChildAt(int index);
+		virtual DisplayObject*		getChildByName(string name);
 		virtual int					getChildIndex(DisplayObject* obj);
 		virtual int					getChildIndex(string name);
 		virtual void				removeChild(DisplayObject* obj);

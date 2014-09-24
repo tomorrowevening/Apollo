@@ -134,6 +134,14 @@ namespace Apollo {
 		return NULL;
 	}
 	
+	DisplayObject* DisplayObject::getChildByName(string name) {
+		int i, total = numChildren();
+		for(i = 0; i < total; ++i) {
+			if(children[i]->name == name) return children[i];
+		}
+		return NULL;
+	}
+	
 	int DisplayObject::getChildIndex(DisplayObject* obj) {
 		int i, total = numChildren();
 		for(i = 0; i < total; ++i) if(children[i] == obj) return i;
