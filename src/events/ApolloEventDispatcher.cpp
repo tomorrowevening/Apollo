@@ -43,19 +43,17 @@ namespace Apollo {
 		handlers.clear();
 	}
 	
-	void EventDispatcher::dispatchEvent(Event *event) {
-		if( !hasListener(event->type) ) return;
+	void EventDispatcher::dispatchEvent(Event &event) {
+		if( !hasListener(event.type) ) return;
 		
-		event->setDispatcher(this);
+		event.setDispatcher(this);
 		
 		int i, total = totalHandlers();
 		for(i = 0; i < total; ++i) {
-			if(handlers[i].type == event->type) {
-				handlers[i].handler->evtHandler(event);
+			if(handlers[i].type == event.type) {
+				handlers[i].handler->evtHandler(&event);
 			}
 		}
-		
-		delete event;
 	}
 	
 #pragma mark - Getters

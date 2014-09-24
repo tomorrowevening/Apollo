@@ -90,6 +90,8 @@ namespace Apollo {
 			}
 		}
 		obj = NULL;
+		
+		if(activeScene != NULL) activeScene->updateTime();
 	}
 	
 	void Stage::showNextScene() {

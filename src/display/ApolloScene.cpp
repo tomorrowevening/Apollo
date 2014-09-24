@@ -21,7 +21,12 @@ namespace Apollo {
 	}
 
 	Scene::~Scene() {
-		
+		timeline.removeAllTweens();
+	}
+	
+	void Scene::update() {
+		timeline.update();
+		DisplayObject::update();
 	}
 
 	void Scene::show() {
@@ -32,6 +37,7 @@ namespace Apollo {
 		elapsedTime = 0;
 		showStart = getSystemMS();
 		state = Scene_In;
+		timeline.removeAllTweens();
 		animateIn();
 	}
 
@@ -41,8 +47,7 @@ namespace Apollo {
 		animateOut();
 	}
 
-	void Scene::update() {
-		DisplayObject::update();
+	void Scene::updateTime() {
 		++frameNum;
 		elapsedTime = getSystemMS() - showStart;
 	}
@@ -55,7 +60,8 @@ namespace Apollo {
 
 	void Scene::animateInComplete() {
 		state = Scene_Idle;
-		dispatchEvent( new AnimationEvent(Scene::SCENE_IN, name) );
+		AnimationEvent aEvt = AnimationEvent(Scene::SCENE_IN, name);
+		dispatchEvent( aEvt );
 	}
 
 	void Scene::animateOut() {
@@ -66,7 +72,9 @@ namespace Apollo {
 		bShowing = false;
 		state = Scene_Hidden;
 		visible = false;
-		dispatchEvent( new AnimationEvent(Scene::SCENE_OUT, name) );
+		timeline.removeAllTweens();
+		AnimationEvent aEvt = AnimationEvent(Scene::SCENE_OUT, name);
+		dispatchEvent( aEvt );
 	}
 
 }

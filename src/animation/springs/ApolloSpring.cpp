@@ -44,9 +44,11 @@ namespace Apollo {
 		if(pointer != NULL) pointer[0] = value;
 		
 		if( totalHandlers() > 0 ) {
-			dispatchEvent(new AnimationEvent(AnimationEvent::ON_UPDATE, identifer));
+			AnimationEvent aEvt = AnimationEvent(AnimationEvent::ON_UPDATE, identifer);
+			dispatchEvent( aEvt );
 			if(complete()) {
-				dispatchEvent(new AnimationEvent(AnimationEvent::ON_COMPLETE, identifer));
+				aEvt = AnimationEvent(AnimationEvent::ON_COMPLETE, identifer);
+				dispatchEvent( aEvt );
 			}
 		}
 	}
@@ -85,9 +87,11 @@ namespace Apollo {
 		if(pointer != NULL) pointer[0] = value;
 		
 		if( totalHandlers() > 0 ) {
-			dispatchEvent(new AnimationEvent(AnimationEvent::ON_UPDATE, identifer));
+			AnimationEvent aEvt = AnimationEvent(AnimationEvent::ON_UPDATE, identifer);
+			dispatchEvent( aEvt );
 			if(complete()) {
-				dispatchEvent(new AnimationEvent(AnimationEvent::ON_COMPLETE, identifer));
+				aEvt = AnimationEvent(AnimationEvent::ON_COMPLETE, identifer);
+				dispatchEvent( aEvt );
 			}
 		}
 	}

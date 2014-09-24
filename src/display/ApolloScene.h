@@ -9,6 +9,7 @@
 #pragma once
 #include "ApolloDisplayObject.h"
 #include "ApolloTime.h"
+#include "ApolloTweenController.h"
 
 namespace Apollo {
 	
@@ -26,6 +27,7 @@ namespace Apollo {
 		static const string		SCENE_OUT;
 		
 		SceneState				state;
+		TweenController			timeline;
 		int						frameNum;
 		float					elapsedTime;
 		
@@ -35,6 +37,7 @@ namespace Apollo {
 		virtual void show();
 		virtual void hide();
 		virtual void update();
+		virtual void updateTime();
 		
 		// Getters
 		

@@ -76,5 +76,9 @@ namespace Apollo {
 	float cosRange(float degrees, float range, float min) {
 		return (((1.0f + cos(toRad(degrees))) * 0.5f) * range) + min;
 	}
+	
+	float sinRange(float degrees, float range, float min) {
+		return (((1.0f + sin(toRad(degrees))) * 0.5f) * range) + min;
+	}
     
 }
