@@ -57,7 +57,7 @@ namespace Apollo {
 
 	Tween* TweenController::addTween(float &var, float to, float time, float x0, float y0, float x1, float y1, float delay) {
 		float from = var;
-		float _delay = delay;
+		float _delay = 0;
 		float latest = 0;
 		double now = getSystemMS();
 		
@@ -76,7 +76,7 @@ namespace Apollo {
 					//sequence mode
 					if((tweens[i].timestamp + tweens[i].duration) > latest){
 						latest = (tweens[i].timestamp + tweens[i].duration);
-						delay = _delay + (tweens[i].duration - Apollo::getElapsedMS(tweens[i].timestamp));
+						_delay = (tweens[i].duration - Apollo::getElapsedMS(tweens[i].timestamp));
 						from = tweens[i].to;
 					}
 				}
@@ -88,7 +88,7 @@ namespace Apollo {
 		t.from = from;
 		t.to = to;
 		t.setEase(x0, y0, x1, y1);
-		t.timestamp = now + (delay * 1000.);
+		t.timestamp = now + (delay * 1000.) + _delay;
 		t.duration = time * 1000.;
 		tweens.push_back(t);
 		
