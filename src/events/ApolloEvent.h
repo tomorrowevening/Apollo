@@ -96,8 +96,8 @@ namespace Apollo {
 		static const string		DOWN;
 		static const string		MOVE;
 		static const string		UP;
-		static const string		OVER;
-		static const string		OUT;
+		static const string		ROLL_OVER;
+		static const string		ROLL_OUT;
 		static const string		DOUBLE_TAP;
 		static const string		DRAGGED;
 		static const string		SCROLLED;

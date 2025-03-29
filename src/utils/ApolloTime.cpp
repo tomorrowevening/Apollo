@@ -24,7 +24,8 @@ namespace Apollo {
 		gettimeofday( &now, NULL );
 		return (unsigned long long) now.tv_usec/1000 + (unsigned long long) now.tv_sec*1000;
 #else
-		return timeGetTime();
+		time_t currentTime = time(nullptr);
+		return static_cast<unsigned long long>(currentTime);
 #endif
 	}
     

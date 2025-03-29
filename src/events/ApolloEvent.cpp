@@ -27,8 +27,8 @@ namespace Apollo {
 	const string ActionEvent::DOWN				= "ActionEvent::down";
 	const string ActionEvent::MOVE				= "ActionEvent::move";
 	const string ActionEvent::UP				= "ActionEvent::up";
-	const string ActionEvent::OVER				= "ActionEvent::over";
-	const string ActionEvent::OUT				= "ActionEvent::out";
+	const string ActionEvent::ROLL_OVER			= "ActionEvent::rollOver";
+	const string ActionEvent::ROLL_OUT			= "ActionEvent::rollOut";
 	const string ActionEvent::DRAGGED			= "ActionEvent::dragged";
 	const string ActionEvent::SCROLLED			= "ActionEvent::scrolled";
 	const string ActionEvent::DOUBLE_TAP		= "ActionEvent::doubleTap";

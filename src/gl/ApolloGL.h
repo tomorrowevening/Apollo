@@ -24,7 +24,8 @@
 #include <windows.h>
 #include "GL\glew.h"
 #include "GL\wglew.h"
-#include "glu.h"
+//#include "glu.h"
+#include "GL/GLU.h"
 #endif
 
 #ifdef APOLLO_LINUX
